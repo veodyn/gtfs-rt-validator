@@ -74,21 +74,32 @@ class PreparedFeed:
     It is worth holding only because reading is the expensive half. Measured on
     the MBTA's archive, 18 MB and 92,360 trips: 48.7 seconds per `validate` call,
     of which about 45 goes to `load_static` and 2.6 to `StaticContext.build`,
-    against a sub-second rule pass. Holding one costs about **1.8 GB resident**,
+    against a sub-second rule pass. Holding one costs about **0.6 GB resident**,
     so it is a commitment in the other direction and not a free win.
 
     That memory figure is resident set size, taken as the delta across a
-    `prepare_feed` call in an otherwise empty interpreter and confirmed by the
-    drop back to baseline when the feed is released. It was 3.55 GB until
-    `_tables.build_trips` stopped converting a shape once per trip, which on this
-    feed meant 25.7 million point tuples for 393,779 points on disk; trips now
-    share one list per `shape_id` and the same archive holds 1.80 GB. What is
-    left is roughly half this project's row structures and half the sibling's
-    dict-per-row in `rules/feedview.py`, so the next real saving is over there.
+    `prepare_feed` call in an otherwise empty interpreter, with a peak of 618 MB
+    barely above it. It was 3.55 GB three changes ago, and each of the three is
+    worth knowing about because each is a way of accidentally putting it back:
+
+    - `_tables.build_trips` converted a shape's points once per *trip*, so 1,157
+      shapes became 25.7 million point tuples. Trips share the shape's polyline.
+    - `stop_times.txt` was held as the loaded twelve-column dicts, 1,414 MB of
+      it, when four columns are read; `static/_stoptimes.py` keeps those four
+      and pools the values.
+    - The loader materialised that table before the context could compact it,
+      which set a **high water mark of about 2 GB that no later compaction could
+      take back**, freed pages not being returned to the operating system. The
+      adapter now consumes those rows as they arrive.
+
+    That third one is the trap: after the second change the reachable object
+    graph was already 328 MB and RSS was still 2 GB, so measuring the graph
+    alone would have reported a win nobody could observe. Measure resident size,
+    and measure the peak beside it.
 
     Re-measure rather than copy the number forward, and say which method
     produced it. An earlier draft said 1.9 GB, which reproduced under neither
-    RSS nor `tracemalloc` and understated the cost of the day by nearly half;
+    RSS nor `tracemalloc` and understated the cost of that day by nearly half;
     the two answer different questions, and `tracemalloc` roughly doubles the
     wall clock while it is running.
 

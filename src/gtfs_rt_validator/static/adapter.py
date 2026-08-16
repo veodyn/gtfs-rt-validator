@@ -56,7 +56,16 @@ from pathlib import Path
 # comment saying this module was on its own for importing it.
 from gtfs_validator import DependencyFailed, LoadedFeed, open_feed_view, open_raw_view
 
-from gtfs_rt_validator.static.onebusaway import CellTypeError, typed_rows
+from gtfs_rt_validator.static._stoptimes import (
+    EMPTY_STOP_TIMES,
+    StopTimeTable,
+    read_stop_times,
+)
+from gtfs_rt_validator.static.onebusaway import (
+    CellTypeError,
+    typed_row_stream,
+    typed_rows,
+)
 
 Row = dict[str, object]
 
@@ -80,6 +89,7 @@ SEVEN_TABLES = (
 OPTIONAL_TABLES = frozenset({"shapes.txt", "frequencies.txt"})
 
 SHAPES = "shapes.txt"
+STOP_TIMES = "stop_times.txt"
 
 
 class StaticLoadError(Exception):
@@ -107,13 +117,21 @@ class RawTables:
     `shapes` is empty when `ignore_shapes` was set, which is indistinguishable
     here from an archive with no `shapes.txt`. That is deliberate: upstream's
     `-ignoreShapes` has exactly the same effect on everything downstream.
+
+    **`stop_times` is the one exception to "a list of rows", and the reason is
+    size.** It is the only table whose row count runs into the millions, and
+    holding its rows as loaded dicts even briefly sets a resident high water mark
+    a later compaction cannot take back: about 2 GB on an 18 MB archive of
+    2,255,520 rows, against 306 MB when the rows are consumed as they arrive. So
+    it is read straight into `_stoptimes.StopTimeTable`, whose docstring says
+    what that has to carry for the gate to still be able to ask its question.
     """
 
     agency: list[Row]
     stops: list[Row]
     routes: list[Row]
     trips: list[Row]
-    stop_times: list[Row]
+    stop_times: StopTimeTable
     shapes: list[Row]
     frequencies: list[Row]
 
@@ -145,7 +163,7 @@ def _check_every_table_arrived(loaded: LoadedFeed, requested: tuple[str, ...]) -
         raise StaticLoadError(f"{name} was requested but the loader did not return it")
 
 
-def _load_tables(path: Path, tables: tuple[str, ...]) -> dict[str, list[Row]]:
+def _load_tables(path: Path, tables: tuple[str, ...]) -> tuple[dict[str, list[Row]], StopTimeTable]:
     """Load exactly `tables` and return every row of each, copied out.
 
     Private, and takes the table names, so a test can hand it a deliberately
@@ -155,11 +173,18 @@ def _load_tables(path: Path, tables: tuple[str, ...]) -> dict[str, list[Row]]:
     `list(...)` inside the `with` is the whole copy-out: the sibling builds a
     fresh dict per row and every value is a `str`, `int`, `float` or `None`, so
     materialising the iterator leaves nothing pointing at the SQLite store.
+
+    `stop_times.txt` is the exception and is read last, consumed as it arrives
+    rather than listed. `RawTables` says why, and last is not incidental: the
+    references its reader resolves are into `trips.txt` and `stops.txt`, so
+    those two have to have been read already.
     """
     with open_feed_view(path, tables=list(tables)) as loaded:
         _check_every_table_arrived(loaded, tables)
         out: dict[str, list[Row]] = {}
         for name in tables:
+            if name == STOP_TIMES:
+                continue
             try:
                 out[name] = list(loaded.view.rows(name))
             except DependencyFailed as exc:
@@ -168,10 +193,20 @@ def _load_tables(path: Path, tables: tuple[str, ...]) -> dict[str, list[Row]]:
                 # to either side surfaces as this project's error rather than as
                 # the sibling's private one leaking to a caller.
                 raise StaticLoadError(f"{name} could not be read: {exc}") from exc
-        return out
+        if STOP_TIMES not in tables:
+            return out, EMPTY_STOP_TIMES
+        try:
+            stop_times = read_stop_times(
+                loaded.view.rows(STOP_TIMES),
+                trips=out.get("trips.txt", []),
+                stops=out.get("stops.txt", []),
+            )
+        except DependencyFailed as exc:
+            raise StaticLoadError(f"{STOP_TIMES} could not be read: {exc}") from exc
+        return out, stop_times
 
 
-def _raw_tables(path: Path, tables: tuple[str, ...]) -> dict[str, list[Row]]:
+def _raw_tables(path: Path, tables: tuple[str, ...]) -> tuple[dict[str, list[Row]], StopTimeTable]:
     """The same seven tables, read as onebusaway reads them.
 
     No `_check_every_table_arrived`: there is nothing for it to check. The raw
@@ -188,6 +223,8 @@ def _raw_tables(path: Path, tables: tuple[str, ...]) -> dict[str, list[Row]]:
     out: dict[str, list[Row]] = {}
     with open_raw_view(path, tables=list(tables)) as raw:
         for name in tables:
+            if name == STOP_TIMES:
+                continue
             if raw.is_missing(name):
                 if name in OPTIONAL_TABLES:
                     out[name] = []
@@ -200,20 +237,31 @@ def _raw_tables(path: Path, tables: tuple[str, ...]) -> dict[str, list[Row]]:
                 # only IOException | NoSuchAlgorithmException, so upstream dies
                 # with a stack trace and writes nothing. So does this.
                 raise StaticLoadError(f"{name} could not be read: {exc}") from exc
-    return out
+        if raw.is_missing(STOP_TIMES):
+            raise StaticLoadError(f"{STOP_TIMES} is not in the archive")
+        try:
+            stop_times = read_stop_times(
+                typed_row_stream(STOP_TIMES, raw.rows(STOP_TIMES)),
+                trips=out.get("trips.txt", []),
+                stops=out.get("stops.txt", []),
+            )
+        except CellTypeError as exc:
+            raise StaticLoadError(f"{STOP_TIMES} could not be read: {exc}") from exc
+    return out, stop_times
 
 
 def _requested(ignore_shapes: bool) -> tuple[str, ...]:
     return tuple(name for name in SEVEN_TABLES if not (ignore_shapes and name == SHAPES))
 
 
-def _assembled(rows: dict[str, list[Row]]) -> RawTables:
+def _assembled(loaded: tuple[dict[str, list[Row]], StopTimeTable]) -> RawTables:
+    rows, stop_times = loaded
     return RawTables(
         agency=rows.get("agency.txt", []),
         stops=rows.get("stops.txt", []),
         routes=rows.get("routes.txt", []),
         trips=rows.get("trips.txt", []),
-        stop_times=rows.get("stop_times.txt", []),
+        stop_times=stop_times,
         shapes=rows.get(SHAPES, []),
         frequencies=rows.get("frequencies.txt", []),
     )

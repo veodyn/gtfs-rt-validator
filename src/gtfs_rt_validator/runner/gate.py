@@ -104,16 +104,25 @@ __all__ = [
 FALLBACK_TIMEZONE = "UTC"
 
 #: table, column, and the table whose key column it must resolve against.
-#: `stop_times.trip_id -> Trip`, `stop_times.stop_id -> Stop`,
 #: `trips.route_id -> Route`, `frequencies.trip_id -> Trip`,
-#: `routes.agency_id -> Agency`: the five entity references onebusaway declares
-#: among the seven tables loaded here.
+#: `routes.agency_id -> Agency`: three of the five entity references onebusaway
+#: declares among the seven tables loaded here.
+#:
+#: The other two are `_STOP_TIME_REFERENCES`, checked ahead of these because
+#: that is where they sat when all five were scanned here. `stop_times.txt` is
+#: never materialised, so nothing can scan it twice: `_stoptimes.read_stop_times`
+#: answers for it while reading it and keeps the one offending row per reference.
 _REFERENCES = (
-    ("stop_times.txt", "trip_id", "trips.txt", "trip_id"),
-    ("stop_times.txt", "stop_id", "stops.txt", "stop_id"),
     ("trips.txt", "route_id", "routes.txt", "route_id"),
     ("frequencies.txt", "trip_id", "trips.txt", "trip_id"),
     ("routes.txt", "agency_id", "agency.txt", "agency_id"),
+)
+
+#: column, target table, and the attribute holding that reference's first
+#: offending row. Order is the precedence, and it is unchanged.
+_STOP_TIME_REFERENCES = (
+    ("trip_id", "trips.txt", "first_unknown_trip_id"),
+    ("stop_id", "stops.txt", "first_unknown_stop_id"),
 )
 
 
@@ -134,23 +143,37 @@ def _rows(raw: RawTables, table: str) -> list[dict[str, object]]:
     return getattr(raw, table.removesuffix(".txt"))
 
 
+def _unresolved(table: str, row_number: object, column: str, value: object, target: str) -> str:
+    """The message, in one place, because two callers now render it."""
+    return (
+        f"{table} row {row_number} names {column} {value!r}, which is not in "
+        f"{target}; onebusaway's reader aborts the whole read on that reference and "
+        f"upstream then writes no results for any file"
+    )
+
+
 def dangling_reference(raw: RawTables) -> str | None:
     """The first reference onebusaway's reader would not have resolved, or None.
 
     Returns the message rather than raising, so the caller decides what it means
     and this function stays usable as a plain question.
+
+    The two `stop_times.txt` references come first, exactly where they were when
+    all five were scanned here. They are read off the table rather than scanned
+    for, because that table is never held; see `_REFERENCES`.
     """
+    for column, target, attribute in _STOP_TIME_REFERENCES:
+        offending = getattr(raw.stop_times, attribute)
+        if offending is not None:
+            row_number, value = offending
+            return _unresolved("stop_times.txt", row_number, column, value, target)
     for table, column, target, key in _REFERENCES:
         known = {row[key] for row in _rows(raw, target) if row.get(key) is not None}
         for row in _rows(raw, table):
             value = row.get(column)
             if value is None or value in known:
                 continue
-            return (
-                f"{table} row {row.get('_row_number')} names {column} {value!r}, which is not in "
-                f"{target}; onebusaway's reader aborts the whole read on that reference and "
-                f"upstream then writes no results for any file"
-            )
+            return _unresolved(table, row.get("_row_number"), column, value, target)
     return None
 
 

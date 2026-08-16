@@ -184,11 +184,14 @@ def test_loaded_field_types_are_what_every_later_rule_will_assume(tmp_path):
     assert type(stop["location_type"]) is int, "an enum is a plain int, not a Python enum"
     assert type(stop["stop_name"]) is str
 
-    stop_time = raw.stop_times[0]
-    assert stop_time["arrival_time"] == 90300, "TIME is seconds since midnight, past midnight kept"
-    assert type(stop_time["arrival_time"]) is int
-    assert type(stop_time["stop_sequence"]) is int
-    assert stop_time["shape_dist_traveled"] is None
+    # `stop_times.txt` is the one table kept as records rather than rows, so the
+    # TIME type is pinned on the record. `shape_dist_traveled` is not among the
+    # four it keeps; the blank-cell-is-None rule it used to witness is the same
+    # rule `platform_code` witnesses above.
+    stop_time = raw.stop_times.by_trip["T1"][0]
+    assert stop_time.arrival_time == 90300, "TIME is seconds since midnight, past midnight kept"
+    assert type(stop_time.arrival_time) is int
+    assert type(stop_time.stop_sequence) is int
 
 
 def test_date_and_decimal_types_measured_outside_the_seven(tmp_path):
@@ -225,7 +228,7 @@ def test_date_and_decimal_types_measured_outside_the_seven(tmp_path):
     ]
     path = build_feed(tmp_path, tables)
 
-    loaded = _load_tables(path, ("calendar.txt", "fare_attributes.txt"))
+    loaded, _ = _load_tables(path, ("calendar.txt", "fare_attributes.txt"))
 
     assert loaded["calendar.txt"][0]["start_date"] == 20260101
     assert type(loaded["calendar.txt"][0]["start_date"]) is int

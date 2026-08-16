@@ -57,7 +57,6 @@ from gtfs_rt_validator.geometry.buffer import within_buffered_shape
 from gtfs_rt_validator.static._stoptimes import (
     StopTime,
     build_route_stop_ids,
-    group_stop_times,
     repeated_stops,
 )
 from gtfs_rt_validator.static._tables import (
@@ -204,7 +203,7 @@ class StaticContext:
         shape_points, shape_box, shape_box_buffered = build_shapes(
             raw.shapes, ignore_shapes=ignore_shapes
         )
-        trip_stop_times = group_stop_times(raw.stop_times)
+        trip_stop_times = raw.stop_times.by_trip
         trips, trip_shapes = build_trips(raw.trips, shape_points)
         stop_ids, location_types, stop_box = build_stops(raw.stops)
         exact_times_zero, exact_times_one = split_frequencies(raw.frequencies)

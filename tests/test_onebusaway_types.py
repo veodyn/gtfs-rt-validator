@@ -132,12 +132,16 @@ def test_the_two_readers_agree_on_a_feed_that_types_cleanly(tmp_path) -> None:
 
     strict, lenient = load_static(feed), load_static_as_onebusaway(feed)
 
-    for table in ("agency", "stops", "routes", "stop_times", "shapes", "frequencies"):
+    for table in ("agency", "stops", "routes", "shapes", "frequencies"):
         columns = COLUMNS[f"{table}.txt"]
         for one, two in zip(getattr(strict, table), getattr(lenient, table), strict=True):
             assert {name: one[name] for name in columns} == {name: two[name] for name in columns}, (
                 table
             )
+    # `stop_times.txt` is compared as the records both readers are now read
+    # into, which carry four of the five columns `COLUMNS` names for it; the
+    # fifth, trip_id, is the key they are grouped under and so is compared too.
+    assert strict.stop_times.by_trip == lenient.stop_times.by_trip
     # trips is the exception, and the only one: direction_id is an int on the
     # strict side and the cell's own text on this one.
     assert [row["direction_id"] for row in strict.trips] == [0]

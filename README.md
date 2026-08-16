@@ -142,7 +142,7 @@ for message in incoming:
 ```
 
 Measured on one real agency's archive, 18 MB and 92,360 trips: about 49s to
-prepare, then 0.5s per message. The prepared feed retains about 1.8 GB resident,
+prepare, then 0.5s per message. The prepared feed retains about 0.6 GB resident,
 so it is a real memory commitment as well as a speed one.
 
 **You take ownership of staleness.** The archive is not read again until you
@@ -165,7 +165,7 @@ result = validate(Request(mode=Mode.MODERN, gtfs=feed, inputs=resolve("TripUpdat
 
 Reading is the expensive half: on an 18 MB archive of 92,360 trips it is about
 45 of a 49-second call, against a sub-second rule pass, and the feed it produces
-holds roughly 1.8 GB. Reusing one moves staleness onto you, since the archive is
+holds roughly 0.6 GB. Reusing one moves staleness onto you, since the archive is
 not read again until you build another. It must be prepared for the `mode` and
 `ignore_shapes` the request uses, because both change what was read; a mismatch
 is a `UsageError` rather than a wrong answer.

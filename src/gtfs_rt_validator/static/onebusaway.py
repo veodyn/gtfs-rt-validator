@@ -42,9 +42,9 @@ anything and writes no results for any file; `adapter.py` turns this into the
 from __future__ import annotations
 
 import re
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable, Iterator, Mapping
 
-__all__ = ["ROW_NUMBER", "CellTypeError", "typed_rows"]
+__all__ = ["ROW_NUMBER", "CellTypeError", "typed_row_stream", "typed_rows"]
 
 Row = dict[str, object]
 
@@ -205,16 +205,23 @@ def _seconds(value: str) -> object:
 _CONVERT = {TEXT: _text, INTEGER: _integer, DOUBLE: _double, SECONDS: _seconds}
 
 
-def typed_rows(table: str, rows: Iterable[Mapping[str, str]]) -> list[Row]:
-    """Every raw row of one table, with this project's columns typed.
+def typed_row_stream(table: str, rows: Iterable[Mapping[str, str]]) -> Iterator[Row]:
+    """The same typing, one row at a time and nothing kept.
 
-    Materialised rather than yielded because the caller is copying the feed out
-    of a context manager anyway, and a generator would let the archive close
-    underneath it.
+    The generator form exists for `stop_times.txt` alone, whose row count runs
+    into the millions: `adapter.py` consumes it into the compact records
+    `_stoptimes.py` defines, so the loaded dict for a row is garbage as soon as
+    the next one is read. Materialising that table instead set a resident high
+    water mark of about 2 GB on a real archive, which no later compaction can
+    take back, the allocator not returning freed pages to the operating system.
+
+    **It must be consumed inside the caller's `with`.** The archive closes with
+    that block and this reads through it, which is exactly the hazard
+    `typed_rows` below avoids by materialising. Every other table takes that
+    safer form, being small enough that it costs nothing.
     """
     declared = COLUMNS[table]
     required = REQUIRED.get(table, frozenset())
-    out: list[Row] = []
     for raw in rows:
         row: Row = {}
         for name, value in raw.items():
@@ -235,5 +242,15 @@ def typed_rows(table: str, rows: Iterable[Mapping[str, str]]) -> list[Row]:
                     f"{table} row {raw.get(ROW_NUMBER)} has no {name}, which onebusaway "
                     f"requires and this project sorts or measures by"
                 )
-        out.append(row)
-    return out
+        yield row
+
+
+def typed_rows(table: str, rows: Iterable[Mapping[str, str]]) -> list[Row]:
+    """Every raw row of one table, with this project's columns typed.
+
+    Materialised rather than yielded because the caller is copying the feed out
+    of a context manager anyway, and a generator would let the archive close
+    underneath it. `typed_row_stream` is the generator, for the one table where
+    holding every row at once is the dominant cost.
+    """
+    return list(typed_row_stream(table, rows))

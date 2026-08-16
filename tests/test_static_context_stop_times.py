@@ -29,6 +29,9 @@ service prepares one feed after another.
 
 from __future__ import annotations
 
+import weakref
+
+from gtfs_rt_validator.static._stoptimes import read_stop_times
 from gtfsfixtures import minimal_tables
 from test_static_context import context_from, stop_time, trip
 
@@ -89,6 +92,96 @@ def test_the_group_is_a_tuple_because_a_caller_can_reach_it(tmp_path):
     ctx = context_from(tmp_path, a_feed_visiting(("T1", "S1", "1"), ("T1", "S2", "2")))
 
     assert isinstance(ctx.trip_stop_times["T1"], tuple)
+
+
+def a_row(trip_id: str, stop_id: str, sequence: int, row_number: int) -> dict[str, object]:
+    return {
+        "trip_id": trip_id,
+        "stop_id": stop_id,
+        "stop_sequence": sequence,
+        "arrival_time": 25200,
+        "departure_time": 25200,
+        "_row_number": row_number,
+    }
+
+
+class WatchedRow(dict):
+    """A row that can be weakly referenced, so a test can watch it be released."""
+
+    __slots__ = ("__weakref__",)
+
+
+def test_no_more_than_a_handful_of_loaded_rows_are_alive_at_once():
+    """The property the whole streaming design rests on, and the hard half of it.
+
+    Reading in one pass is necessary and is not sufficient: `list(rows)` at the
+    top of the reader would satisfy a one-shot iterator perfectly well and put
+    the entire table back in memory. What has to be true is that a row is
+    released once its record exists, so this watches them go.
+
+    The count matters because the cost is a high water mark and not a retention.
+    Materialising `stop_times.txt` on a real archive left about 2 GB resident
+    against 618 MB streamed, and no later compaction takes that back: the freed
+    pages are reusable by the process and are not returned to the operating
+    system, so a peak once reached is paid for the life of a long-lived service.
+
+    Two rows are expected alive: the one the generator has just built and the one
+    the reader is converting. The bound is loose because the exact number is an
+    implementation detail; 200 against a bound of 5 is the distinction being
+    drawn, and a reader that kept them all would report 200.
+    """
+    handed_out: list[weakref.ref] = []
+    watched: list[int] = []
+
+    def stream():
+        for sequence in range(200):
+            row = WatchedRow(a_row("T1", "S1", sequence, sequence + 2))
+            handed_out.append(weakref.ref(row))
+            watched.append(sum(1 for ref in handed_out if ref() is not None))
+            yield row
+
+    table = read_stop_times(stream(), trips=[{"trip_id": "T1"}], stops=[{"stop_id": "S1"}])
+
+    assert len(table.by_trip["T1"]) == 200
+    assert len(table) == 200, "counted in rows, standing in for the list it replaced"
+    assert max(watched) <= 5, f"loaded rows alive at once peaked at {max(watched)} of 200"
+
+
+def test_the_offending_row_is_kept_where_the_table_is_not():
+    """The gate's question, answered while the rows still exist.
+
+    `runner/gate.py` used to scan the loaded table for this. It cannot now, so
+    the first offending row per reference is recorded during the read: the row
+    number and the value, which is exactly what its message renders. Later rows
+    breaking the same reference are not kept, upstream reporting only the first.
+    """
+    rows = [a_row("GHOST", "S1", 1, 2), a_row("T1", "NOWHERE", 1, 3), a_row("T1", "ALSO", 2, 4)]
+
+    table = read_stop_times(iter(rows), trips=[{"trip_id": "T1"}], stops=[{"stop_id": "S1"}])
+
+    assert table.first_unknown_trip_id == (2, "GHOST")
+    assert table.first_unknown_stop_id == (3, "NOWHERE"), "the first, not the last"
+
+
+def test_a_reference_that_resolves_for_every_row_records_nothing():
+    """The control, so the two fields above cannot be passing by always firing."""
+    rows = [a_row("T1", "S1", 1, 2)]
+
+    table = read_stop_times(iter(rows), trips=[{"trip_id": "T1"}], stops=[{"stop_id": "S1"}])
+
+    assert table.first_unknown_trip_id is None
+    assert table.first_unknown_stop_id is None
+
+
+def test_a_blank_reference_is_not_a_dangling_one():
+    """`gate.dangling_reference` skips a `None` value, and this reproduces it
+    rather than reinventing it: an absent reference is not an unresolvable one,
+    and onebusaway's reader only aborts the read on the second."""
+    rows = [a_row("T1", None, 1, 2)]
+
+    table = read_stop_times(iter(rows), trips=[{"trip_id": "T1"}], stops=[])
+
+    assert table.first_unknown_stop_id is None
 
 
 def test_pooling_does_not_disturb_the_sort_or_lose_a_row(tmp_path):

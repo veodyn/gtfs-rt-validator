@@ -17,7 +17,7 @@ last being the grouping key and so the dict key here rather than a field.
 **No two rows shared a cell object.** The sibling builds one dict per row out of
 `sqlite3.Row`, so 2,255,520 `stop_id` references arrived as 2,246,680 distinct
 strings for 7,629 distinct values, and `arrival_time` as 2,254,712 distinct
-integers for 1,998 values. `group_stop_times` pools them as it goes.
+integers for 1,998 values. `read_stop_times` pools them as it goes.
 
 Nothing here decides anything, in `context.py`'s sense: it groups, sorts and
 counts, and a feed that will not load has already failed in `adapter.py`.
@@ -25,9 +25,12 @@ counts, and a feed that will not load has already failed in `adapter.py`.
 
 from __future__ import annotations
 
+from collections.abc import Iterable
+from dataclasses import dataclass
 from typing import Any, NamedTuple
 
 from gtfs_rt_validator.static._tables import Row
+from gtfs_rt_validator.static.onebusaway import ROW_NUMBER
 
 
 class StopTime(NamedTuple):
@@ -46,43 +49,109 @@ class StopTime(NamedTuple):
     departure_time: int | None
 
 
-def group_stop_times(rows: list[Row]) -> dict[str, tuple[StopTime, ...]]:
-    """`mTripStopTimes`, sorted by `stop_sequence`.
+@dataclass(frozen=True, slots=True)
+class StopTimeTable:
+    """`stop_times.txt` as everything downstream needs it, from a single pass.
 
-    Upstream sorts inside its trips loop, so a trip_id present in
-    `stop_times.txt` and absent from `trips.txt` would go unsorted. It cannot
-    reach that state, because its reader aborts the entire read on an
-    unresolvable foreign key. The sibling at `35fac77` does not abort (measured
-    in `tests/test_static_context.py`), so sorting every group here is both
-    simpler and the only version that stays right on a feed upstream would have
-    refused outright. `sorted` is stable, so rows sharing a `stop_sequence` keep
-    file order exactly as the in-place sort it replaced left them.
+    Two consumers read this table and both read it once in file order, so both
+    are served here rather than each walking a materialised list: `by_trip` is
+    the structure the rules get, and the two `first_unknown_*` fields are what
+    `runner/gate.py` needs to answer whether onebusaway's reader would have
+    aborted the read on an unresolvable foreign key.
 
-    **Cell values are pooled while grouping**, which is half the saving: 422 MB
-    of records without it, 202 MB with. The pool is local to this call and dies
-    with it, unlike `sys.intern`, which would hold one feed's stop ids for the
-    life of a process that goes on to prepare another.
+    The gate's question cannot be answered later, because answering it needs the
+    row and the row is gone: only the offending one is kept, as
+    `(_row_number, value)`, which is exactly what its message renders. `None`
+    means the reference resolved for every row.
+
+    Keeping the gate's half here is what allows the table never to be
+    materialised. `tests/test_runner_gate.py` owns the precedence between this
+    reference and the three the gate still scans for itself.
+    """
+
+    by_trip: dict[str, tuple[StopTime, ...]]
+    first_unknown_trip_id: tuple[object, object] | None
+    first_unknown_stop_id: tuple[object, object] | None
+
+    def __len__(self) -> int:
+        """Rows, not trips: this stands in for a list and is counted like one."""
+        return sum(len(stop_times) for stop_times in self.by_trip.values())
+
+
+#: What a run gets when `stop_times.txt` was not among the tables asked for.
+#: Only `_load_tables` can reach that state, and only a test calls it with a set
+#: that leaves the table out; the seven always include it.
+EMPTY_STOP_TIMES = StopTimeTable(by_trip={}, first_unknown_trip_id=None, first_unknown_stop_id=None)
+
+
+def _keys(rows: Iterable[Row], column: str) -> frozenset[str]:
+    """One table's key column as a set, skipping blanks.
+
+    Blanks are skipped because `gate.dangling_reference` skips them on the other
+    side too: a row whose reference is absent is not a row whose reference is
+    unresolvable, and onebusaway's reader only aborts on the second.
+    """
+    return frozenset(row[column] for row in rows if row.get(column) is not None)
+
+
+def read_stop_times(
+    rows: Iterable[Row], *, trips: Iterable[Row], stops: Iterable[Row]
+) -> StopTimeTable:
+    """One pass over `stop_times.txt`: the grouped records, and the gate's answer.
+
+    `rows` is consumed lazily and never held, which is the point. The loaded
+    dict for a row becomes garbage as soon as the next is read, where
+    materialising the table first set a resident high water mark of about 2 GB
+    on a real archive that no later compaction could take back.
+
+    `trips` and `stops` are those two tables, already read, because the
+    references this resolves point into them. That is why `adapter.py` reads
+    this table last. A row whose own reference is absent is not dangling:
+    `gate.dangling_reference` skips a `None` value and this reproduces that
+    rather than reinventing it.
+
+    Sorting every group is `mTripStopTimes`. Upstream sorts inside its trips
+    loop, so a trip_id present here and absent from `trips.txt` would go
+    unsorted; it cannot reach that state, its reader aborting the whole read on
+    exactly the reference this records. The sibling does not abort (measured in
+    `tests/test_static_context.py`), so sorting everything is both simpler and
+    the only version that stays right on a feed upstream would have refused.
+    `sorted` is stable, so rows sharing a `stop_sequence` keep file order.
 
     One pool serves all four columns rather than one per column, so a departure
     equal to an arrival is also one object. That is safe only because every one
-    of them is an `int`, a `str` or `None`; a `float` column could not join them,
-    `1.0` and `1` being equal and so interchangeable here.
+    of them is an `int`, a `str` or `None`; a `float` column could not join
+    them, `1.0` and `1` being equal and so interchangeable here.
     """
-    pool: dict[Any, Any] = {}
+    trip_ids = _keys(trips, "trip_id")
+    stop_ids = _keys(stops, "stop_id")
+    first_trip: tuple[object, object] | None = None
+    first_stop: tuple[object, object] | None = None
     grouped: dict[str, list[StopTime]] = {}
+    pool: dict[Any, Any] = {}
     for row in rows:
-        grouped.setdefault(row["trip_id"], []).append(
+        trip_id = row["trip_id"]
+        if first_trip is None and trip_id is not None and trip_id not in trip_ids:
+            first_trip = (row.get(ROW_NUMBER), trip_id)
+        stop_id = row["stop_id"]
+        if first_stop is None and stop_id is not None and stop_id not in stop_ids:
+            first_stop = (row.get(ROW_NUMBER), stop_id)
+        grouped.setdefault(trip_id, []).append(
             StopTime(
                 pool.setdefault(row["stop_sequence"], row["stop_sequence"]),
-                pool.setdefault(row["stop_id"], row["stop_id"]),
+                pool.setdefault(stop_id, stop_id),
                 pool.setdefault(row["arrival_time"], row["arrival_time"]),
                 pool.setdefault(row["departure_time"], row["departure_time"]),
             )
         )
-    return {
-        trip_id: tuple(sorted(group, key=lambda stop: stop.stop_sequence))
-        for trip_id, group in grouped.items()
-    }
+    return StopTimeTable(
+        by_trip={
+            trip_id: tuple(sorted(group, key=lambda stop: stop.stop_sequence))
+            for trip_id, group in grouped.items()
+        },
+        first_unknown_trip_id=first_trip,
+        first_unknown_stop_id=first_stop,
+    )
 
 
 def build_route_stop_ids(
@@ -104,7 +173,7 @@ def build_route_stop_ids(
     names every stop of the empty set.
 
     The walk is over `trips`, so a `stop_times.txt` row naming a trip no
-    `trips.txt` row declares reaches no route. `group_stop_times` keeps it,
+    `trips.txt` row declares reaches no route. `read_stop_times` keeps it,
     because the sibling does not reject it, but it belongs to no route.
     """
     out: dict[str, set[str]] = {}
