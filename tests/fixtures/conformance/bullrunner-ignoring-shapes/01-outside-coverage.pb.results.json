@@ -1,0 +1,19 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E028",
+      "severity" : "ERROR",
+      "title" : "Vehicle position outside agency coverage area",
+      "errorDescription" : "The vehicle position should be inside the agency coverage area.  This is defined as within roughly 1/8 of a mile (200 meters) of the GTFS shapes.txt data, or stops.txt locations if the GTFS feed doesn't include shapes.txt.",
+      "occurrenceSuffix" : "- vehicle should be within area"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id ignored-1 at (40.0,-73.0) is more than 1609.0 meters (1.00 mile(s)) outside entire GTFS stops.txt coverage area"
+  } ]
+} ]

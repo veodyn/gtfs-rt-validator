@@ -1,0 +1,19 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E052",
+      "severity" : "ERROR",
+      "title" : "vehicle.id is not unique",
+      "errorDescription" : "Each vehicle should have a unique ID",
+      "occurrenceSuffix" : "which is used by more than one vehicle in the feed"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "entity ID second-claim has vehicle.id claimed"
+  } ]
+} ]

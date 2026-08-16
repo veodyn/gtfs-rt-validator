@@ -1,0 +1,772 @@
+{
+  "generated_by": "tools/map_rules.py",
+  "do_not_edit": "Regenerate with .venv/bin/python tools/map_rules.py",
+  "repo": "MobilityData/gtfs-realtime-validator",
+  "pin": "7041fa3fcaf674bf730e17325c179d329cdff6f2",
+  "source_sha256": {
+    "BatchProcessor.java": "3bf9b6ef807efe29ad484ff8f564d4e2245676ca06975757eb08e75cd2cb3e8e",
+    "CrossFeedDescriptorValidator.java": "0c04d389b72ed3f0e738f30d942d46da232bc1c1c07b6067fc735291f1727353",
+    "FrequencyTypeOneValidator.java": "2fad33599aa272ab1f92c198f541cdf9c656b6d5e2f75ae30e7d46c03a709fb2",
+    "FrequencyTypeZeroValidator.java": "274493d383a90981aa9a44cb5c2e77eb654f857091aa944ddca03ac795cac759",
+    "HeaderValidator.java": "972bd5b605902f1ee2f3a62335ef75278b4ec3d7c8dff04fb03fba13dba51afa",
+    "StopLocationTypeValidator.java": "6f91134a25825f4d4bfc21b29621e308c14d3ad864c970647a70b61e6da6e108",
+    "StopTimeUpdateValidator.java": "cb1bf74e2a96d3aa967f38fdea009fdfa50a184c1cb79c85db1c30997db58ea2",
+    "StopValidator.java": "24e15188549c7d5a28cb78a7f69cfbbd203dcf2fcde9c68a00a64665d98e6f8c",
+    "TimestampValidator.java": "5f42e4dd0b3e2571df67baf11a5cde8381ed36bee2748bb308bfcc27db9fca52",
+    "TripDescriptorValidator.java": "5c810118c9c2533222b03251dff3b2df2e8bd3ffa7f4b97cd44cdd384a190855",
+    "ValidationRules.java": "1901b8bfcd500dc93b5206a220cfe7cda9bb31e276cd8894454ed3959f044e26",
+    "VehicleValidator.java": "88f38a853dd9cc1497fb2f4d9621533742880de944cc5a1c7410fca766d3f7a5"
+  },
+  "batch_registration_order": [
+    "CrossFeedDescriptorValidator",
+    "VehicleValidator",
+    "TimestampValidator",
+    "StopTimeUpdateValidator",
+    "TripDescriptorValidator",
+    "StopValidator",
+    "FrequencyTypeZeroValidator",
+    "FrequencyTypeOneValidator",
+    "HeaderValidator"
+  ],
+  "group_order": {
+    "CrossFeedDescriptorValidator": [
+      "W003",
+      "E047"
+    ],
+    "VehicleValidator": [
+      "E026",
+      "E027",
+      "E028",
+      "E029",
+      "W002",
+      "W004",
+      "E052"
+    ],
+    "TimestampValidator": [
+      "W001",
+      "W007",
+      "W008",
+      "E001",
+      "E012",
+      "E017",
+      "E018",
+      "E022",
+      "E025",
+      "E048",
+      "E050"
+    ],
+    "StopTimeUpdateValidator": [
+      "E002",
+      "E009",
+      "E036",
+      "E037",
+      "E040",
+      "E041",
+      "E042",
+      "E043",
+      "E044",
+      "E045",
+      "E046",
+      "E051"
+    ],
+    "TripDescriptorValidator": [
+      "E003",
+      "E004",
+      "E016",
+      "E020",
+      "E021",
+      "E023",
+      "E024",
+      "E030",
+      "E031",
+      "E032",
+      "E033",
+      "E034",
+      "E035",
+      "W006",
+      "W009"
+    ],
+    "StopValidator": [
+      "E011",
+      "E015"
+    ],
+    "FrequencyTypeZeroValidator": [
+      "E006",
+      "E013",
+      "W005"
+    ],
+    "FrequencyTypeOneValidator": [
+      "E019"
+    ],
+    "HeaderValidator": [
+      "E038",
+      "E039",
+      "E049"
+    ]
+  },
+  "rules": {
+    "W001": {
+      "error_id": "W001",
+      "severity": "WARNING",
+      "title": "timestamp not populated",
+      "error_description": "Timestamps should be populated for all elements",
+      "occurrence_suffix": "does not have a timestamp",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "W002": {
+      "error_id": "W002",
+      "severity": "WARNING",
+      "title": "vehicle_id not populated",
+      "error_description": "vehicle_id should be populated for TripUpdates and VehiclePositions",
+      "occurrence_suffix": "does not have a vehicle_id",
+      "emitters": [
+        "VehicleValidator"
+      ],
+      "batch_reachable": true
+    },
+    "W003": {
+      "error_id": "W003",
+      "severity": "WARNING",
+      "title": "ID in one feed missing from the other",
+      "error_description": "a trip_id that is provided in the VehiclePositions feed should be provided in the TripUpdates feed, and a vehicle_id that is provided in the TripUpdates feed should be provided in the VehiclePositions feed",
+      "occurrence_suffix": "",
+      "emitters": [
+        "CrossFeedDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "W004": {
+      "error_id": "W004",
+      "severity": "WARNING",
+      "title": "vehicle speed is unrealistic",
+      "error_description": "vehicle.position.speed has an unrealistic speed that may be incorrect",
+      "occurrence_suffix": "is unrealistic",
+      "emitters": [
+        "VehicleValidator"
+      ],
+      "batch_reachable": true
+    },
+    "W005": {
+      "error_id": "W005",
+      "severity": "WARNING",
+      "title": "Missing vehicle_id for frequency-based exact_times = 0",
+      "error_description": "Frequency-based exact_times = 0 trip_updates and vehicle positions should contain vehicle_id",
+      "occurrence_suffix": "is missing vehicle_id, which is suggested for frequency-based exact_times=0 trips",
+      "emitters": [
+        "FrequencyTypeZeroValidator"
+      ],
+      "batch_reachable": true
+    },
+    "W006": {
+      "error_id": "W006",
+      "severity": "WARNING",
+      "title": "trip missing trip_id",
+      "error_description": "trip should include a trip_id",
+      "occurrence_suffix": "does not contain a trip_id",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "W007": {
+      "error_id": "W007",
+      "severity": "WARNING",
+      "title": "Refresh interval is more than 35 seconds",
+      "error_description": "GTFS-realtime feeds should be refreshed at least every 30 seconds",
+      "occurrence_suffix": "which is less than the recommended interval of 35 seconds",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "W008": {
+      "error_id": "W008",
+      "severity": "WARNING",
+      "title": "Header timestamp is older than 65 seconds",
+      "error_description": "The data in a GTFS-realtime feed should always be less than one minute old",
+      "occurrence_suffix": "old which is greater than the recommended age of 65 seconds",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "W009": {
+      "error_id": "W009",
+      "severity": "WARNING",
+      "title": "schedule_relationship not populated",
+      "error_description": "trip.schedule_relationship and stop_time_update.schedule_relationship should be populated",
+      "occurrence_suffix": "does not have a schedule_relationship",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E001": {
+      "error_id": "E001",
+      "severity": "ERROR",
+      "title": "Not in POSIX time",
+      "error_description": "All timestamps must be in POSIX time (i.e., number of seconds since January 1st 1970 00:00:00 UTC)",
+      "occurrence_suffix": "is not POSIX time",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E002": {
+      "error_id": "E002",
+      "severity": "ERROR",
+      "title": "stop_times_updates not strictly sorted",
+      "error_description": "stop_time_updates for a given trip_id must be strictly sorted by increasing stop_sequence",
+      "occurrence_suffix": "is not strictly sorted by increasing stop_sequence",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E003": {
+      "error_id": "E003",
+      "severity": "ERROR",
+      "title": "GTFS-rt trip_id does not exist in GTFS data and does not have schedule_relationship of ADDED",
+      "error_description": "All trip_ids provided in the GTFS-rt feed must exist in the GTFS data, unless the schedule_relationship is ADDED",
+      "occurrence_suffix": "does not exist in the GTFS data and does not have schedule_relationship of ADDED",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E004": {
+      "error_id": "E004",
+      "severity": "ERROR",
+      "title": "GTFS-rt route_id does not exist in GTFS data",
+      "error_description": "All route_ids provided in the GTFS-rt feed must exist in the GTFS data",
+      "occurrence_suffix": "does not exist in the GTFS data routes.txt",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E005": {
+      "error_id": "E005",
+      "severity": "ERROR",
+      "title": "stop_time_update contains only delay (no times) and GTFS stop_times.txt does not contain corresponding arrival and/or departure_time for that stop",
+      "error_description": "If only delay is provided in a stop_time_update arrival or departure (and not a time), then the GTFS stop_times.txt must contain arrival_times and/or departure_times for these corresponding stops",
+      "occurrence_suffix": "has only delay but no stops_times.txt arrival and/or departure time",
+      "emitters": [],
+      "batch_reachable": false
+    },
+    "E006": {
+      "error_id": "E006",
+      "severity": "ERROR",
+      "title": "Missing required trip field for frequency-based exact_times = 0",
+      "error_description": "Frequency-based exact_times=0 trip_updates must contain trip_id, start_time, and start_date",
+      "occurrence_suffix": "which is required for frequency-based exact_times = 0 trips",
+      "emitters": [
+        "FrequencyTypeZeroValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E007": {
+      "error_id": "E007",
+      "severity": "ERROR",
+      "title": "Trips with same vehicle_id are not in the same block",
+      "error_description": "If more than one trip_update has the same vehicle_id, then these trips must belong to the same GTFS trips.txt block_id",
+      "occurrence_suffix": "do not belong to the same block but have the same vehicle_id",
+      "emitters": [],
+      "batch_reachable": false
+    },
+    "E008": {
+      "error_id": "E008",
+      "severity": "ERROR",
+      "title": "trip_id not provided for blocks with reoccurring stop_ids",
+      "error_description": "If a GTFS block contains multiple references to the same stopId (i.e., the bus visits the same stopId more than once in the same block), but in different trips, then in the GTFS-rt data the tripId for each TripUpdate.TripDescriptor must be provided. In this case, the bus wouldn't visit the same stopId more than once in the same trip.",
+      "occurrence_suffix": "does not have a trip_id but visits the same stop_id more than once in the block",
+      "emitters": [],
+      "batch_reachable": false
+    },
+    "E009": {
+      "error_id": "E009",
+      "severity": "ERROR",
+      "title": "GTFS-rt stop_sequence isn't provided for trip that visits same stop_id more than once",
+      "error_description": "If a GTFS trip contains multiple references to the same stop_id (i.e., the vehicle visits the same stop_id more than once in the same trip), then GTFS-rt stop_time_updates for this trip must include stop_sequence",
+      "occurrence_suffix": "more than once and GTFS-rt stop_time_update is missing stop_sequence field - stop_sequence must be provided",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E010": {
+      "error_id": "E010",
+      "severity": "ERROR",
+      "title": "location_type not 0 in stops.txt",
+      "error_description": "If location_type is used in stops.txt, all stops referenced in stop_times.txt must have location_type of 0",
+      "occurrence_suffix": "is not location_type 0",
+      "emitters": [
+        "StopLocationTypeValidator"
+      ],
+      "batch_reachable": false
+    },
+    "E011": {
+      "error_id": "E011",
+      "severity": "ERROR",
+      "title": "GTFS-rt stop_id does not exist in GTFS data",
+      "error_description": "All stop_ids referenced in GTFS-rt feeds must exist in GTFS stops.txt",
+      "occurrence_suffix": "does not exist in GTFS data stops.txt",
+      "emitters": [
+        "StopValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E012": {
+      "error_id": "E012",
+      "severity": "ERROR",
+      "title": "Header timestamp should be greater than or equal to all other timestamps",
+      "error_description": "No timestamps for individual entities (TripUpdate, VehiclePosition) in the feeds should be greater than the header timestamp",
+      "occurrence_suffix": "is greater than the header",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E013": {
+      "error_id": "E013",
+      "severity": "ERROR",
+      "title": "Frequency type 0 trip schedule_relationship should be UNSCHEDULED or empty",
+      "error_description": "For frequency-based exact_times=0 trips, schedule_relationship should be UNSCHEDULED or empty.",
+      "occurrence_suffix": "schedule_relationship is not UNSCHEDULED or empty",
+      "emitters": [
+        "FrequencyTypeZeroValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E014": {
+      "error_id": "E014",
+      "severity": "ERROR",
+      "title": "Predictions for trips are out-of-order in the block",
+      "error_description": "trip_updates for each trip in the feed must match the sequential order for the trips in the block. For example, if we have trip_ids 1, 2, and 3 that all belong to the same block, and the vehicle travels trip 1, then trip 2, and then trip 3, the trip_updates should occur in the GTFS-rt feed in the order trips 1, 2, and 3. For example, trip 3 predictions shouldn't occur in the feed prior to trip 2 predictions.",
+      "occurrence_suffix": "predictions are not ordered by appearance in block",
+      "emitters": [],
+      "batch_reachable": false
+    },
+    "E015": {
+      "error_id": "E015",
+      "severity": "ERROR",
+      "title": "All stop_ids referenced in GTFS-rt TripUpdates and VehiclePositions feeds must have the location_type = 0",
+      "error_description": "All stop_ids referenced in GTFS-rt TripUpdates and VehiclePositions feeds must have the location_type = 0 in GTFS stops.txt",
+      "occurrence_suffix": "does not have location_type=0 in GTFS stops.txt",
+      "emitters": [
+        "StopValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E016": {
+      "error_id": "E016",
+      "severity": "ERROR",
+      "title": "trip_ids with schedule_relationship ADDED must not be in GTFS data",
+      "error_description": "Trips that have a schedule_relationship of ADDED must not be included in the GTFS data",
+      "occurrence_suffix": "has a schedule_relationship of ADDED but exists in the GTFS data",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E017": {
+      "error_id": "E017",
+      "severity": "ERROR",
+      "title": "GTFS-rt content changed but has the same header timestamp",
+      "error_description": "The GTFS-rt header timestamp value should always change if the feed contents change - the feed contents must not change without updating the header timestamp",
+      "occurrence_suffix": "was the same for this and the previous feed iteration but the feed content was not the same",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E018": {
+      "error_id": "E018",
+      "severity": "ERROR",
+      "title": "GTFS-rt header timestamp decreased between two sequential iterations",
+      "error_description": "The GTFS-rt header timestamp should be monotonically increasing -  it should always be the same value or greater than previous feed iterations if the feed contents are different",
+      "occurrence_suffix": "from the previous feed iteration",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E019": {
+      "error_id": "E019",
+      "severity": "ERROR",
+      "title": "GTFS-rt frequency type 1 trip start_time must be a multiple of GTFS headway_secs later than GTFS start_time",
+      "error_description": "For frequency-based trips defined in frequencies.txt with exact_times = 1, the GTFS-rt trip start_time must be some multiple (including zero) of headway_secs later than the start_time in file frequencies.txt for the corresponding time period.  Note that this doesn't not apply to frequency-based trips defined in frequencies.txt with exact_times = 0.",
+      "occurrence_suffix": "- the GTFS-rt start_time is not a multiple of headway_secs later than GTFS start_time",
+      "emitters": [
+        "FrequencyTypeOneValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E020": {
+      "error_id": "E020",
+      "severity": "ERROR",
+      "title": "Invalid start_time format",
+      "error_description": "start_time must be in the format HH:MM:SS or H:MM:SS",
+      "occurrence_suffix": "which is not the valid format of HH:MM:SS or H:MM:SS",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E021": {
+      "error_id": "E021",
+      "severity": "ERROR",
+      "title": "Invalid start_date format",
+      "error_description": "start_date must be in the YYYYMMDD format",
+      "occurrence_suffix": "which is not the valid format of YYYYMMDD",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E022": {
+      "error_id": "E022",
+      "severity": "ERROR",
+      "title": "Sequential stop_time_update times are not increasing",
+      "error_description": "stop_time_update arrival/departure times between sequential stops should always increase - they should never be the same or decrease.",
+      "occurrence_suffix": "- times must increase between two sequential stops",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E023": {
+      "error_id": "E023",
+      "severity": "ERROR",
+      "title": "trip start_time does not match first GTFS arrival_time",
+      "error_description": "For normal scheduled trips (i.e., not defined in frequencies.txt), the GTFS-realtime trip start_time must match the first GTFS arrival_time in stop_times.txt for this trip",
+      "occurrence_suffix": "- times do not match",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E024": {
+      "error_id": "E024",
+      "severity": "ERROR",
+      "title": "trip direction_id does not match GTFS data",
+      "error_description": "GTFS-rt trip direction_id must match the direction_id in GTFS trips.txt",
+      "occurrence_suffix": "- direction_id does not match",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E025": {
+      "error_id": "E025",
+      "severity": "ERROR",
+      "title": "stop_time_update departure time is before arrival time",
+      "error_description": "Within the same stop_time_update, arrival and departures times can be the same, or the departure time can be later than the arrival time - the departure time should never come before the arrival time.",
+      "occurrence_suffix": "- departure time must be equal to or greater than arrival time",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E026": {
+      "error_id": "E026",
+      "severity": "ERROR",
+      "title": "Invalid vehicle position",
+      "error_description": "Vehicle position latitude must be between -90 and 90 (inclusive), and vehicle longitude must be between -180  and 180 (inclusive)",
+      "occurrence_suffix": "- these are invalid WGS84 coordinates",
+      "emitters": [
+        "VehicleValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E027": {
+      "error_id": "E027",
+      "severity": "ERROR",
+      "title": "Invalid vehicle bearing",
+      "error_description": "Vehicle bearing must be between 0 and 360 degrees (inclusive)",
+      "occurrence_suffix": "- bearing must be between 0 and 360 degrees (inclusive)",
+      "emitters": [
+        "VehicleValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E028": {
+      "error_id": "E028",
+      "severity": "ERROR",
+      "title": "Vehicle position outside agency coverage area",
+      "error_description": "The vehicle position should be inside the agency coverage area.  This is defined as within roughly 1/8 of a mile (200 meters) of the GTFS shapes.txt data, or stops.txt locations if the GTFS feed doesn't include shapes.txt.",
+      "occurrence_suffix": "- vehicle should be within area",
+      "emitters": [
+        "VehicleValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E029": {
+      "error_id": "E029",
+      "severity": "ERROR",
+      "title": "Vehicle position far from trip shape",
+      "error_description": "The vehicle position should be within a certain distance of the GTFS shapes.txt data for the current trip unless there is a Service Alert with the Effect of DETOUR for this trip_id.",
+      "occurrence_suffix": "- vehicle should be near trip shape or on DETOUR",
+      "emitters": [
+        "VehicleValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E030": {
+      "error_id": "E030",
+      "severity": "ERROR",
+      "title": "GTFS-rt alert trip_id does not belong to GTFS-rt alert route_id in GTFS trips.txt",
+      "error_description": "The alert.informed_entity.trip.trip_id should belong to the specified alert.informed_entity.route_id in GTFS trips.txt",
+      "occurrence_suffix": "- informed_entity.route_id must match GTFS data",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E031": {
+      "error_id": "E031",
+      "severity": "ERROR",
+      "title": "Alert informed_entity.route_id does not match informed_entity.trip.route_id",
+      "error_description": "The alert.informed_entity.trip.route_id should be the same as the specified alert-informed_entity.route_id.",
+      "occurrence_suffix": "- routes_ids must be the same",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E032": {
+      "error_id": "E032",
+      "severity": "ERROR",
+      "title": "Alert does not have an informed_entity",
+      "error_description": "All alerts must have at least one informed_entity.",
+      "occurrence_suffix": "- alerts must have at least one informed_entity",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E033": {
+      "error_id": "E033",
+      "severity": "ERROR",
+      "title": "Alert informed_entity does not have any specifiers",
+      "error_description": "Alert informed_entity should have at least one specified value (route_id, trip_id, stop_id, etc) to which the alert applies.",
+      "occurrence_suffix": "- alert informed_entity should have at least one specified value",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E034": {
+      "error_id": "E034",
+      "severity": "ERROR",
+      "title": "GTFS-rt agency_id does not exist in GTFS data",
+      "error_description": "All agency_ids provided in the GTFS-rt alert.informed_entity.agency_id should also exist in GTFS agency.txt",
+      "occurrence_suffix": "does not exist in the GTFS data agency.txt",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E035": {
+      "error_id": "E035",
+      "severity": "ERROR",
+      "title": "GTFS-rt trip.trip_id does not belong to GTFS-rt trip.route_id in GTFS trips.txt",
+      "error_description": "The GTFS-rt trip.trip_id should belong to the specified trip.route_id in GTFS trips.txt",
+      "occurrence_suffix": "in GTFS trips.txt",
+      "emitters": [
+        "TripDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E036": {
+      "error_id": "E036",
+      "severity": "ERROR",
+      "title": "Sequential stop_time_updates have the same stop_sequence",
+      "error_description": "Sequential GTFS-rt trip stop_time_updates should never have the same stop_sequence",
+      "occurrence_suffix": "- stop_sequence must increase for each stop_time_update",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E037": {
+      "error_id": "E037",
+      "severity": "ERROR",
+      "title": "Sequential stop_time_updates have the same stop_id",
+      "error_description": "Sequential GTFS-rt trip stop_time_updates shouldn't have the same stop_id",
+      "occurrence_suffix": "- sequential stop_ids should be different",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E038": {
+      "error_id": "E038",
+      "severity": "ERROR",
+      "title": "Invalid header.gtfs_realtime_version",
+      "error_description": "header.gtfs_realtime_version should be a valid value",
+      "occurrence_suffix": "is invalid",
+      "emitters": [
+        "HeaderValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E039": {
+      "error_id": "E039",
+      "severity": "ERROR",
+      "title": "FULL_DATASET feeds should not include entity.is_deleted",
+      "error_description": "The entity.is_deleted field should only be included in GTFS-rt feeds with header.incrementality of DIFFERENTIAL",
+      "occurrence_suffix": "- FULL_DATASET feeds should not include is_deleted field",
+      "emitters": [
+        "HeaderValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E040": {
+      "error_id": "E040",
+      "severity": "ERROR",
+      "title": "stop_time_update doesn't contain stop_id or stop_sequence",
+      "error_description": "All stop_time_updates must contain stop_id or stop_sequence - both fields cannot be left blank",
+      "occurrence_suffix": "doesn't contain stop_id or stop_sequence",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E041": {
+      "error_id": "E041",
+      "severity": "ERROR",
+      "title": "trip doesn't have any stop_time_updates",
+      "error_description": "Unless a trip's schedule_relationship is CANCELED, a trip must have at least one stop_time_update",
+      "occurrence_suffix": "doesn't have any stop_time_updates and isn't CANCELED",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E042": {
+      "error_id": "E042",
+      "severity": "ERROR",
+      "title": "arrival or departure provided for NO_DATA stop_time_update",
+      "error_description": "If a stop_time_update has a schedule_relationship of NO_DATA, then neither arrival nor departure should be provided",
+      "occurrence_suffix": "and schedule_relationship of NO_DATA",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E043": {
+      "error_id": "E043",
+      "severity": "ERROR",
+      "title": "stop_time_update doesn't have arrival or departure",
+      "error_description": "If a stop_time_update doesn't have a schedule_relationship of SKIPPED or NO_DATA, then either arrival or departure must be provided",
+      "occurrence_suffix": "doesn't have arrival or departure",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E044": {
+      "error_id": "E044",
+      "severity": "ERROR",
+      "title": "stop_time_update arrival/departure doesn't have delay or time",
+      "error_description": "stop_time_update.arrival and stop_time_update.departure must have either delay or time - both fields cannot be missing",
+      "occurrence_suffix": "doesn't have delay or time",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E045": {
+      "error_id": "E045",
+      "severity": "ERROR",
+      "title": "GTFS-rt stop_time_update stop_sequence and stop_id do not match GTFS",
+      "error_description": "If GTFS-rt stop_time_update contains both stop_sequence and stop_id, the values must match the GTFS data in stop_times.txt",
+      "occurrence_suffix": "- stop_ids should be the same",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E046": {
+      "error_id": "E046",
+      "severity": "ERROR",
+      "title": "GTFS-rt stop_time_update without time doesn't have arrival/departure_time in GTFS",
+      "error_description": "If only delay is provided in a stop_time_update arrival or departure (and not a time), then the GTFS stop_times.txt must contain arrival_times and/or departure_times for these corresponding stops.",
+      "occurrence_suffix": "isn't set and GTFS doesn't have arrival/departure_time in stop_times.txt",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E047": {
+      "error_id": "E047",
+      "severity": "ERROR",
+      "title": "VehiclePosition and TripUpdate ID pairing mismatch",
+      "error_description": "If separate `VehiclePositions` and `TripUpdates` feeds are provided, `VehicleDescriptor` or `TripDescriptor` ID value pairing should match between the two feeds.",
+      "occurrence_suffix": "- ID pairing between feeds should match",
+      "emitters": [
+        "CrossFeedDescriptorValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E048": {
+      "error_id": "E048",
+      "severity": "ERROR",
+      "title": "header timestamp not populated",
+      "error_description": "Header timestamp must be populated for gtfs_realtime_version v2.0 and higher",
+      "occurrence_suffix": "Header does not have a timestamp and gtfs_realtime_version is v2.0 or higher",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E049": {
+      "error_id": "E049",
+      "severity": "ERROR",
+      "title": "header incrementality not populated",
+      "error_description": "Header incrementality must be populated for gtfs_realtime_version v2.0 and higher",
+      "occurrence_suffix": "Header does not have incrementality and gtfs_realtime_version is v2.0 or higher",
+      "emitters": [
+        "HeaderValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E050": {
+      "error_id": "E050",
+      "severity": "ERROR",
+      "title": "timestamp is in the future",
+      "error_description": "All timestamps must be less than the current time",
+      "occurrence_suffix": "- the current time in milliseconds",
+      "emitters": [
+        "TimestampValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E051": {
+      "error_id": "E051",
+      "severity": "ERROR",
+      "title": "GTFS-rt stop_sequence not found in GTFS data",
+      "error_description": "All stop_time_update stop_sequences in GTFS-realtime data must appear in GTFS stop_times.txt for that trip",
+      "occurrence_suffix": "that does not exist in GTFS stop_times.txt for this trip",
+      "emitters": [
+        "StopTimeUpdateValidator"
+      ],
+      "batch_reachable": true
+    },
+    "E052": {
+      "error_id": "E052",
+      "severity": "ERROR",
+      "title": "vehicle.id is not unique",
+      "error_description": "Each vehicle should have a unique ID",
+      "occurrence_suffix": "which is used by more than one vehicle in the feed",
+      "emitters": [
+        "VehicleValidator"
+      ],
+      "batch_reachable": true
+    }
+  }
+}

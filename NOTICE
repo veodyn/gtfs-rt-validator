@@ -1,0 +1,45 @@
+gtfs-rt-validator (Python)
+Copyright 2026 the gtfs-rt-validator authors
+
+Released under the MIT License; see LICENSE.
+
+Throughout this file "upstream" means MobilityData's Java
+gtfs-realtime-validator (https://github.com/MobilityData/gtfs-realtime-validator),
+licensed under the Apache License 2.0, and "this project" means the Python
+distribution published as gtfs-rt-validator.
+
+This project is an independent Python implementation of the validation rule set
+defined by upstream. Rule ids, severities, titles, descriptions and occurrence
+text derive from it. This project is not an official MobilityData project, is
+not affiliated with MobilityData, and is not endorsed by them.
+
+Material taken from upstream rather than derived from it, which remains under
+the Apache License 2.0. Every entry names the file and the pinned commit it
+came from:
+
+  src/gtfs_rt_validator/data/rules.json
+      Generated from upstream's validation/ValidationRules.java at the pinned
+      commit. It carries each rule's errorId, severity, title, errorDescription
+      and occurrenceSuffix verbatim, because --compat emits those strings
+      unchanged.
+
+  tests/fixtures/gtfs/*.zip
+      GTFS archives copied from upstream's src/test/resources, reused rather
+      than reinvented so the ported rules are exercised on the feeds their
+      originals were written against. tests/fixtures/gtfs/testagency.zip is the
+      static feed the compat goldens below were produced against; bullrunner-gtfs.zip,
+      bullrunner-gtfs-timepoints-only-legacy-exact-times-1.zip and testagency2.zip
+      are the three the conformance corpus is validated against.
+
+  tests/fixtures/jar/*.results.json
+  tests/fixtures/conformance/*/*.results.json
+      Written by upstream's jar, built from the pinned commit, from the crafted
+      .pb inputs beside them. The inputs are this project's; the JSON is
+      upstream's output, and the rule strings inside it are the same verbatim
+      strings as in data/rules.json above.
+
+The GTFS-Realtime protocol buffer definition vendored at
+upstream/gtfs-realtime.proto comes from google/transit
+(https://github.com/google/transit), licensed under the Apache License 2.0.
+
+A copy of the Apache License 2.0 is at http://www.apache.org/licenses/LICENSE-2.0

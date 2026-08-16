@@ -1,0 +1,827 @@
+{
+  "index": "upstream/spec-clauses.json",
+  "tier": "spec",
+  "hand_written": true,
+  "seeded_from": "Hand written. Each clause of the pinned gtfs-realtime.proto is either cited by an S rule, rejected under one of the reason codes below, folded into another clause's rule, or accepted in part with the narrowing recorded in its note. tools/scan_clauses.py produces the clause list this answers; it does not produce the verdicts.",
+  "about": [
+    "Every normative sentence of the pinned proto gets a verdict here, and this file is",
+    "hand written on purpose. It records a decision per clause rather than deriving one from the",
+    "rules, so it can be reviewed before a single rule module exists and so a rule cannot",
+    "be its own justification. tests/test_clause_citations.py asserts that its keys are",
+    "exactly the index's clause ids, so a moved pin re-adjudicates every clause instead of",
+    "silently dropping the ones that changed.",
+    "The rejections are the more useful half: a named clause with a reason cannot be",
+    "re-proposed without arguing with the reason."
+  ],
+  "verdict_kinds": {
+    "rule": "cited verbatim by exactly one rule, which enforces the whole sentence",
+    "rule_in_part": "cited by a rule that deliberately enforces a strict subset, or split between two rules; the note says which part",
+    "folded": "covered by a rule that cites a different sentence, because a second rule would double-report the same entity",
+    "rejected": "not a rule, with a reason code below",
+    "deferred": "reviewed and not turned into a rule in this release; the note says what is missing. No clause carries this today: 413#1 was the one, and it is now rejected under R6. The kind stays in the vocabulary for a clause a later pin introduces mid-review, and a clause left here is a review item, not a decision"
+  },
+  "reason_codes": {
+    "R1": "It describes what a consumer does, not what a feed contains",
+    "R2": "It describes producer intent the feed does not record",
+    "R3": "The antecedent is not observable, so the rule could only fire blind",
+    "R4": "It is tautological, or it restates the wire format or the file itself",
+    "R5": "Deciding it needs a static table this run does not load",
+    "R6": "Already checked by one of the 56; the note names the id"
+  },
+  "definitional": [
+    {
+      "line": 272,
+      "text": "Refers to a stop_id defined in the GTFS stops.txt.",
+      "severity": "ERROR",
+      "reason": "Fixes assigned_stop_id's value domain: the set of stop_ids stops.txt defines. A value outside it does not name a stop, so it is malformed rather than ill-advised, which is why the severity is ERROR and not a judgement call. S012 cites it.",
+      "note": "Not a scanner miss. The sentence has no modal verb and should not: it says what the field holds, and the obligation is the definition."
+    },
+    {
+      "line": 1221,
+      "text": "Dates on which the modifications occurs, in the YYYYMMDD format.",
+      "severity": "ERROR",
+      "reason": "Fixes service_dates' value domain: dates in YYYYMMDD. A value outside it is not a date, so no consumer can apply the modification at all. S050 cites it, and E021 is the same predicate on TripDescriptor.start_date.",
+      "note": "Not a scanner miss, for the same reason as :272. The next sentence on the same line is normative and is 1221#1, which S049 cites."
+    }
+  ],
+  "notes": [
+    "Two spec rules cite a sentence the keyword sweep cannot see, and settling",
+    "them is what the `definitional` list above is. S012 ('assigned_stop_id is not in",
+    "stops.txt') and S050 ('a service_dates value is not a valid YYYYMMDD date') both quote",
+    "a field description that fixes the field's value domain rather than stating an",
+    "obligation. Those sentences carry no modal verb and should not carry one, so they are",
+    "neither scanner misses nor rejections: they are a third kind of clause, declared here",
+    "with an explicit severity and a reason, and merged into the index by",
+    "tools/scan_clauses.py after it verifies each is a sentence the splitter cuts at the",
+    "line it names and carries no modal verb.",
+    "S046 cites :1260 'May refer to a new stop added using a GTFS-RT `Stop` message ...',",
+    "which is descriptive too, but it is recoverable rather than definitional: the",
+    "normative sentence at the same site, 1261#1, says the same thing with a `should`, and",
+    "it is the sentence S016 and S044 already cite for the identical shape_id shape. So",
+    "S046 is recorded against 1261#1 and its quote moved with it."
+  ],
+  "verdicts": {
+    "9#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "The Apache licence header. About the file, not about a feed."
+    },
+    "34#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "A note about how to read the file's own cardinality keywords."
+    },
+    "92#1": {
+      "verdict": "rule",
+      "rules": [
+        "S002"
+      ],
+      "severity": "WARNING"
+    },
+    "97#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "Restates that entities are named through EntitySelector, which is the wire format."
+    },
+    "106#1": {
+      "verdict": "rule",
+      "rules": [
+        "S001"
+      ],
+      "severity": "ERROR"
+    },
+    "138#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Whether an update got 'more precise' is a claim about the producer's model, not about bytes."
+    },
+    "140#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Same: 'precise and certain' is not a property the feed records."
+    },
+    "141#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Tells the client what to conclude. Firing would report a defect in the reader."
+    },
+    "154#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Grants the producer a permission to purge; no feed violates a permission."
+    },
+    "157#1": {
+      "verdict": "rule",
+      "rules": [
+        "S003"
+      ],
+      "severity": "ERROR"
+    },
+    "169#1": {
+      "verdict": "folded",
+      "rules": [
+        "S017"
+      ],
+      "note": "The message-level statement of :362, which S017 cites. One notice per trip."
+    },
+    "171#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Advice to publish `time` unconditionally, which :169 contradicts for delay-only feeds. Which field a producer can fill is a statement about what it knows."
+    },
+    "171#2": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "States which field a consumer prefers when both are given."
+    },
+    "193#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Consumer guidance about an uncertain prediction."
+    },
+    "201#1": {
+      "verdict": "rule",
+      "rules": [
+        "S004"
+      ],
+      "severity": "ERROR"
+    },
+    "216#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "A permission to drop past events, not a constraint on what is present."
+    },
+    "218#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E040."
+    },
+    "222#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E045."
+    },
+    "224#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E011."
+    },
+    "231#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "'Future' is relative to vehicle progress the feed states elsewhere and inconsistently."
+    },
+    "232#1": {
+      "verdict": "rule",
+      "rules": [
+        "S005"
+      ],
+      "severity": "WARNING"
+    },
+    "240#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E043."
+    },
+    "240#2": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "S006"
+      ],
+      "severity": "ERROR",
+      "note": "S006 excuses the two terminal stops of a trip, which is strictly less than the sentence asks for. Read literally the sentence requires a departure at the last stop of every trip and an arrival at the first, because GTFS wants arrival_time and departure_time together or not at all and stop_times.txt therefore carries both at a terminal whether or not either event exists. Measured over six recorded MBTA messages: 6723 occurrences on 674 of 793 trips per message, and of the one-sided updates sampled at round 5, 473 were a trip's own first stop with a departure only and 652 its own last stop with an arrival only, with none in the middle. The narrowing is asymmetric so it cannot swallow the defect it sits next to: a first stop is excused its arrival alone, a last stop its departure alone. Where the trip visits a stop_id twice and the update names no stop_sequence the position is undecidable and the rule is silent, which is a second narrowing recorded in the same docstring and measured to silence nothing over the recording: S006's count is 0 with that guard and 0 without it, so the terminal exemption alone accounts for all 6723."
+    },
+    "242#1": {
+      "verdict": "rule",
+      "rules": [
+        "S007"
+      ],
+      "severity": "WARNING",
+      "note": "Still the whole sentence, and the kind is deliberately not rule_in_part. S007 reports once per trip descriptor rather than once per SCHEDULED stop_time_update, because the sentence's subject is the trip where the two before it in the same comment say 'this update', and :859 shows what the proto writes when it means every update ('must also set all StopTimeUpdates'). Every frequency-based trip carrying a SCHEDULED value is still reported and no subject is lost, so nothing was narrowed: only the number of times each subject is named moved. Measured over six recorded Clovis Transit messages, mdb-2894: 4531 occurrences over 8 distinct trips per-update, 180 per descriptor, and the producer declares schedule_relationship nowhere so every one of them is the proto2 default resolved as SCHEDULED."
+    },
+    "255#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E042."
+    },
+    "259#1": {
+      "verdict": "rule",
+      "rules": [
+        "S008"
+      ],
+      "severity": "WARNING"
+    },
+    "260#1": {
+      "verdict": "rule",
+      "rules": [
+        "S009"
+      ],
+      "severity": "ERROR"
+    },
+    "272#1": {
+      "verdict": "rule",
+      "rules": [
+        "S012"
+      ],
+      "severity": "ERROR",
+      "note": "Definitional, declared above rather than swept. E011 checks StopTimeUpdate.stop_id, a different field on the same message."
+    },
+    "273#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "'Significantly different trip experience' names no observable."
+    },
+    "274#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Same clause restated: what an end user would view as unusual is not in the feed."
+    },
+    "280#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "A preference between two encodings of one assignment. :281 already requires them to agree when both are present, so the alternative the clause discourages still produces a correct feed."
+    },
+    "280#2": {
+      "verdict": "rule",
+      "rules": [
+        "S011"
+      ],
+      "severity": "ERROR"
+    },
+    "282#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "'Other GTFS-realtime fields as well' fixes no field and no scope."
+    },
+    "298#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "An enum glossary entry describing what the member means, not a constraint on feeds that use it."
+    },
+    "301#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "Same, for the next member."
+    },
+    "337#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E002."
+    },
+    "362#1": {
+      "verdict": "rule",
+      "rules": [
+        "S017"
+      ],
+      "severity": "WARNING"
+    },
+    "374#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "W001."
+    },
+    "388#1": {
+      "verdict": "rule",
+      "rules": [
+        "S015"
+      ],
+      "severity": "ERROR"
+    },
+    "389#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "S013",
+        "S014"
+      ],
+      "severity": "ERROR",
+      "note": "S013 takes 'Required if schedule_relationship=DUPLICATED'; S014 takes 'otherwise this field must not be populated'. Two directions, two rules, one sentence."
+    },
+    "393#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "S013",
+        "S014"
+      ],
+      "severity": "ERROR",
+      "note": "Same sentence on start_date."
+    },
+    "406#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "S013",
+        "S014"
+      ],
+      "severity": "ERROR",
+      "note": "Same sentence on start_time."
+    },
+    "413#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E002, E045 and E051 between them, which a grep for stop-order wording does not show. A real-time trip's stop order is expressed only through stop_time_updates, so a reordering against stop_times.txt has three encodings and each is already owned. Same stop_sequences with permuted stop_ids: E045, once per offending update. Permuted stop_sequences: E002 form A, which is Guava's isStrictlyOrdered over the list. stop_ids with no stop_sequence: the walk's scan is forward-only, so a stop that moved earlier never resolves, len(stop_sequences) < update_count, and E002 form B fires. A stop_sequence GTFS does not have is E051. The trip has to be in stop_times.txt for the GTFS half, and for the trips this clause scopes it is: DUPLICATED and REPLACEMENT both name the original trip in TripDescriptor.trip_id (:873 'The trip to be duplicated is identified via TripUpdate.TripDescriptor.trip_id'), :900 makes NEW 'an extra trip unrelated to any existing trips' so the clause is vacuous for it, and a trip_id absent from GTFS is E003. The sentence is the conjunction of :337 (order, E002) and :222 (sameness with stop_times.txt, E045 and E051), both of which this file already rejects under R6."
+    },
+    "414#1": {
+      "verdict": "rule",
+      "rules": [
+        "S016"
+      ],
+      "severity": "WARNING"
+    },
+    "415#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Which stops 'will no longer be made' is what the producer knows, not what the feed states."
+    },
+    "464#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E011."
+    },
+    "498#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Addressed to consumers."
+    },
+    "500#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Addressed to consumers."
+    },
+    "501#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Whether a value corresponds to actual occupancy is not in the bytes."
+    },
+    "544#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "What the field 'describes' is producer intent."
+    },
+    "550#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "What 100 represents is a claim about the vehicle, not about the feed."
+    },
+    "553#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Two feeds with identical bytes satisfy and violate this depending on how the number was rounded."
+    },
+    "554#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Same as :544 for occupancy_percentage."
+    },
+    "563#1": {
+      "verdict": "rule",
+      "rules": [
+        "S051"
+      ],
+      "severity": "WARNING"
+    },
+    "583#1": {
+      "verdict": "rule",
+      "rules": [
+        "S052"
+      ],
+      "severity": "ERROR"
+    },
+    "584#1": {
+      "verdict": "folded",
+      "rules": [
+        "S052"
+      ],
+      "note": "The second half of the 1..n sequence S052 already walks."
+    },
+    "589#1": {
+      "verdict": "folded",
+      "rules": [
+        "S052"
+      ],
+      "note": "An absent carriage_sequence already breaks the 1..n run, so a second rule would double-report the same carriage."
+    },
+    "625#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Says when a consumer should display the alert."
+    },
+    "628#1": {
+      "verdict": "rule",
+      "rules": [
+        "S025"
+      ],
+      "severity": "WARNING"
+    },
+    "631#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Says when a consumer should display the alert."
+    },
+    "636#1": {
+      "verdict": "rule",
+      "rules": [
+        "S026"
+      ],
+      "severity": "ERROR"
+    },
+    "641#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "Describes what informed_entity is for."
+    },
+    "644#1": {
+      "verdict": "rule",
+      "rules": [
+        "S027"
+      ],
+      "severity": "ERROR"
+    },
+    "662#1": {
+      "verdict": "rule",
+      "rules": [
+        "S028"
+      ],
+      "severity": "ERROR"
+    },
+    "689#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "S029"
+      ],
+      "severity": "WARNING",
+      "note": "'Adds information' is not decidable in general. S029 enforces the one case where it provably adds none, byte-identical text, and its docstring says so."
+    },
+    "709#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Whether an image enhances understanding is not in the feed."
+    },
+    "709#2": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "What information an image carries is not in the feed."
+    },
+    "710#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Image content, which the feed carries only as a URL."
+    },
+    "720#1": {
+      "verdict": "folded",
+      "rules": [
+        "S027"
+      ],
+      "note": "Restates :644 verbatim on the field. S027 cites the enum-side sentence, where the constraint is declared."
+    },
+    "724#1": {
+      "verdict": "folded",
+      "rules": [
+        "S028"
+      ],
+      "note": "Restates :662 verbatim on the field."
+    },
+    "774#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "The exemplar: two feeds with identical bytes satisfy and violate this depending on how the producer computed the bearing."
+    },
+    "795#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E035."
+    },
+    "797#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "Describes how to write a route-scoped descriptor. Its enforceable half is :795, which E035 owns."
+    },
+    "798#1": {
+      "verdict": "rule",
+      "rules": [
+        "S018"
+      ],
+      "severity": "ERROR"
+    },
+    "799#1": {
+      "verdict": "rule",
+      "rules": [
+        "S019"
+      ],
+      "severity": "ERROR"
+    },
+    "806#1": {
+      "verdict": "rule",
+      "rules": [
+        "S020"
+      ],
+      "severity": "ERROR"
+    },
+    "818#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E023."
+    },
+    "819#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E006."
+    },
+    "821#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E019."
+    },
+    "826#1": {
+      "verdict": "rule",
+      "rules": [
+        "S021"
+      ],
+      "severity": "WARNING"
+    },
+    "834#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Whether a collision exists is decidable only against a calendar this run does not load. See R5."
+    },
+    "853#1": {
+      "verdict": "rule",
+      "rules": [
+        "S024"
+      ],
+      "severity": "WARNING"
+    },
+    "859#1": {
+      "verdict": "rule",
+      "rules": [
+        "S010"
+      ],
+      "severity": "ERROR"
+    },
+    "872#1": {
+      "verdict": "rejected",
+      "code": "R5",
+      "note": "Needs calendar.txt and calendar_dates.txt. static/adapter.py loads seven tables and its comment says no calendar table is needed; honouring this would make that false for one warning whose reference instant the clause does not fix."
+    },
+    "874#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "What a producer 'wants' to do with the original trip."
+    },
+    "876#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Same clause, the REPLACEMENT half."
+    },
+    "879#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "Already checked by E013, and the subset was proved by reading and then measured rather than argued. rules/_shared/frequencies.py:129 gates E013's TripUpdate half on ctx.static.exact_times_zero_trip_ids alone, with no other condition; rules/upstream/e013.py:68 then fires on a TripDescriptor.schedule_relationship that is present and not UNSCHEDULED. DUPLICATED is 6, which is present and is not 2, so every trip this sentence forbids is one E013 already reports. E013 also covers the VehiclePosition half, which S022 did not. Measured over S022's own fixture in modern mode, one message: E013 'trip_id T1 schedule_relationship DUPLICATED' beside S022 'trip_id T1 is DUPLICATED but frequencies.txt gives it exact_times=0'. Compat could not have shown this and no differential would have: the 2015 enum has no DUPLICATED, protobuf-java files the value as an unknown field, hasScheduleRelationship() answers false, and the pinned jar's verdict on that fixture is W009 alone. This clause was first recorded as overlapping nothing, on the strength of S022's own sentence, 'Nothing in the 56 reads DUPLICATED at all: it is post-2015 and the 2015 descriptor has no member for it', which is true and is not the question, because E013 never reads the member by name. S022 was retired rather than shipped with a permanent exemption from tests/test_tier_overlap.py, on the same principle as P014 at 143#2 in the practice verdicts. Restoring the module and this verdict is what reverses it."
+    },
+    "880#1": {
+      "verdict": "folded",
+      "rules": [
+        "S020"
+      ],
+      "note": "The enum-side statement of the DUPLICATED trip_id pairing S020 checks at :806."
+    },
+    "883#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "A migration instruction to producers, not a property of one feed."
+    },
+    "890#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "'Must not be shown to users' is a consumer duty."
+    },
+    "891#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Which of DELETED and CANCELED a provider 'would like' is intent."
+    },
+    "929#1": {
+      "verdict": "rule",
+      "rules": [
+        "S023"
+      ],
+      "severity": "ERROR"
+    },
+    "943#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E052."
+    },
+    "948#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "'Must be shown to the passenger' is a consumer duty."
+    },
+    "986#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "The generic form of the per-field checks E011, E033 and E035 already make."
+    },
+    "988#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E033."
+    },
+    "988#2": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Tells the consumer how to apply several specifiers at once."
+    },
+    "996#1": {
+      "verdict": "rule",
+      "rules": [
+        "S030"
+      ],
+      "severity": "ERROR"
+    },
+    "1024#1": {
+      "verdict": "rule",
+      "rules": [
+        "S032"
+      ],
+      "severity": "ERROR"
+    },
+    "1036#1": {
+      "verdict": "rule",
+      "rules": [
+        "S031"
+      ],
+      "severity": "ERROR"
+    },
+    "1061#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "The image's size is behind the URL. A rule may read the feed, the static feed and the clock, and none of the three carries it."
+    },
+    "1063#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "Whether an image changed 'significantly enough' is producer judgement."
+    },
+    "1064#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "S036"
+      ],
+      "severity": "WARNING",
+      "note": "S036 enforces the scheme half whole and the escaping half in part. Checked, because the bytes decide it: a character RFC 3986 does not let a URI carry literally (a space, a control character, a non-ASCII character, one of \"<>\\^`{|}), and a % that does not begin a two-hex-digit escape. Not checked, and still rejected under R2: the rest, because a URL whose reserved characters were never escaped and one that needed no escaping are the same bytes. The escaping half is a must reported at WARNING, since one rule declares one severity and the scheme half is a should."
+    },
+    "1068#1": {
+      "verdict": "rule",
+      "rules": [
+        "S035"
+      ],
+      "severity": "ERROR"
+    },
+    "1072#1": {
+      "verdict": "rule",
+      "rules": [
+        "S034"
+      ],
+      "severity": "ERROR"
+    },
+    "1085#1": {
+      "verdict": "rule",
+      "rules": [
+        "S033"
+      ],
+      "severity": "ERROR"
+    },
+    "1099#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "'A small distance' is the whole clause and the document gives no number. The Best Practices document gives 200 metres for the analogous check, which is why the practice tier has P015 and this tier has nothing."
+    },
+    "1104#1": {
+      "verdict": "rule",
+      "rules": [
+        "S038"
+      ],
+      "severity": "ERROR"
+    },
+    "1105#1": {
+      "verdict": "rule",
+      "rules": [
+        "S037"
+      ],
+      "severity": "ERROR"
+    },
+    "1110#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "S040"
+      ],
+      "severity": "ERROR",
+      "note": "S040 cites the two-points half. 'Represent the full shape of the trip' is rejected under R2."
+    },
+    "1112#1": {
+      "verdict": "rule",
+      "rules": [
+        "S039"
+      ],
+      "severity": "ERROR"
+    },
+    "1165#1": {
+      "verdict": "rule",
+      "rules": [
+        "S041"
+      ],
+      "severity": "ERROR"
+    },
+    "1169#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "'If only one stop_time is replaced the two selectors must be equivalent' is definitional: the selection is what defines which stop_times are replaced."
+    },
+    "1170#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "The antecedent 'no stop_time is replaced' is itself defined by the absence of end_stop_selector, so no feed can violate it."
+    },
+    "1170#2": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "The other half of the same tautology."
+    },
+    "1198#1": {
+      "verdict": "rule",
+      "rules": [
+        "S045"
+      ],
+      "severity": "ERROR"
+    },
+    "1202#1": {
+      "verdict": "rule",
+      "rules": [
+        "S044"
+      ],
+      "severity": "WARNING"
+    },
+    "1221#1": {
+      "verdict": "rule",
+      "rules": [
+        "S049"
+      ],
+      "severity": "WARNING"
+    },
+    "1221#2": {
+      "verdict": "rule",
+      "rules": [
+        "S050"
+      ],
+      "severity": "ERROR",
+      "note": "Definitional, declared above rather than swept. It is the first sentence of the line; the id is #2 because declared clauses are numbered after the swept ones, so no existing id moves when one is added."
+    },
+    "1222#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Tells a consumer not to show these dates to users."
+    },
+    "1238#1": {
+      "verdict": "rule",
+      "rules": [
+        "S042"
+      ],
+      "severity": "ERROR"
+    },
+    "1240#1": {
+      "verdict": "rejected",
+      "code": "R6",
+      "note": "E051."
+    },
+    "1242#1": {
+      "verdict": "rule",
+      "rules": [
+        "S043"
+      ],
+      "severity": "ERROR",
+      "note": "Not a duplicate of E011: this sentence is about a field E011's three sites do not reach, in a message the 2015 schema E011 decodes with does not carry. It names stops.txt and no second place, unlike 1260/1261 on ReplacementStop.stop_id, so S043 does not resolve it against a realtime Stop entity."
+    },
+    "1257#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "S048"
+      ],
+      "severity": "ERROR",
+      "note": "S048 cites the monotonicity half. The negative-number half needs start_stop_selector resolved against the trip SelectedTrips names, which is a second walk, left out of the first release rather than half-implemented."
+    },
+    "1261#1": {
+      "verdict": "rule",
+      "rules": [
+        "S046"
+      ],
+      "severity": "WARNING",
+      "note": "An earlier draft quoted the descriptive sentence above this one, which carries no modal verb and is therefore not in the index. This is the normative sentence at the same site and says the same thing."
+    },
+    "1261#2": {
+      "verdict": "rule",
+      "rules": [
+        "S047"
+      ],
+      "severity": "ERROR"
+    }
+  }
+}

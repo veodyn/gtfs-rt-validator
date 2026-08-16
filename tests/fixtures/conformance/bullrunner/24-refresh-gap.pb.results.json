@@ -1,0 +1,19 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W007",
+      "severity" : "WARNING",
+      "title" : "Refresh interval is more than 35 seconds",
+      "errorDescription" : "GTFS-realtime feeds should be refreshed at least every 30 seconds",
+      "occurrenceSuffix" : "which is less than the recommended interval of 35 seconds"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "64 second interval between consecutive header.timestamps"
+  } ]
+} ]

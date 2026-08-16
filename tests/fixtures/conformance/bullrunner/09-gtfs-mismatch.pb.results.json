@@ -1,0 +1,37 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E045",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_time_update stop_sequence and stop_id do not match GTFS",
+      "errorDescription" : "If GTFS-rt stop_time_update contains both stop_sequence and stop_id, the values must match the GTFS data in stop_times.txt",
+      "occurrenceSuffix" : "- stop_ids should be the same"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 1 stop_sequence 2 has stop_id 214 but GTFS stop_sequence 2 has stop_id 230"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E051",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_sequence not found in GTFS data",
+      "errorDescription" : "All stop_time_update stop_sequences in GTFS-realtime data must appear in GTFS stop_times.txt for that trip",
+      "occurrenceSuffix" : "that does not exist in GTFS stop_times.txt for this trip"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 1 contains stop_sequence 99"
+  } ]
+} ]

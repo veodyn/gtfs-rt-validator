@@ -1,0 +1,109 @@
+{
+  "generated_by": "tools/fetch_corpus.py sourcing notes",
+  "do_not_edit": "Regenerate by re-running the selection described in the selection field below.",
+  "selection": "US agencies with has_rt, posture has-rt, not fails_validation, service_end_date after 2026-09, a Mobility Database static id, and non-deprecated no-auth GTFS-rt feeds carrying both tu and vp. 101 qualified; three chosen for a size spread by NTD total_voms.",
+  "second_pass": {
+    "why": "Six rules read zero over the first recording for reasons that were the corpus's rather than the feeds'. S007, S008, S021, S022 and P013 need a static archive holding frequencies.txt, which the MBTA archive does not have at all; P006, P011, P012 and S025 through S036 need Alert entities, which no recorded role carried.",
+    "sa": "Every pick's alerts endpoint is now declared, so the recorder captures the -sa role. MBTA's is mdb-1603, which its own static archive also declares in linked_datasets.txt.",
+    "frequencies": "The candidate pool was rebuilt from the Mobility Database catalog directly, because the NTD prospect list was unreadable at the time: US statics, not deprecated, no authentication, with non-deprecated no-auth realtime feeds. 71 carry tu and vp, 62 of those carry sa as well. 65 of the 71 archives downloaded (the other 6 answered 403, 404, 503 or bytes that are not a zip): 18 hold a frequencies.txt, and 17 of those parse to zero rows, the four spot-checked being a 53 or 54 byte header line and nothing else. Clovis Transit is the only candidate whose frequencies.txt has rows, 16 of them, and its live TripUpdates named 8 of those trips when it was surveyed on 2026-08-15.",
+    "size": "Clovis is picked for what its static archive contains rather than for its fleet, and the frequencies.txt survey above is what found it. It does satisfy the first pass's filter as well, checked afterwards against the prospect list: NTD 90313, City of Clovis, CA, has_rt, posture has-rt, not fails_validation, service_end_date 20271231, mdb-2894. So this pick is reachable by the documented method and is not an exception to it. total_voms is 35, the NTD figure; vehicles_observed is what its VehiclePositions feed actually carried when it was surveyed, and the two differ because a fleet is not a feed.",
+    "provenance": "The prospect list is at deliverables/feed-gap-prospect-list.csv in the sibling repository and was unreadable from the environment that ran the second pass, which is why the pool above was rebuilt rather than filtered. It was read afterwards, and the first three picks reproduce from it exactly (total_voms 2006, 103 and 19). The agency name differs between the two sources: the prospect list carries the NTD reporter, City of Clovis, and this file carries the service brand, Clovis Transit, which is why a name search for the pick finds nothing."
+  },
+  "agencies": [
+    {
+      "size_class": "large",
+      "agency_name": "Massachusetts Bay Transportation Authority",
+      "state": "MA",
+      "total_voms": 2006,
+      "static_mdb_id": "mdb-437",
+      "static_url": "https://cdn.mbta.com/MBTA_GTFS.zip",
+      "realtime": {
+        "tu": {
+          "mdb_id": "mdb-1604",
+          "producer_url": "https://cdn.mbta.com/realtime/TripUpdates.pb",
+          "license_url": "https://www.mass.gov/files/documents/2017/10/27/develop_license_agree_0.pdf"
+        },
+        "vp": {
+          "mdb_id": "mdb-1602",
+          "producer_url": "https://cdn.mbta.com/realtime/VehiclePositions.pb",
+          "license_url": "https://www.mass.gov/files/documents/2017/10/27/develop_license_agree_0.pdf"
+        },
+        "sa": {
+          "mdb_id": "mdb-1603",
+          "producer_url": "https://cdn.mbta.com/realtime/Alerts.pb",
+          "license_url": "https://www.mass.gov/files/documents/2017/10/27/develop_license_agree_0.pdf"
+        }
+      }
+    },
+    {
+      "size_class": "mid",
+      "agency_name": "Whatcom Transportation Authority",
+      "state": "WA",
+      "total_voms": 103,
+      "static_mdb_id": "mdb-284",
+      "static_url": "https://github.com/whatcomtrans/publicwtadata/raw/master/GTFS/wta_gtfs_latest.zip",
+      "realtime": {
+        "tu": {
+          "mdb_id": "tld-4358-tu",
+          "producer_url": "https://bustracker.ridewta.com/gtfsrt/trips",
+          "license_url": null
+        },
+        "vp": {
+          "mdb_id": "tld-4358-vp",
+          "producer_url": "https://bustracker.ridewta.com/gtfsrt/vehicles",
+          "license_url": null
+        }
+      }
+    },
+    {
+      "size_class": "small",
+      "agency_name": "Valley Transit",
+      "state": "WA",
+      "total_voms": 19,
+      "static_mdb_id": "tld-820",
+      "static_url": "https://itransitnw.com/rtt/public/resource/gtfs.zip",
+      "realtime": {
+        "tu": {
+          "mdb_id": "tld-4793-tu",
+          "producer_url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/tripupdate",
+          "license_url": null
+        },
+        "vp": {
+          "mdb_id": "tld-4793-vp",
+          "producer_url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/vehicleposition",
+          "license_url": null
+        }
+      }
+    },
+    {
+      "size_class": "small",
+      "agency_name": "Clovis Transit",
+      "state": "CA",
+      "total_voms": 35,
+      "vehicles_observed": 15,
+      "vehicles_observed_at": "2026-08-15",
+      "picked_for": "frequencies.txt with 16 rows, all of them exact_times=0, and a TripUpdates feed that names those trips",
+      "static_mdb_id": "mdb-2894",
+      "static_url": "https://passio3.com/clovis/passioTransit/gtfs/google_transit.zip",
+      "realtime": {
+        "tu": {
+          "mdb_id": "mdb-2896",
+          "producer_url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/tripUpdates",
+          "license_url": null
+        },
+        "vp": {
+          "mdb_id": "mdb-2897",
+          "producer_url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/vehiclePositions",
+          "license_url": null
+        },
+        "sa": {
+          "mdb_id": "mdb-2895",
+          "producer_url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/serviceAlerts",
+          "license_url": null
+        }
+      },
+      "ntd_id": "90313",
+      "ntd_reporter_name": "City of Clovis"
+    }
+  ]
+}

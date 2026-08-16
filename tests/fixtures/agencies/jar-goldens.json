@@ -1,0 +1,1595 @@
+{
+  "generated_by": "tools/gen_agency_goldens.py",
+  "do_not_edit": "Regenerate with .venv/bin/python tools/gen_agency_goldens.py",
+  "generated_at": "2026-08-16T11:58:40Z",
+  "code_revision": "910a6f78e90374be4ff68ec542373ad64aabc119",
+  "validator_version": "0.1.0",
+  "what_this_is": "the jar's side of tools/diff_agency_against_jar.py, reduced to a SHA-256, a byte length and a rule census per input. The results bytes themselves are not committed: MBTA alone is 3.5 MB of them per sort regime, and corpus/ is gitignored to keep this repository small. tests/test_agency_goldens.py recomputes this project's side from the recorded bytes and compares against this file, which needs neither a jar nor a JDK. tests/test_agency_differential.py is the stronger check against a running jar and this does not replace it.",
+  "jar": {
+    "repo": "MobilityData/gtfs-realtime-validator",
+    "pin": "7041fa3fcaf674bf730e17325c179d329cdff6f2",
+    "pin_evidence": "verified against the checkout the jar was built in",
+    "sha256": "13785ada1e0546deed90bcfdbb84b67ec041a09a7204db9a24015dc7a2e1e56f"
+  },
+  "jdk": {
+    "java_version": "17.0.19",
+    "format_locale": "en-US"
+  },
+  "corpus": {
+    "manifest": "tests/fixtures/agencies/manifest.json",
+    "manifest_sha256": "16fadd46939414d5cf6dd66c0b187cd03510cf3276058ea486b9195004b2a515",
+    "recorded_at": "2026-08-15T18:50:34Z"
+  },
+  "runs": [
+    {
+      "static_mdb_id": "mdb-437",
+      "agency_name": "Massachusetts Bay Transportation Authority",
+      "sort": "date",
+      "jar_sort_flag": null,
+      "dropped_static_files": [],
+      "diagnostic": false,
+      "diagnostic_note": null,
+      "static_sha256": "d72648a6bbfb8af0a49fb0d373b17e3f0135c70b4a62182de7fb1f3415493739",
+      "messages": 18,
+      "jar_outcome": "refused-the-archive",
+      "jar_refusal": {
+        "exit_code": 1,
+        "results_files_written": 0,
+        "exception": "org.onebusaway.csv_entities.exceptions.CsvEntityIOException",
+        "entity_type": "org.onebusaway.gtfs.model.Area",
+        "path": "areas.txt",
+        "line_number": 2,
+        "caused_by": "org.onebusaway.csv_entities.exceptions.MissingRequiredFieldException",
+        "missing_field": "wkt",
+        "frames": [
+          "at org.onebusaway.csv_entities.CsvEntityReader.readEntities(CsvEntityReader.java:161)",
+          "at org.onebusaway.csv_entities.CsvEntityReader.readEntities(CsvEntityReader.java:120)",
+          "at org.onebusaway.csv_entities.CsvEntityReader.readEntities(CsvEntityReader.java:115)",
+          "at org.onebusaway.gtfs.serialization.GtfsReader.run(GtfsReader.java:171)",
+          "at org.onebusaway.gtfs.serialization.GtfsReader.run(GtfsReader.java:159)",
+          "at edu.usf.cutr.gtfsrtvalidator.lib.batch.BatchProcessor.readGtfsData(BatchProcessor.java:314)",
+          "at edu.usf.cutr.gtfsrtvalidator.lib.batch.BatchProcessor.processFeeds(BatchProcessor.java:138)",
+          "at edu.usf.cutr.gtfsrtvalidator.lib.Main.main(Main.java:62)"
+        ],
+        "cause_frames": [
+          "at org.onebusaway.csv_entities.schema.AbstractFieldMapping.isMissingAndOptional(AbstractFieldMapping.java:100)",
+          "at org.onebusaway.csv_entities.schema.DefaultFieldMapping.translateFromCSVToObject(DefaultFieldMapping.java:43)",
+          "at org.onebusaway.csv_entities.IndividualCsvEntityReader.readEntity(IndividualCsvEntityReader.java:131)",
+          "at org.onebusaway.csv_entities.IndividualCsvEntityReader.handleLine(IndividualCsvEntityReader.java:98)",
+          "at org.onebusaway.csv_entities.CsvEntityReader.readEntities(CsvEntityReader.java:157)"
+        ],
+        "why": "the jar did not skip these inputs, it never reached them. GtfsReader.run parses every file it has a model for, onebusaway-gtfs-1.3.87 models areas.txt as org.onebusaway.gtfs.model.Area whose wkt field carries no @CsvField annotation, and csv-entities reads an unannotated field as required. The current spec's areas.txt has area_id and area_name and no geometry, so the read throws, Main.main:62 catches only IOException and NoSuchAlgorithmException, and the JVM exits having written nothing. Nothing in gtfs-realtime-validator-lib reads an Area, so the file it died on could not have changed a single occurrence. This project's compat static loader reads seven tables and never opens areas.txt, so it validates everything: that is a real parity gap and it is recorded here as an outcome rather than as an absence, so that a jar or an archive that does read this file fails loudly instead of looking like an improvement."
+      },
+      "jar_results_files": 0,
+      "jar_occurrences": 0,
+      "expected_divergences": [
+        {
+          "name": "sa-00-2026-08-15T18-38-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-01-2026-08-15T18-39-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-02-2026-08-15T18-40-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-03-2026-08-15T18-41-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-04-2026-08-15T18-42-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-05-2026-08-15T18-43-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-00-2026-08-15T18-39-36Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-01-2026-08-15T18-39-42Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-02-2026-08-15T18-39-47Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-03-2026-08-15T18-39-54Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-04-2026-08-15T18-40-00Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-05-2026-08-15T18-40-06Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-00-2026-08-15T18-39-37Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-01-2026-08-15T18-39-42Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-02-2026-08-15T18-39-49Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-03-2026-08-15T18-39-54Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-04-2026-08-15T18-40-00Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-05-2026-08-15T18-40-07Z.pb",
+          "kind": "only-ours"
+        }
+      ],
+      "inputs": {
+        "tu-00-2026-08-15T18-39-36Z.pb": null,
+        "vp-00-2026-08-15T18-39-37Z.pb": null,
+        "sa-00-2026-08-15T18-38-30Z.pb": null,
+        "tu-01-2026-08-15T18-39-42Z.pb": null,
+        "vp-01-2026-08-15T18-39-42Z.pb": null,
+        "sa-01-2026-08-15T18-39-30Z.pb": null,
+        "tu-02-2026-08-15T18-39-47Z.pb": null,
+        "vp-02-2026-08-15T18-39-49Z.pb": null,
+        "sa-02-2026-08-15T18-40-30Z.pb": null,
+        "tu-03-2026-08-15T18-39-54Z.pb": null,
+        "vp-03-2026-08-15T18-39-54Z.pb": null,
+        "sa-03-2026-08-15T18-41-30Z.pb": null,
+        "tu-04-2026-08-15T18-40-00Z.pb": null,
+        "vp-04-2026-08-15T18-40-00Z.pb": null,
+        "sa-04-2026-08-15T18-42-30Z.pb": null,
+        "tu-05-2026-08-15T18-40-06Z.pb": null,
+        "vp-05-2026-08-15T18-40-07Z.pb": null,
+        "sa-05-2026-08-15T18-43-30Z.pb": null
+      }
+    },
+    {
+      "static_mdb_id": "mdb-437",
+      "agency_name": "Massachusetts Bay Transportation Authority",
+      "sort": "date",
+      "jar_sort_flag": null,
+      "dropped_static_files": [
+        "areas.txt"
+      ],
+      "diagnostic": true,
+      "diagnostic_note": "the static archive was rebuilt without the listed entries, so this is not a parity result for the recorded corpus. It says only that the two implementations agree on the realtime feeds once the jar can read the archive at all.",
+      "static_sha256": "4b9e4bfec48d53b71e9b36a26ec04528d37213da58218d6b825254cd3bb7007d",
+      "messages": 18,
+      "jar_outcome": "validated",
+      "jar_refusal": null,
+      "jar_results_files": 18,
+      "jar_occurrences": 22169,
+      "expected_divergences": [],
+      "inputs": {
+        "tu-00-2026-08-15T18-39-36Z.pb": {
+          "sha256": "6ac4743e75f1637845a17a2d7e2d5b27693d88bcac6e68e5ccffb604ced730ed",
+          "bytes": 444159,
+          "occurrences": 3079,
+          "census": {
+            "E022": 59,
+            "E023": 2,
+            "E045": 5,
+            "E050": 999,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1885
+          }
+        },
+        "vp-00-2026-08-15T18-39-37Z.pb": {
+          "sha256": "61405e3054818860ce6905b66aaac1afb1326965e85a4d92c68b4599f11dea4b",
+          "bytes": 98239,
+          "occurrences": 518,
+          "census": {
+            "E029": 18,
+            "E050": 500
+          }
+        },
+        "sa-00-2026-08-15T18-38-30Z.pb": {
+          "sha256": "0bca551013932536606445fd624fccfe81993aedfaa62bdab68febd7185bc5a8",
+          "bytes": 19701,
+          "occurrences": 103,
+          "census": {
+            "E018": 1,
+            "E030": 25,
+            "E035": 25,
+            "E050": 1,
+            "W009": 51
+          }
+        },
+        "tu-01-2026-08-15T18-39-42Z.pb": {
+          "sha256": "3256253faa061142de6da6b73ebbb44cd37bb341f5459a7bc66c49ede19e8d3e",
+          "bytes": 444873,
+          "occurrences": 3080,
+          "census": {
+            "E022": 59,
+            "E023": 2,
+            "E045": 5,
+            "E050": 999,
+            "W001": 4,
+            "W002": 125,
+            "W007": 1,
+            "W009": 1885
+          }
+        },
+        "vp-01-2026-08-15T18-39-42Z.pb": {
+          "sha256": "a7896c127c751ea0b7dc8173d178a3d87f904659401f68a01aeb7506a2e4bbaf",
+          "bytes": 98989,
+          "occurrences": 519,
+          "census": {
+            "E017": 1,
+            "E029": 18,
+            "E050": 500
+          }
+        },
+        "sa-01-2026-08-15T18-39-30Z.pb": {
+          "sha256": "d4485f2ffcf8819bbacada413d29b5901bfa421cf7c71c78241f093bc22a37d0",
+          "bytes": 19701,
+          "occurrences": 103,
+          "census": {
+            "E018": 1,
+            "E030": 25,
+            "E035": 25,
+            "E050": 1,
+            "W009": 51
+          }
+        },
+        "tu-02-2026-08-15T18-39-47Z.pb": {
+          "sha256": "eafd32119e7db216d0311aa7cba064b69b32f99cdda978646cfe59059e6e4665",
+          "bytes": 443097,
+          "occurrences": 3070,
+          "census": {
+            "E022": 59,
+            "E023": 2,
+            "E045": 5,
+            "E050": 996,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1879
+          }
+        },
+        "vp-02-2026-08-15T18-39-49Z.pb": {
+          "sha256": "d969524b91b1d61889785552b3080f997ae408f0c4623a608648a80a339c47c4",
+          "bytes": 98277,
+          "occurrences": 518,
+          "census": {
+            "E029": 18,
+            "E050": 500
+          }
+        },
+        "sa-02-2026-08-15T18-40-30Z.pb": {
+          "sha256": "08fd3347b44cedcf96ff6365f3dc2a819c18ed4cb935d5682e8a2b20db7b3d47",
+          "bytes": 19566,
+          "occurrences": 103,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "E050": 1,
+            "W007": 1,
+            "W009": 51
+          }
+        },
+        "tu-03-2026-08-15T18-39-54Z.pb": {
+          "sha256": "c60ac0ef06ae7335b9c3f08ede42d690ae4cfd3135cd7c9961b7ac75eacc3d3f",
+          "bytes": 443981,
+          "occurrences": 3072,
+          "census": {
+            "E018": 1,
+            "E022": 60,
+            "E023": 2,
+            "E045": 5,
+            "E050": 996,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1879
+          }
+        },
+        "vp-03-2026-08-15T18-39-54Z.pb": {
+          "sha256": "5d4c5f45c747e83edd02c5deaa5558820f757c05e93250b0b1d27187bcb58881",
+          "bytes": 99226,
+          "occurrences": 520,
+          "census": {
+            "E017": 1,
+            "E029": 19,
+            "E050": 500
+          }
+        },
+        "sa-03-2026-08-15T18-41-30Z.pb": {
+          "sha256": "845013fb2bcf3e06b7c0c40da720d7e16c2e86ad66ea7c58a6415ea9dc13fcc3",
+          "bytes": 19567,
+          "occurrences": 103,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "E050": 1,
+            "W007": 1,
+            "W009": 51
+          }
+        },
+        "tu-04-2026-08-15T18-40-00Z.pb": {
+          "sha256": "4593ac4666005d867e4d6518db385baf1dfc183fc52610fb4ffc65840c5f558d",
+          "bytes": 443752,
+          "occurrences": 3069,
+          "census": {
+            "E018": 1,
+            "E022": 60,
+            "E023": 2,
+            "E045": 5,
+            "E050": 995,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1877
+          }
+        },
+        "vp-04-2026-08-15T18-40-00Z.pb": {
+          "sha256": "f51d41fe97f4160c70ceed0f35c0813b4ee17a1cb5f91ffbd9c5ba56a7dc7b75",
+          "bytes": 99027,
+          "occurrences": 519,
+          "census": {
+            "E017": 1,
+            "E029": 18,
+            "E050": 500
+          }
+        },
+        "sa-04-2026-08-15T18-42-30Z.pb": {
+          "sha256": "b0889087d95e8cc82789ac8f4f5cb337ee00d0ebd070febb76024e99db4a67a8",
+          "bytes": 19568,
+          "occurrences": 103,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "E050": 1,
+            "W007": 1,
+            "W009": 51
+          }
+        },
+        "tu-05-2026-08-15T18-40-06Z.pb": {
+          "sha256": "87ca6f7437916d148540a90124d4c464954d9993add1b5f6daacb1325b9ff4af",
+          "bytes": 443747,
+          "occurrences": 3069,
+          "census": {
+            "E018": 1,
+            "E022": 60,
+            "E023": 2,
+            "E045": 5,
+            "E050": 995,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1877
+          }
+        },
+        "vp-05-2026-08-15T18-40-07Z.pb": {
+          "sha256": "ff4368972eab183a00686b4d4e9fd0f3cc485bb2b0bc312e1c956a4736ed2f52",
+          "bytes": 98319,
+          "occurrences": 518,
+          "census": {
+            "E029": 18,
+            "E050": 500
+          }
+        },
+        "sa-05-2026-08-15T18-43-30Z.pb": {
+          "sha256": "562c0906e7c91ed30c66195a98ee3b343c48530f3e94a499e39237aa26758116",
+          "bytes": 19568,
+          "occurrences": 103,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "E050": 1,
+            "W007": 1,
+            "W009": 51
+          }
+        }
+      }
+    },
+    {
+      "static_mdb_id": "mdb-437",
+      "agency_name": "Massachusetts Bay Transportation Authority",
+      "sort": "name",
+      "jar_sort_flag": "name",
+      "dropped_static_files": [],
+      "diagnostic": false,
+      "diagnostic_note": null,
+      "static_sha256": "d72648a6bbfb8af0a49fb0d373b17e3f0135c70b4a62182de7fb1f3415493739",
+      "messages": 18,
+      "jar_outcome": "refused-the-archive",
+      "jar_refusal": {
+        "exit_code": 1,
+        "results_files_written": 0,
+        "exception": "org.onebusaway.csv_entities.exceptions.CsvEntityIOException",
+        "entity_type": "org.onebusaway.gtfs.model.Area",
+        "path": "areas.txt",
+        "line_number": 2,
+        "caused_by": "org.onebusaway.csv_entities.exceptions.MissingRequiredFieldException",
+        "missing_field": "wkt",
+        "frames": [
+          "at org.onebusaway.csv_entities.CsvEntityReader.readEntities(CsvEntityReader.java:161)",
+          "at org.onebusaway.csv_entities.CsvEntityReader.readEntities(CsvEntityReader.java:120)",
+          "at org.onebusaway.csv_entities.CsvEntityReader.readEntities(CsvEntityReader.java:115)",
+          "at org.onebusaway.gtfs.serialization.GtfsReader.run(GtfsReader.java:171)",
+          "at org.onebusaway.gtfs.serialization.GtfsReader.run(GtfsReader.java:159)",
+          "at edu.usf.cutr.gtfsrtvalidator.lib.batch.BatchProcessor.readGtfsData(BatchProcessor.java:314)",
+          "at edu.usf.cutr.gtfsrtvalidator.lib.batch.BatchProcessor.processFeeds(BatchProcessor.java:138)",
+          "at edu.usf.cutr.gtfsrtvalidator.lib.Main.main(Main.java:62)"
+        ],
+        "cause_frames": [
+          "at org.onebusaway.csv_entities.schema.AbstractFieldMapping.isMissingAndOptional(AbstractFieldMapping.java:100)",
+          "at org.onebusaway.csv_entities.schema.DefaultFieldMapping.translateFromCSVToObject(DefaultFieldMapping.java:43)",
+          "at org.onebusaway.csv_entities.IndividualCsvEntityReader.readEntity(IndividualCsvEntityReader.java:131)",
+          "at org.onebusaway.csv_entities.IndividualCsvEntityReader.handleLine(IndividualCsvEntityReader.java:98)",
+          "at org.onebusaway.csv_entities.CsvEntityReader.readEntities(CsvEntityReader.java:157)"
+        ],
+        "why": "the jar did not skip these inputs, it never reached them. GtfsReader.run parses every file it has a model for, onebusaway-gtfs-1.3.87 models areas.txt as org.onebusaway.gtfs.model.Area whose wkt field carries no @CsvField annotation, and csv-entities reads an unannotated field as required. The current spec's areas.txt has area_id and area_name and no geometry, so the read throws, Main.main:62 catches only IOException and NoSuchAlgorithmException, and the JVM exits having written nothing. Nothing in gtfs-realtime-validator-lib reads an Area, so the file it died on could not have changed a single occurrence. This project's compat static loader reads seven tables and never opens areas.txt, so it validates everything: that is a real parity gap and it is recorded here as an outcome rather than as an absence, so that a jar or an archive that does read this file fails loudly instead of looking like an improvement."
+      },
+      "jar_results_files": 0,
+      "jar_occurrences": 0,
+      "expected_divergences": [
+        {
+          "name": "sa-00-2026-08-15T18-38-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-01-2026-08-15T18-39-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-02-2026-08-15T18-40-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-03-2026-08-15T18-41-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-04-2026-08-15T18-42-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "sa-05-2026-08-15T18-43-30Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-00-2026-08-15T18-39-36Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-01-2026-08-15T18-39-42Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-02-2026-08-15T18-39-47Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-03-2026-08-15T18-39-54Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-04-2026-08-15T18-40-00Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "tu-05-2026-08-15T18-40-06Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-00-2026-08-15T18-39-37Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-01-2026-08-15T18-39-42Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-02-2026-08-15T18-39-49Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-03-2026-08-15T18-39-54Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-04-2026-08-15T18-40-00Z.pb",
+          "kind": "only-ours"
+        },
+        {
+          "name": "vp-05-2026-08-15T18-40-07Z.pb",
+          "kind": "only-ours"
+        }
+      ],
+      "inputs": {
+        "tu-00-2026-08-15T18-39-36Z.pb": null,
+        "vp-00-2026-08-15T18-39-37Z.pb": null,
+        "sa-00-2026-08-15T18-38-30Z.pb": null,
+        "tu-01-2026-08-15T18-39-42Z.pb": null,
+        "vp-01-2026-08-15T18-39-42Z.pb": null,
+        "sa-01-2026-08-15T18-39-30Z.pb": null,
+        "tu-02-2026-08-15T18-39-47Z.pb": null,
+        "vp-02-2026-08-15T18-39-49Z.pb": null,
+        "sa-02-2026-08-15T18-40-30Z.pb": null,
+        "tu-03-2026-08-15T18-39-54Z.pb": null,
+        "vp-03-2026-08-15T18-39-54Z.pb": null,
+        "sa-03-2026-08-15T18-41-30Z.pb": null,
+        "tu-04-2026-08-15T18-40-00Z.pb": null,
+        "vp-04-2026-08-15T18-40-00Z.pb": null,
+        "sa-04-2026-08-15T18-42-30Z.pb": null,
+        "tu-05-2026-08-15T18-40-06Z.pb": null,
+        "vp-05-2026-08-15T18-40-07Z.pb": null,
+        "sa-05-2026-08-15T18-43-30Z.pb": null
+      }
+    },
+    {
+      "static_mdb_id": "mdb-437",
+      "agency_name": "Massachusetts Bay Transportation Authority",
+      "sort": "name",
+      "jar_sort_flag": "name",
+      "dropped_static_files": [
+        "areas.txt"
+      ],
+      "diagnostic": true,
+      "diagnostic_note": "the static archive was rebuilt without the listed entries, so this is not a parity result for the recorded corpus. It says only that the two implementations agree on the realtime feeds once the jar can read the archive at all.",
+      "static_sha256": "4b9e4bfec48d53b71e9b36a26ec04528d37213da58218d6b825254cd3bb7007d",
+      "messages": 18,
+      "jar_outcome": "validated",
+      "jar_refusal": null,
+      "jar_results_files": 18,
+      "jar_occurrences": 13177,
+      "expected_divergences": [],
+      "inputs": {
+        "tu-00-2026-08-15T18-39-36Z.pb": {
+          "sha256": "f29072697238676203107fd4009a303d521bcb08d2e89ff001d7fc7a6ed32d01",
+          "bytes": 257826,
+          "occurrences": 2081,
+          "census": {
+            "E018": 1,
+            "E022": 59,
+            "E023": 2,
+            "E045": 5,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1885
+          }
+        },
+        "vp-00-2026-08-15T18-39-37Z.pb": {
+          "sha256": "d2da00b33ec6816dd10ae303d06a52d2fc716d5e66af272b4afd031178aceb97",
+          "bytes": 4973,
+          "occurrences": 19,
+          "census": {
+            "E018": 1,
+            "E029": 18
+          }
+        },
+        "sa-00-2026-08-15T18-38-30Z.pb": {
+          "sha256": "bc1af867c001c56be1da6b1af1edc7f6b761217791101b1dbfb46cbf289494c4",
+          "bytes": 18360,
+          "occurrences": 101,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "W009": 51
+          }
+        },
+        "tu-01-2026-08-15T18-39-42Z.pb": {
+          "sha256": "ead5ef17e3040a6f8be7269596ac1b7acd58cbe0fb72945bbb7a8a6824b9d401",
+          "bytes": 257081,
+          "occurrences": 2080,
+          "census": {
+            "E022": 59,
+            "E023": 2,
+            "E045": 5,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1885
+          }
+        },
+        "vp-01-2026-08-15T18-39-42Z.pb": {
+          "sha256": "26defce791eb6103c54220a43af8033a8f691fe82fa8d76cf404f29b31c970b0",
+          "bytes": 4225,
+          "occurrences": 18,
+          "census": {
+            "E029": 18
+          }
+        },
+        "sa-01-2026-08-15T18-39-30Z.pb": {
+          "sha256": "a9caadfc20959b3e3007338c5da0180d6ef1459f116c05e5f5bce2ff9c61c7db",
+          "bytes": 18970,
+          "occurrences": 102,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "W007": 1,
+            "W009": 51
+          }
+        },
+        "tu-02-2026-08-15T18-39-47Z.pb": {
+          "sha256": "3d98606bee047447968419c5c34d84385ed4ecf4855ced94ad4174469ec79d19",
+          "bytes": 256350,
+          "occurrences": 2074,
+          "census": {
+            "E022": 59,
+            "E023": 2,
+            "E045": 5,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1879
+          }
+        },
+        "vp-02-2026-08-15T18-39-49Z.pb": {
+          "sha256": "6c43f82dec18a08fe7a291301583b642eb9553b3a3a1a7d778e856bd8ea19a75",
+          "bytes": 4220,
+          "occurrences": 18,
+          "census": {
+            "E029": 18
+          }
+        },
+        "sa-02-2026-08-15T18-40-30Z.pb": {
+          "sha256": "a9caadfc20959b3e3007338c5da0180d6ef1459f116c05e5f5bce2ff9c61c7db",
+          "bytes": 18970,
+          "occurrences": 102,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "W007": 1,
+            "W009": 51
+          }
+        },
+        "tu-03-2026-08-15T18-39-54Z.pb": {
+          "sha256": "1646f61745740a411a9ba024ac619a7e5da96761dd5539cd31f28ed9350217e1",
+          "bytes": 256558,
+          "occurrences": 2075,
+          "census": {
+            "E022": 60,
+            "E023": 2,
+            "E045": 5,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1879
+          }
+        },
+        "vp-03-2026-08-15T18-39-54Z.pb": {
+          "sha256": "dc3586c4c6d91ec118e1930e7e825484f3b3c801ae37a686b099d7cdec58552a",
+          "bytes": 4437,
+          "occurrences": 19,
+          "census": {
+            "E029": 19
+          }
+        },
+        "sa-03-2026-08-15T18-41-30Z.pb": {
+          "sha256": "a9caadfc20959b3e3007338c5da0180d6ef1459f116c05e5f5bce2ff9c61c7db",
+          "bytes": 18970,
+          "occurrences": 102,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "W007": 1,
+            "W009": 51
+          }
+        },
+        "tu-04-2026-08-15T18-40-00Z.pb": {
+          "sha256": "d7e7ff9d093279b7dfad7f5f390b8b28eddb1b03b610fb5b1fb7676de261a944",
+          "bytes": 256317,
+          "occurrences": 2073,
+          "census": {
+            "E022": 60,
+            "E023": 2,
+            "E045": 5,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1877
+          }
+        },
+        "vp-04-2026-08-15T18-40-00Z.pb": {
+          "sha256": "8e7dca6b606561e0f628358dd1c5668c407dc16f168753594c127dff379fb18a",
+          "bytes": 4222,
+          "occurrences": 18,
+          "census": {
+            "E029": 18
+          }
+        },
+        "sa-04-2026-08-15T18-42-30Z.pb": {
+          "sha256": "a9caadfc20959b3e3007338c5da0180d6ef1459f116c05e5f5bce2ff9c61c7db",
+          "bytes": 18970,
+          "occurrences": 102,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "W007": 1,
+            "W009": 51
+          }
+        },
+        "tu-05-2026-08-15T18-40-06Z.pb": {
+          "sha256": "1d32924172f6f832df84ab3ed11f94c194557d0c789cdaf597dc3ebb5e7c9a41",
+          "bytes": 256317,
+          "occurrences": 2073,
+          "census": {
+            "E022": 60,
+            "E023": 2,
+            "E045": 5,
+            "W001": 4,
+            "W002": 125,
+            "W009": 1877
+          }
+        },
+        "vp-05-2026-08-15T18-40-07Z.pb": {
+          "sha256": "278b039b6369d57fb03bfc79f76fbdc628a7303828db8eed1c90304974b2734d",
+          "bytes": 4227,
+          "occurrences": 18,
+          "census": {
+            "E029": 18
+          }
+        },
+        "sa-05-2026-08-15T18-43-30Z.pb": {
+          "sha256": "a9caadfc20959b3e3007338c5da0180d6ef1459f116c05e5f5bce2ff9c61c7db",
+          "bytes": 18970,
+          "occurrences": 102,
+          "census": {
+            "E030": 25,
+            "E035": 25,
+            "W007": 1,
+            "W009": 51
+          }
+        }
+      }
+    },
+    {
+      "static_mdb_id": "mdb-284",
+      "agency_name": "Whatcom Transportation Authority",
+      "sort": "date",
+      "jar_sort_flag": null,
+      "dropped_static_files": [],
+      "diagnostic": false,
+      "diagnostic_note": null,
+      "static_sha256": "7c481cd0872302f5842855037f17d7ec3cd52100020a978bef27545e2bab3b01",
+      "messages": 12,
+      "jar_outcome": "validated",
+      "jar_refusal": null,
+      "jar_results_files": 12,
+      "jar_occurrences": 646,
+      "expected_divergences": [],
+      "inputs": {
+        "tu-00-2026-08-15T18-44-59Z.pb": {
+          "sha256": "550c86f391bd267a76e364d03bdaf8b70471cbdeefa9bb5b80f8d62198af4276",
+          "bytes": 12473,
+          "occurrences": 65,
+          "census": {
+            "E050": 65
+          }
+        },
+        "vp-00-2026-08-15T18-45-29Z.pb": {
+          "sha256": "b4e29c8c2fc76b7c07854824bbc5e1ff779981875a58b047aa44e550d98b17f7",
+          "bytes": 8210,
+          "occurrences": 42,
+          "census": {
+            "E050": 42
+          }
+        },
+        "tu-01-2026-08-15T18-45-29Z.pb": {
+          "sha256": "e925e83a6ff245685cd8d50d5905fb8ac0cea50cbb67133765bdc6856af9e0c0",
+          "bytes": 12996,
+          "occurrences": 65,
+          "census": {
+            "E017": 1,
+            "E050": 64
+          }
+        },
+        "vp-01-2026-08-15T18-45-59Z.pb": {
+          "sha256": "7b98c8b2be70ea2b020e0a3d147ef8b2781b34e6fcc1b46cd4a2c7bb99a91626",
+          "bytes": 8220,
+          "occurrences": 42,
+          "census": {
+            "E050": 42
+          }
+        },
+        "tu-02-2026-08-15T18-45-59Z.pb": {
+          "sha256": "b3ade29df82e128c3bf564c85806adc3564cd0739d15c021f165797e33440c7c",
+          "bytes": 13384,
+          "occurrences": 67,
+          "census": {
+            "E017": 1,
+            "E050": 66
+          }
+        },
+        "vp-02-2026-08-15T18-46-29Z.pb": {
+          "sha256": "060c2715208f23c46de8a11d0984736b312133195616a719a4c178c89c57d22a",
+          "bytes": 8217,
+          "occurrences": 42,
+          "census": {
+            "E050": 42
+          }
+        },
+        "tu-03-2026-08-15T18-46-29Z.pb": {
+          "sha256": "470f248affcd89302e8faa7b785d6bbad8c045e93ca941f3600f613207b0e84c",
+          "bytes": 13193,
+          "occurrences": 66,
+          "census": {
+            "E017": 1,
+            "E050": 65
+          }
+        },
+        "vp-03-2026-08-15T18-46-59Z.pb": {
+          "sha256": "52a7e748a9e65a2356b1cd278826ff619f7d2e8d0debe1f43887391fbbd34a9b",
+          "bytes": 8030,
+          "occurrences": 41,
+          "census": {
+            "E050": 41
+          }
+        },
+        "tu-04-2026-08-15T18-46-59Z.pb": {
+          "sha256": "5688ffc7ca26d8e53fb3fbc91eaa96c3f56f901ec66502c110ba1e449bef1b25",
+          "bytes": 13372,
+          "occurrences": 67,
+          "census": {
+            "E017": 1,
+            "E050": 66
+          }
+        },
+        "vp-04-2026-08-15T18-47-30Z.pb": {
+          "sha256": "fe2fb4177a979eb9173bf996b1fc4da38c895d013fae2551d5a8b192bfdf1b46",
+          "bytes": 8036,
+          "occurrences": 41,
+          "census": {
+            "E050": 41
+          }
+        },
+        "tu-05-2026-08-15T18-47-30Z.pb": {
+          "sha256": "3860cec095b85de649bb70052c3c8da55e891244473bea61cf26c99dc25a9d0a",
+          "bytes": 13386,
+          "occurrences": 67,
+          "census": {
+            "E017": 1,
+            "E050": 66
+          }
+        },
+        "vp-05-2026-08-15T18-47-59Z.pb": {
+          "sha256": "94c9e9d514a28a7f4448f6a29a4e2b6b7fadf1599a58c186038b36aecc6bec88",
+          "bytes": 8030,
+          "occurrences": 41,
+          "census": {
+            "E050": 41
+          }
+        }
+      }
+    },
+    {
+      "static_mdb_id": "mdb-284",
+      "agency_name": "Whatcom Transportation Authority",
+      "sort": "name",
+      "jar_sort_flag": "name",
+      "dropped_static_files": [],
+      "diagnostic": false,
+      "diagnostic_note": null,
+      "static_sha256": "7c481cd0872302f5842855037f17d7ec3cd52100020a978bef27545e2bab3b01",
+      "messages": 12,
+      "jar_outcome": "validated",
+      "jar_refusal": null,
+      "jar_results_files": 12,
+      "jar_occurrences": 1,
+      "expected_divergences": [],
+      "inputs": {
+        "tu-00-2026-08-15T18-44-59Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "vp-00-2026-08-15T18-45-29Z.pb": {
+          "sha256": "96a473f89d9c6e8100e7e494b5417644237e3d8e6bd4263d91ceacb0e5a49b06",
+          "bytes": 747,
+          "occurrences": 1,
+          "census": {
+            "E018": 1
+          }
+        },
+        "tu-01-2026-08-15T18-45-29Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "vp-01-2026-08-15T18-45-59Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-02-2026-08-15T18-45-59Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "vp-02-2026-08-15T18-46-29Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-03-2026-08-15T18-46-29Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "vp-03-2026-08-15T18-46-59Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-04-2026-08-15T18-46-59Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "vp-04-2026-08-15T18-47-30Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-05-2026-08-15T18-47-30Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "vp-05-2026-08-15T18-47-59Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        }
+      }
+    },
+    {
+      "static_mdb_id": "tld-820",
+      "agency_name": "Valley Transit",
+      "sort": "date",
+      "jar_sort_flag": null,
+      "dropped_static_files": [],
+      "diagnostic": false,
+      "diagnostic_note": null,
+      "static_sha256": "fdd3492f2f26ae2cb25f2ec2a755288176b7b8763187879e69778c01360665e6",
+      "messages": 12,
+      "jar_outcome": "validated",
+      "jar_refusal": null,
+      "jar_results_files": 12,
+      "jar_occurrences": 114,
+      "expected_divergences": [],
+      "inputs": {
+        "tu-00-2026-08-15T18-47-59Z.pb": {
+          "sha256": "fe7e15d4121e7d7ee019ee22953ea42afc2e42562b89298fe8e91741779e5007",
+          "bytes": 2775,
+          "occurrences": 13,
+          "census": {
+            "E050": 1,
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-00-2026-08-15T18-47-59Z.pb": {
+          "sha256": "ffa01012663960918603524ba0333bc012ed996aa97c6b63fd14023c46140cd9",
+          "bytes": 2346,
+          "occurrences": 6,
+          "census": {
+            "E017": 1,
+            "E050": 3,
+            "W009": 2
+          }
+        },
+        "tu-01-2026-08-15T18-48-29Z.pb": {
+          "sha256": "9951a422398e3b805ec9bf194e500b1c748c805aaa2e1cfd04df2a071ca2e755",
+          "bytes": 2774,
+          "occurrences": 13,
+          "census": {
+            "E050": 1,
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-01-2026-08-15T18-48-29Z.pb": {
+          "sha256": "7c652f3ab789c59aa5e2eece63bce7fcd7c2215698b59c346b1cbbd77cbc71b6",
+          "bytes": 2345,
+          "occurrences": 6,
+          "census": {
+            "E017": 1,
+            "E050": 3,
+            "W009": 2
+          }
+        },
+        "tu-02-2026-08-15T18-48-59Z.pb": {
+          "sha256": "f6a82436e4318221273b47b8c31f499e54e0860eda561ea03ecaae0ce0e68ba9",
+          "bytes": 2775,
+          "occurrences": 13,
+          "census": {
+            "E050": 1,
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-02-2026-08-15T18-48-59Z.pb": {
+          "sha256": "e72ee3f56136f396a3ca9ff43006b0f6f0553a9f734420296cb58460da0b1b88",
+          "bytes": 2346,
+          "occurrences": 6,
+          "census": {
+            "E017": 1,
+            "E050": 3,
+            "W009": 2
+          }
+        },
+        "tu-03-2026-08-15T18-49-29Z.pb": {
+          "sha256": "1989e615601ece030d6440d7bc33a1def2973dec48482e2c386eb80d0d261278",
+          "bytes": 2774,
+          "occurrences": 13,
+          "census": {
+            "E050": 1,
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-03-2026-08-15T18-49-29Z.pb": {
+          "sha256": "3afaaf37b988771bad829c7acf5d8d03a86c04c623ba495915df1543f9871b2b",
+          "bytes": 2345,
+          "occurrences": 6,
+          "census": {
+            "E017": 1,
+            "E050": 3,
+            "W009": 2
+          }
+        },
+        "tu-04-2026-08-15T18-49-59Z.pb": {
+          "sha256": "4e457856adf58be03bb9ce2e5ada7429869065cfc0ec85f809f40ad2985af700",
+          "bytes": 2775,
+          "occurrences": 13,
+          "census": {
+            "E050": 1,
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-04-2026-08-15T18-49-59Z.pb": {
+          "sha256": "0b7a3eead55585bb98eb3b4afc3bf779e617d8e9badce0366cefe1c373230d0b",
+          "bytes": 2346,
+          "occurrences": 6,
+          "census": {
+            "E017": 1,
+            "E050": 3,
+            "W009": 2
+          }
+        },
+        "tu-05-2026-08-15T18-50-29Z.pb": {
+          "sha256": "27cce60b050eaa231ef2347cffda86039b97572e7f046cb986307d6d1b74fe9f",
+          "bytes": 2775,
+          "occurrences": 13,
+          "census": {
+            "E050": 1,
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-05-2026-08-15T18-50-29Z.pb": {
+          "sha256": "3abf4347e68e7ee63637c2fdfde7ee9fb4b7010a0bb448046d354e5fde11d66d",
+          "bytes": 2346,
+          "occurrences": 6,
+          "census": {
+            "E017": 1,
+            "E050": 3,
+            "W009": 2
+          }
+        }
+      }
+    },
+    {
+      "static_mdb_id": "tld-820",
+      "agency_name": "Valley Transit",
+      "sort": "name",
+      "jar_sort_flag": "name",
+      "dropped_static_files": [],
+      "diagnostic": false,
+      "diagnostic_note": null,
+      "static_sha256": "fdd3492f2f26ae2cb25f2ec2a755288176b7b8763187879e69778c01360665e6",
+      "messages": 12,
+      "jar_outcome": "validated",
+      "jar_refusal": null,
+      "jar_results_files": 12,
+      "jar_occurrences": 85,
+      "expected_divergences": [],
+      "inputs": {
+        "tu-00-2026-08-15T18-47-59Z.pb": {
+          "sha256": "1a8fd6b715cd2f584f1c81640b44777bec7fae4b151f76200476879ee4c05b49",
+          "bytes": 2178,
+          "occurrences": 12,
+          "census": {
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-00-2026-08-15T18-47-59Z.pb": {
+          "sha256": "39e7817677a320dada2384640f58f63196f224e8d1320a172276d20a69b0a201",
+          "bytes": 1401,
+          "occurrences": 3,
+          "census": {
+            "E018": 1,
+            "W009": 2
+          }
+        },
+        "tu-01-2026-08-15T18-48-29Z.pb": {
+          "sha256": "1a8fd6b715cd2f584f1c81640b44777bec7fae4b151f76200476879ee4c05b49",
+          "bytes": 2178,
+          "occurrences": 12,
+          "census": {
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-01-2026-08-15T18-48-29Z.pb": {
+          "sha256": "22d2481ff6a890280fd348be921c325b8d99901f47fad02bc3219451627a2d1b",
+          "bytes": 656,
+          "occurrences": 2,
+          "census": {
+            "W009": 2
+          }
+        },
+        "tu-02-2026-08-15T18-48-59Z.pb": {
+          "sha256": "1a8fd6b715cd2f584f1c81640b44777bec7fae4b151f76200476879ee4c05b49",
+          "bytes": 2178,
+          "occurrences": 12,
+          "census": {
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-02-2026-08-15T18-48-59Z.pb": {
+          "sha256": "22d2481ff6a890280fd348be921c325b8d99901f47fad02bc3219451627a2d1b",
+          "bytes": 656,
+          "occurrences": 2,
+          "census": {
+            "W009": 2
+          }
+        },
+        "tu-03-2026-08-15T18-49-29Z.pb": {
+          "sha256": "1806992cf1e161874a551c39e0f4daaa328d6e968e33a0ec0d5511b100cb6871",
+          "bytes": 2178,
+          "occurrences": 12,
+          "census": {
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-03-2026-08-15T18-49-29Z.pb": {
+          "sha256": "22d2481ff6a890280fd348be921c325b8d99901f47fad02bc3219451627a2d1b",
+          "bytes": 656,
+          "occurrences": 2,
+          "census": {
+            "W009": 2
+          }
+        },
+        "tu-04-2026-08-15T18-49-59Z.pb": {
+          "sha256": "1806992cf1e161874a551c39e0f4daaa328d6e968e33a0ec0d5511b100cb6871",
+          "bytes": 2178,
+          "occurrences": 12,
+          "census": {
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-04-2026-08-15T18-49-59Z.pb": {
+          "sha256": "22d2481ff6a890280fd348be921c325b8d99901f47fad02bc3219451627a2d1b",
+          "bytes": 656,
+          "occurrences": 2,
+          "census": {
+            "W009": 2
+          }
+        },
+        "tu-05-2026-08-15T18-50-29Z.pb": {
+          "sha256": "1806992cf1e161874a551c39e0f4daaa328d6e968e33a0ec0d5511b100cb6871",
+          "bytes": 2178,
+          "occurrences": 12,
+          "census": {
+            "W001": 4,
+            "W009": 8
+          }
+        },
+        "vp-05-2026-08-15T18-50-29Z.pb": {
+          "sha256": "22d2481ff6a890280fd348be921c325b8d99901f47fad02bc3219451627a2d1b",
+          "bytes": 656,
+          "occurrences": 2,
+          "census": {
+            "W009": 2
+          }
+        }
+      }
+    },
+    {
+      "static_mdb_id": "mdb-2894",
+      "agency_name": "Clovis Transit",
+      "sort": "date",
+      "jar_sort_flag": null,
+      "dropped_static_files": [],
+      "diagnostic": false,
+      "diagnostic_note": null,
+      "static_sha256": "07bdd273ff5a6bf508139e08633ac978f26c83ab088f6c0d6303cd3a5baca307",
+      "messages": 18,
+      "jar_outcome": "validated",
+      "jar_refusal": null,
+      "jar_results_files": 18,
+      "jar_occurrences": 1168,
+      "expected_divergences": [],
+      "inputs": {
+        "tu-00-2026-08-15T18-38-57Z.pb": {
+          "sha256": "6522774acb40b630bdcd198be240a8f93ccdf139a63c6d1b0ed15c38b02f7a5f",
+          "bytes": 27120,
+          "occurrences": 160,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "E050": 31,
+            "W009": 60
+          }
+        },
+        "vp-00-2026-08-15T18-38-57Z.pb": {
+          "sha256": "3bac70504fca9fddaf1b4482f3a6b788f02485c75ae2977d95f232844172f988",
+          "bytes": 7364,
+          "occurrences": 34,
+          "census": {
+            "E017": 1,
+            "E028": 1,
+            "E050": 16,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-00-2026-08-15T18-38-58Z.pb": {
+          "sha256": "e81c2c117343b910a38d38598947292bad8c2638f94557b0ed8c2697643e2b33",
+          "bytes": 599,
+          "occurrences": 1,
+          "census": {
+            "E050": 1
+          }
+        },
+        "tu-01-2026-08-15T18-39-02Z.pb": {
+          "sha256": "bea552daa96bcec6dc9c829cbdd94c6859c087d89bcce13522f9905725f8f54d",
+          "bytes": 27125,
+          "occurrences": 160,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "E050": 31,
+            "W009": 60
+          }
+        },
+        "vp-01-2026-08-15T18-39-07Z.pb": {
+          "sha256": "1aa97844ea2e78515f90801b4876d9d685c34a4c713798f4663b2605a04b8216",
+          "bytes": 6640,
+          "occurrences": 33,
+          "census": {
+            "E028": 1,
+            "E050": 16,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-01-2026-08-15T18-39-08Z.pb": {
+          "sha256": "2152890f8543497c90e40a693d2daf0d4fde41de575181d33644fe1c5cc90fe1",
+          "bytes": 599,
+          "occurrences": 1,
+          "census": {
+            "E050": 1
+          }
+        },
+        "tu-02-2026-08-15T18-39-09Z.pb": {
+          "sha256": "392e86225d56e0562bc64abf4d5ae6283c8d5757f7a6277595b1ff4c3d399569",
+          "bytes": 27121,
+          "occurrences": 160,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "E050": 31,
+            "W009": 60
+          }
+        },
+        "vp-02-2026-08-15T18-39-13Z.pb": {
+          "sha256": "7a4752af6ee87f7859520c6534d62c2d8c57cb62a44aa02db085802200ca478d",
+          "bytes": 6640,
+          "occurrences": 33,
+          "census": {
+            "E028": 1,
+            "E050": 16,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-02-2026-08-15T18-39-13Z.pb": {
+          "sha256": "58f0ccfc8043475c5b5585335f2630e07c661acf8cc9bcd1f399ed82169625ad",
+          "bytes": 1324,
+          "occurrences": 2,
+          "census": {
+            "E017": 1,
+            "E050": 1
+          }
+        },
+        "tu-03-2026-08-15T18-39-17Z.pb": {
+          "sha256": "cfd05726ae0ca61a83cabe9ebbde2e005528e27e162667e4cd7f6a77c67d97c9",
+          "bytes": 27125,
+          "occurrences": 160,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "E050": 31,
+            "W009": 60
+          }
+        },
+        "vp-03-2026-08-15T18-39-18Z.pb": {
+          "sha256": "72d571dfa7e2520cd1ed957e3376779b4e3e3a6c993c5c4f9d44312613015c52",
+          "bytes": 6640,
+          "occurrences": 33,
+          "census": {
+            "E028": 1,
+            "E050": 16,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-03-2026-08-15T18-39-19Z.pb": {
+          "sha256": "bdee07858e72e7e99f79fae5eb404afab72ef3958dae400656ceed6b2cd5cb96",
+          "bytes": 599,
+          "occurrences": 1,
+          "census": {
+            "E050": 1
+          }
+        },
+        "tu-04-2026-08-15T18-39-22Z.pb": {
+          "sha256": "87fb79909c1c8ad2ff3444ed348ef7a0ab650fcc585c7cde3ee0db743ce79002",
+          "bytes": 27125,
+          "occurrences": 160,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "E050": 31,
+            "W009": 60
+          }
+        },
+        "vp-04-2026-08-15T18-39-24Z.pb": {
+          "sha256": "4b7ac327bd24cac1121f022637edb19822f9dfd967757947295c90cc12dcd7a6",
+          "bytes": 6640,
+          "occurrences": 33,
+          "census": {
+            "E028": 1,
+            "E050": 16,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-04-2026-08-15T18-39-24Z.pb": {
+          "sha256": "9d5be654ac9f449f58d08c5da284adc95a6876312214c2d38699a3cc2653f77d",
+          "bytes": 1324,
+          "occurrences": 2,
+          "census": {
+            "E017": 1,
+            "E050": 1
+          }
+        },
+        "tu-05-2026-08-15T18-39-27Z.pb": {
+          "sha256": "86979f11792d0b7855a6dde19b11c2c67ddd60ba681625d0646a58792d4e237e",
+          "bytes": 27127,
+          "occurrences": 160,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "E050": 31,
+            "W009": 60
+          }
+        },
+        "vp-05-2026-08-15T18-39-29Z.pb": {
+          "sha256": "423ec839f8ecc0908821c459e7eb721f4381db757f5aa6b19109f8dc533eca7c",
+          "bytes": 6640,
+          "occurrences": 33,
+          "census": {
+            "E028": 1,
+            "E050": 16,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-05-2026-08-15T18-39-29Z.pb": {
+          "sha256": "7e703affa0c73acb0d6cdfadd837164ee544bab595e5fe7a59cbed5f76fdb351",
+          "bytes": 1324,
+          "occurrences": 2,
+          "census": {
+            "E017": 1,
+            "E050": 1
+          }
+        }
+      }
+    },
+    {
+      "static_mdb_id": "mdb-2894",
+      "agency_name": "Clovis Transit",
+      "sort": "name",
+      "jar_sort_flag": "name",
+      "dropped_static_files": [],
+      "diagnostic": false,
+      "diagnostic_note": null,
+      "static_sha256": "07bdd273ff5a6bf508139e08633ac978f26c83ab088f6c0d6303cd3a5baca307",
+      "messages": 18,
+      "jar_outcome": "validated",
+      "jar_refusal": null,
+      "jar_results_files": 18,
+      "jar_occurrences": 878,
+      "expected_divergences": [],
+      "inputs": {
+        "tu-00-2026-08-15T18-38-57Z.pb": {
+          "sha256": "97b9898c0f0e4b12cbfff71bee5507999bba0ff0a36b9f160200983fe6200847",
+          "bytes": 21724,
+          "occurrences": 130,
+          "census": {
+            "E011": 3,
+            "E018": 1,
+            "E045": 66,
+            "W009": 60
+          }
+        },
+        "vp-00-2026-08-15T18-38-57Z.pb": {
+          "sha256": "0b71c2b255a65307aad4ff418c10d03adaf883f3eff06f6cce4b4dbe3faacc5e",
+          "bytes": 3983,
+          "occurrences": 18,
+          "census": {
+            "E018": 1,
+            "E028": 1,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-00-2026-08-15T18-38-58Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-01-2026-08-15T18-39-02Z.pb": {
+          "sha256": "3d08630cc80efbb5d2a9502d7b5d903546c9f91564f4e35fd840daf3fb01af61",
+          "bytes": 20980,
+          "occurrences": 129,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "W009": 60
+          }
+        },
+        "vp-01-2026-08-15T18-39-07Z.pb": {
+          "sha256": "fe9af80b6fabb3a4436aa4625dd68d2dbf05537458ff70b338443b1ae50996f8",
+          "bytes": 3238,
+          "occurrences": 17,
+          "census": {
+            "E028": 1,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-01-2026-08-15T18-39-08Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-02-2026-08-15T18-39-09Z.pb": {
+          "sha256": "24ab13da8b674bba3c367b6ff88f6fcc52e1ef82808533d90e9bf84ff2258125",
+          "bytes": 20980,
+          "occurrences": 129,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "W009": 60
+          }
+        },
+        "vp-02-2026-08-15T18-39-13Z.pb": {
+          "sha256": "fe9af80b6fabb3a4436aa4625dd68d2dbf05537458ff70b338443b1ae50996f8",
+          "bytes": 3238,
+          "occurrences": 17,
+          "census": {
+            "E028": 1,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-02-2026-08-15T18-39-13Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-03-2026-08-15T18-39-17Z.pb": {
+          "sha256": "f39d3fc543947a18e44ea39255267f63325ad7fecdd10acf60fc16b297a46b8c",
+          "bytes": 20980,
+          "occurrences": 129,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "W009": 60
+          }
+        },
+        "vp-03-2026-08-15T18-39-18Z.pb": {
+          "sha256": "fe9af80b6fabb3a4436aa4625dd68d2dbf05537458ff70b338443b1ae50996f8",
+          "bytes": 3238,
+          "occurrences": 17,
+          "census": {
+            "E028": 1,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-03-2026-08-15T18-39-19Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-04-2026-08-15T18-39-22Z.pb": {
+          "sha256": "f39d3fc543947a18e44ea39255267f63325ad7fecdd10acf60fc16b297a46b8c",
+          "bytes": 20980,
+          "occurrences": 129,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "W009": 60
+          }
+        },
+        "vp-04-2026-08-15T18-39-24Z.pb": {
+          "sha256": "fe9af80b6fabb3a4436aa4625dd68d2dbf05537458ff70b338443b1ae50996f8",
+          "bytes": 3238,
+          "occurrences": 17,
+          "census": {
+            "E028": 1,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-04-2026-08-15T18-39-24Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        },
+        "tu-05-2026-08-15T18-39-27Z.pb": {
+          "sha256": "f39d3fc543947a18e44ea39255267f63325ad7fecdd10acf60fc16b297a46b8c",
+          "bytes": 20980,
+          "occurrences": 129,
+          "census": {
+            "E011": 3,
+            "E045": 66,
+            "W009": 60
+          }
+        },
+        "vp-05-2026-08-15T18-39-29Z.pb": {
+          "sha256": "fe9af80b6fabb3a4436aa4625dd68d2dbf05537458ff70b338443b1ae50996f8",
+          "bytes": 3238,
+          "occurrences": 17,
+          "census": {
+            "E028": 1,
+            "W004": 1,
+            "W009": 15
+          }
+        },
+        "sa-05-2026-08-15T18-39-29Z.pb": {
+          "sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "bytes": 3,
+          "occurrences": 0,
+          "census": {}
+        }
+      }
+    }
+  ]
+}

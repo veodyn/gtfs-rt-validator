@@ -1,0 +1,125 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W003",
+      "severity" : "WARNING",
+      "title" : "ID in one feed missing from the other",
+      "errorDescription" : "a trip_id that is provided in the VehiclePositions feed should be provided in the TripUpdates feed, and a vehicle_id that is provided in the TripUpdates feed should be provided in the VehiclePositions feed",
+      "occurrenceSuffix" : ""
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.1 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vOnlyTU is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vOnlyVP is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.2 is in VehiclePositions but not in TripUpdates feed"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E028",
+      "severity" : "ERROR",
+      "title" : "Vehicle position outside agency coverage area",
+      "errorDescription" : "The vehicle position should be inside the agency coverage area.  This is defined as within roughly 1/8 of a mile (200 meters) of the GTFS shapes.txt data, or stops.txt locations if the GTFS feed doesn't include shapes.txt.",
+      "occurrenceSuffix" : "- vehicle should be within area"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vOnlyVP at (40.0,-73.0) is more than 1609.0 meters (1.00 mile(s)) outside entire GTFS shapes.txt coverage area"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W008",
+      "severity" : "WARNING",
+      "title" : "Header timestamp is older than 65 seconds",
+      "errorDescription" : "The data in a GTFS-realtime feed should always be less than one minute old",
+      "occurrenceSuffix" : "old which is greater than the recommended age of 65 seconds"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "header.timestamp is 3333333 min 23 sec"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E017",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt content changed but has the same header timestamp",
+      "errorDescription" : "The GTFS-rt header timestamp value should always change if the feed contents change - the feed contents must not change without updating the header timestamp",
+      "occurrenceSuffix" : "was the same for this and the previous feed iteration but the feed content was not the same"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "header.timestamp of 1500000000"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E041",
+      "severity" : "ERROR",
+      "title" : "trip doesn't have any stop_time_updates",
+      "errorDescription" : "Unless a trip's schedule_relationship is CANCELED, a trip must have at least one stop_time_update",
+      "occurrenceSuffix" : "doesn't have any stop_time_updates and isn't CANCELED"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.1"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W009",
+      "severity" : "WARNING",
+      "title" : "schedule_relationship not populated",
+      "errorDescription" : "trip.schedule_relationship and stop_time_update.schedule_relationship should be populated",
+      "occurrenceSuffix" : "does not have a schedule_relationship"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.1"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.2"
+  } ]
+} ]

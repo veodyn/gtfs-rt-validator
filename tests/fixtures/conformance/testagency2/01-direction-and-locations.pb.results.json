@@ -1,0 +1,55 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E023",
+      "severity" : "ERROR",
+      "title" : "trip start_time does not match first GTFS arrival_time",
+      "errorDescription" : "For normal scheduled trips (i.e., not defined in frequencies.txt), the GTFS-realtime trip start_time must match the first GTFS arrival_time in stop_times.txt for this trip",
+      "occurrenceSuffix" : "- times do not match"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 1.1 start_time is 00:30:00 and GTFS initial arrival_time is 00:00:00"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E024",
+      "severity" : "ERROR",
+      "title" : "trip direction_id does not match GTFS data",
+      "errorDescription" : "GTFS-rt trip direction_id must match the direction_id in GTFS trips.txt",
+      "occurrenceSuffix" : "- direction_id does not match"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 1.1 trip.direction_id is 1 but GTFS trip.direction_id is 0"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E015",
+      "severity" : "ERROR",
+      "title" : "All stop_ids referenced in GTFS-rt TripUpdates and VehiclePositions feeds must have the location_type = 0",
+      "errorDescription" : "All stop_ids referenced in GTFS-rt TripUpdates and VehiclePositions feeds must have the location_type = 0 in GTFS stops.txt",
+      "occurrenceSuffix" : "does not have location_type=0 in GTFS stops.txt"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.1 stop_id B"
+  } ]
+} ]

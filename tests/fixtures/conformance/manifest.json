@@ -1,0 +1,461 @@
+{
+  "generated_by": "tools/gen_golden.py --conformance",
+  "do_not_edit": "Regenerate with .venv/bin/python tools/gen_golden.py --conformance",
+  "repo": "MobilityData/gtfs-realtime-validator",
+  "pin": "7041fa3fcaf674bf730e17325c179d329cdff6f2",
+  "mtime_base": 1700000000,
+  "archives": [
+    "bullrunner-gtfs.zip",
+    "testagency2.zip",
+    "bullrunner-gtfs-timepoints-only-legacy-exact-times-1.zip"
+  ],
+  "groups": [
+    {
+      "name": "bullrunner",
+      "why": "the long sequence: 27 files, two dedupe skips, two decode failures",
+      "gtfs": "bullrunner-gtfs.zip",
+      "gtfs_sha256": "3fc2ed21a0b277627101b54abde905c2db8758f091af0c596d0e54d9d0fe774f",
+      "ignore_shapes": false,
+      "inputs": [
+        {
+          "name": "01-empty-trip.pb",
+          "why": "no stop_time_updates, no trip_id, no vehicle",
+          "mtime": 1700000000,
+          "sha256": "f2e180366b6835ceb1f8e352356f02e7956d3031395ac9a4a178f3e98a3c11c1",
+          "skip": null,
+          "results": "01-empty-trip.pb.results.json",
+          "results_sha256": "29a87ac125d83e812ebed961494c7df95139f1ee870a25e2b220c5c78db3a491",
+          "rules": [
+            "W002",
+            "W001",
+            "E041",
+            "W006",
+            "W009",
+            "E013",
+            "W005"
+          ]
+        },
+        {
+          "name": "02-unknown-ids.pb",
+          "why": "a trip, a route and a stop GTFS does not have",
+          "mtime": 1700000001,
+          "sha256": "1951271ab954629984244d500a79f54b8352d5d0b0f78c36b444f0d5a0fc6ef9",
+          "skip": null,
+          "results": "02-unknown-ids.pb.results.json",
+          "results_sha256": "bdb370b18d34eda8aa36801fe62df5dc3c8ca884f02bb80e65e1922ff0cffa0f",
+          "rules": [
+            "E003",
+            "E004",
+            "E011"
+          ]
+        },
+        {
+          "name": "03-route-mismatch.pb",
+          "why": "a trip under the wrong route, and one with no frequency fields",
+          "mtime": 1700000002,
+          "sha256": "a723c5c2d33514b9c6644c42ad678604b93945877732a4bdebc12c717b36f7a3",
+          "skip": null,
+          "results": "03-route-mismatch.pb.results.json",
+          "results_sha256": "3e497752362a6dfaf73c40b49ad380c4294072b01ffdafd9ed45bf4e8ce50347",
+          "rules": [
+            "W002",
+            "E045",
+            "E035",
+            "E006",
+            "E013",
+            "W005"
+          ]
+        },
+        {
+          "name": "04-added-and-formats.pb",
+          "why": "ADDED over an existing trip, and two malformed date fields",
+          "mtime": 1700000003,
+          "sha256": "34b76e759eeb678e651c448b0a6261b4a71a1ee1c0345963905670da654c2249",
+          "skip": null,
+          "results": "04-added-and-formats.pb.results.json",
+          "results_sha256": "79cad61aeda653660450df7a3706379da42dc4175298c4ff8d462816c2323909",
+          "rules": [
+            "E045",
+            "E016",
+            "E020",
+            "E021",
+            "E013"
+          ]
+        },
+        {
+          "name": "05-stop-time-updates.pb",
+          "why": "six updates each missing something else",
+          "mtime": 1700000004,
+          "sha256": "5c8cf05d2b6705c74066bc360b8abf3d1d512429fc50a3f7c2a37b813772a92b",
+          "skip": null,
+          "results": "05-stop-time-updates.pb.results.json",
+          "results_sha256": "0340cc332d647fb08dee43d46da28e08afab9a8a5c42b5049929ca262ba2c3ff",
+          "rules": [
+            "E009",
+            "E040",
+            "E042",
+            "E043",
+            "E044"
+          ]
+        },
+        {
+          "name": "06-unsorted.pb",
+          "why": "stop_sequence 3 before stop_sequence 1",
+          "mtime": 1700000005,
+          "sha256": "916966d9a081803c2945d483e0e38cd2ed765234c71ac8edac367e85b143875f",
+          "skip": null,
+          "results": "06-unsorted.pb.results.json",
+          "results_sha256": "c8537fb68bac1829ab5f7254f76500b75203163644a2b76c8216c6075b72dd7b",
+          "rules": [
+            "E002",
+            "E051"
+          ]
+        },
+        {
+          "name": "07-repeated-sequence.pb",
+          "why": "the same stop_sequence twice in a row",
+          "mtime": 1700000006,
+          "sha256": "20550417e550b6ef9fd2ee399ff6be28c5f22e67db944381914366d861488d79",
+          "skip": null,
+          "results": "07-repeated-sequence.pb.results.json",
+          "results_sha256": "abd917d472ff4d00bd53271eb308dc29a15ce84c64dd22d3abce451c559f2d3f",
+          "rules": [
+            "E002",
+            "E036",
+            "E051"
+          ]
+        },
+        {
+          "name": "08-repeated-stop.pb",
+          "why": "the same stop_id twice in a row",
+          "mtime": 1700000007,
+          "sha256": "2770e21a00f4050db57f1c2cf0363af367ce02e01096427290e8fabfe0a7be26",
+          "skip": null,
+          "results": "08-repeated-stop.pb.results.json",
+          "results_sha256": "a4bb136947fda7a473613825ea2906e1f48f61dce3ee9e3c6bf5bb612967fc11",
+          "rules": [
+            "E002",
+            "E009",
+            "E037"
+          ]
+        },
+        {
+          "name": "09-gtfs-mismatch.pb",
+          "why": "a stop_sequence GTFS pairs with another stop",
+          "mtime": 1700000008,
+          "sha256": "413f22eac19a5e013d5cb7bb37eac5c238ecd684b83afd54e597f0560ed65c96",
+          "skip": null,
+          "results": "09-gtfs-mismatch.pb.results.json",
+          "results_sha256": "6e61031670b1c5c308f6ccbc0408434c823c4890f93a1a1ab68db91e5b6b2469",
+          "rules": [
+            "E045",
+            "E051"
+          ]
+        },
+        {
+          "name": "10-stop-time-ordering.pb",
+          "why": "a departure before its arrival, then an arrival before both",
+          "mtime": 1700000009,
+          "sha256": "95e5bbc21b27a3a289e0059b6ea09f1fbe265f8b17bce5356c80d7021b68a2fd",
+          "skip": null,
+          "results": "10-stop-time-ordering.pb.results.json",
+          "results_sha256": "42975c6783f219fc6518ffac71dcbea0f9d7c75432797a23e7e62182b460359c",
+          "rules": [
+            "E022",
+            "E025"
+          ]
+        },
+        {
+          "name": "11-out-of-range-times.pb",
+          "why": "a millisecond timestamp and one far ahead of the clock",
+          "mtime": 1700000010,
+          "sha256": "e06fee3ed4fd97e0a041110d48d40a0d36cbadde51859d1105cede7da05a395a",
+          "skip": null,
+          "results": "11-out-of-range-times.pb.results.json",
+          "results_sha256": "5753617ebd35685f0ff94975e5bf7da621c7ef261e1c0a629a8020ddb008908d",
+          "rules": [
+            "E001",
+            "E012",
+            "E050"
+          ]
+        },
+        {
+          "name": "12-duplicate-of-11.pb",
+          "why": "byte-identical to 11, so dedupe skips it",
+          "mtime": 1700000011,
+          "sha256": "e06fee3ed4fd97e0a041110d48d40a0d36cbadde51859d1105cede7da05a395a",
+          "skip": "duplicate",
+          "results": null
+        },
+        {
+          "name": "13-truncated.pb",
+          "why": "six 0xff bytes, which protobuf-java rejects",
+          "mtime": 1700000012,
+          "sha256": "ce8bee525d6736e9825261b19a9b51719f9dc4bb728e95cf7067a2142b03b362",
+          "skip": "decode",
+          "results": null
+        },
+        {
+          "name": "14-empty-file.pb",
+          "why": "zero bytes, so the required header is missing",
+          "mtime": 1700000013,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "skip": "decode",
+          "results": null
+        },
+        {
+          "name": "15-after-skips.pb",
+          "why": "valid again after three skips, and E017 proves it",
+          "mtime": 1700000014,
+          "sha256": "a36ce2b76d5a8e2a53537c1e2914dbbd3ce1de7d94a4154da95648bf322da630",
+          "skip": null,
+          "results": "15-after-skips.pb.results.json",
+          "results_sha256": "676ec8d68c09186ff278c4019477bfe4842f6da8ef1c24affe7f67e136a0cf22",
+          "rules": [
+            "E017"
+          ]
+        },
+        {
+          "name": "16-alerts-without-specifiers.pb",
+          "why": "an alert with nothing to inform",
+          "mtime": 1700000015,
+          "sha256": "32f3b71fc148543bb04a8954b36c9ecc7554cc2c1d847b81246c4e9132af5312",
+          "skip": null,
+          "results": "16-alerts-without-specifiers.pb.results.json",
+          "results_sha256": "b3bbf02ff466ead349c911737fa5ce50f3a2873e45c587927601cb8aaa8bcdce",
+          "rules": [
+            "E032",
+            "E033"
+          ]
+        },
+        {
+          "name": "17-alerts-that-disagree.pb",
+          "why": "alerts whose route, trip and agency disagree",
+          "mtime": 1700000016,
+          "sha256": "131cb81246ac2ab4bb9b30f02bd1dd88d4f0f30056472dd77b0ffd503a9d6a72",
+          "skip": null,
+          "results": "17-alerts-that-disagree.pb.results.json",
+          "results_sha256": "4af5adee76048200bb71ef7b9ccf294620a9b859ccc7f042c96709642e11a258",
+          "rules": [
+            "E030",
+            "E031",
+            "E034",
+            "E035"
+          ]
+        },
+        {
+          "name": "18-invalid-positions.pb",
+          "why": "a bad latitude, a bad bearing and 90 m/s",
+          "mtime": 1700000017,
+          "sha256": "ad3430eac5185f593ba841efb302f2fce18fc289154beeea682ba33bd408de22",
+          "skip": null,
+          "results": "18-invalid-positions.pb.results.json",
+          "results_sha256": "5a3a248236017f6bc46e4baeeb0705726094519d9a00c679cf23bd31d0dfd13e",
+          "rules": [
+            "E026",
+            "E027",
+            "W004"
+          ]
+        },
+        {
+          "name": "19-outside-coverage.pb",
+          "why": "1,500 km from every shape point",
+          "mtime": 1700000018,
+          "sha256": "a001b758ebc0443ba3efef0e222a7db70a2ee881b4173d89ad4d4bab637f1a09",
+          "skip": null,
+          "results": "19-outside-coverage.pb.results.json",
+          "results_sha256": "d3ae5c447a76e4657b146620b709d90e0bbe0c6776e8df642038ecb6e2269aef",
+          "rules": [
+            "E028"
+          ]
+        },
+        {
+          "name": "20-off-shape.pb",
+          "why": "inside coverage but off its own trip's shape",
+          "mtime": 1700000019,
+          "sha256": "a15aaa229716bb6ae777a49d0d6c7947e1860dd23e2c5230d11e38b9df093291",
+          "skip": null,
+          "results": "20-off-shape.pb.results.json",
+          "results_sha256": "b81b590e93be2f6d75a1b82f0b723bea66a87055fb5730704d5e5edb622c3f61",
+          "rules": [
+            "E029"
+          ]
+        },
+        {
+          "name": "21-duplicate-vehicle.pb",
+          "why": "two positions claiming one vehicle.id",
+          "mtime": 1700000020,
+          "sha256": "5c9ec67c8154b8d3e7dc485327befc0e20b11697c76da1354fc024f204fa6d43",
+          "skip": null,
+          "results": "21-duplicate-vehicle.pb.results.json",
+          "results_sha256": "51c128fe00d86dc43ee0768fe406e8d0701cce6ca22c5476d124e196e5496f4c",
+          "rules": [
+            "E052"
+          ]
+        },
+        {
+          "name": "22-crossfeed-many.pb",
+          "why": "60 vehicle ids in one iterated map, so hash order is observable at capacity 128",
+          "mtime": 1700000021,
+          "sha256": "a399585d11c6cbeef86143c667ebd00ce76ba8449404c007c75f259178e7a162",
+          "skip": null,
+          "results": "22-crossfeed-many.pb.results.json",
+          "results_sha256": "f2a20c33db5c8dffc93f2e8326d3b627b860e59efbc6d36242ca9d97d9169fb3",
+          "rules": [
+            "W003",
+            "E047",
+            "E029",
+            "E045"
+          ]
+        },
+        {
+          "name": "23-duplicate-of-22.pb",
+          "why": "byte-identical to 22, a second dedupe skip",
+          "mtime": 1700000022,
+          "sha256": "a399585d11c6cbeef86143c667ebd00ce76ba8449404c007c75f259178e7a162",
+          "skip": "duplicate",
+          "results": null
+        },
+        {
+          "name": "24-refresh-gap.pb",
+          "why": "64 seconds after the last header timestamp",
+          "mtime": 1700000023,
+          "sha256": "ca111aabc5c9df3f3d88208512d1a1093e129fe569a98fc71758411dc11ed4a7",
+          "skip": null,
+          "results": "24-refresh-gap.pb.results.json",
+          "results_sha256": "746ab026d74577be6b982673b7af2f0fcd93c09d60ab3a86b68e04fe31020214",
+          "rules": [
+            "W007"
+          ]
+        },
+        {
+          "name": "25-header-went-back.pb",
+          "why": "a header timestamp lower than the last",
+          "mtime": 1700000024,
+          "sha256": "0150e6a1a2e554aa4e64ce360a2e8ee9cbac177fb6bcface3a6f429bba12df58",
+          "skip": null,
+          "results": "25-header-went-back.pb.results.json",
+          "results_sha256": "d382b9074409aec423d3e41ef96019ef2aaef75d4aa9bff8a5efae0b76568dfb",
+          "rules": [
+            "E018"
+          ]
+        },
+        {
+          "name": "26-header-v2.pb",
+          "why": "2.0 with no timestamp, no incrementality, is_deleted",
+          "mtime": 1700000025,
+          "sha256": "003eae2a5395bb3cc93a3d411ca963cc2bdb1f2270169baaa400ec1b137b3e63",
+          "skip": null,
+          "results": "26-header-v2.pb.results.json",
+          "results_sha256": "8c4025349c606dd3fd25095a652f68d245fde79df597ff0b74dafbf8ca3ae617",
+          "rules": [
+            "W001",
+            "E048",
+            "E039",
+            "E049"
+          ]
+        },
+        {
+          "name": "27-stale-unknown-version.pb",
+          "why": "version 3.0 on a 126-second-old header",
+          "mtime": 1700000026,
+          "sha256": "deb8f0276dcee45cf4b1c08c838b8bb386c081a9a15c9a910c8faa174ddf62b2",
+          "skip": null,
+          "results": "27-stale-unknown-version.pb.results.json",
+          "results_sha256": "fd353c1d50bcf57795697717d58bd613e7c4a17e2bcf674f827cac8260920700",
+          "rules": [
+            "W008",
+            "E038"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bullrunner-ignoring-shapes",
+      "why": "the same geometry with -ignoreShapes, which is the other half of E028",
+      "gtfs": "bullrunner-gtfs.zip",
+      "gtfs_sha256": "3fc2ed21a0b277627101b54abde905c2db8758f091af0c596d0e54d9d0fe774f",
+      "ignore_shapes": true,
+      "inputs": [
+        {
+          "name": "01-outside-coverage.pb",
+          "why": "E028 falls back to the stops.txt bounds",
+          "mtime": 1700000000,
+          "sha256": "b7498175ac7e472f61d7cc2e2c6b137e30d6f2b8d2c377e352ff26dd44324b54",
+          "skip": null,
+          "results": "01-outside-coverage.pb.results.json",
+          "results_sha256": "59dd74bd47038df2cac9155fd12601ce8f0616d5f0c391fdef1cdf06fb830ff3",
+          "rules": [
+            "E028"
+          ]
+        },
+        {
+          "name": "02-off-shape.pb",
+          "why": "E029 is not evaluated when shapes are ignored",
+          "mtime": 1700000001,
+          "sha256": "4b1c27769b0313417f019beae117a9d33a425794bebbd8a93ebc6815d929a99f",
+          "skip": null,
+          "results": "02-off-shape.pb.results.json",
+          "results_sha256": "5984eac0c5c6d947241e29dd5671b81a1546cedf77e08d38438ac47029969afa",
+          "rules": []
+        }
+      ]
+    },
+    {
+      "name": "testagency2",
+      "why": "location_type, agency_id, direction_id and exact_times = 1",
+      "gtfs": "testagency2.zip",
+      "gtfs_sha256": "1e7e6367e631c2b8af7668192bec0100ee368cf972aa6e19eb1c08e1ecb78339",
+      "ignore_shapes": false,
+      "inputs": [
+        {
+          "name": "01-direction-and-locations.pb",
+          "why": "a direction_id, a start_time and a location_type GTFS disagrees with",
+          "mtime": 1700000000,
+          "sha256": "b36272835fa66eb5662bbb0711f580438563ffeff34ab8b15b38f27f910b6214",
+          "skip": null,
+          "results": "01-direction-and-locations.pb.results.json",
+          "results_sha256": "5e8848bfbe297df9581e4eaeefc603e5b6803a36b8fa9a24994935e655cd9a90",
+          "rules": [
+            "E023",
+            "E024",
+            "E015"
+          ]
+        },
+        {
+          "name": "02-frequency-type-one.pb",
+          "why": "an exact_times = 1 start_time that is not a multiple of the headway",
+          "mtime": 1700000001,
+          "sha256": "ee5a3f0803e12ddea80e1656acd3fbdfb4d9d0ea81cc274dc5f43a3df67953bf",
+          "skip": null,
+          "results": "02-frequency-type-one.pb.results.json",
+          "results_sha256": "6aee06a726db4859570f0e54e22503ae938af9b37c0aaec3107cd043abc18df1",
+          "rules": [
+            "E019"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "timepoints",
+      "why": "stop_times.txt rows with no arrival_time and no departure_time",
+      "gtfs": "bullrunner-gtfs-timepoints-only-legacy-exact-times-1.zip",
+      "gtfs_sha256": "412cab4843751b047138066c010c3fb72158ce06ce520e9868388f5e0778cbbc",
+      "ignore_shapes": false,
+      "inputs": [
+        {
+          "name": "01-times-missing-from-gtfs.pb",
+          "why": "no time in the update and none in stop_times.txt either",
+          "mtime": 1700000000,
+          "sha256": "89df036ba780d68261ec5ef4f23aebcf1c68bb86b1b1a8da5d96b404c48377ab",
+          "skip": null,
+          "results": "01-times-missing-from-gtfs.pb.results.json",
+          "results_sha256": "452348be605c1188bdc6f3cde2f60cfa2c5a4c469dfddc54f85ea0509081c81a",
+          "rules": [
+            "E046"
+          ]
+        }
+      ]
+    }
+  ]
+}

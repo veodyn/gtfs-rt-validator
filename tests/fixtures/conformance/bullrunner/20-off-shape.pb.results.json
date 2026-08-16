@@ -1,0 +1,19 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E029",
+      "severity" : "ERROR",
+      "title" : "Vehicle position far from trip shape",
+      "errorDescription" : "The vehicle position should be within a certain distance of the GTFS shapes.txt data for the current trip unless there is a Service Alert with the Effect of DETOUR for this trip_id.",
+      "occurrenceSuffix" : "- vehicle should be near trip shape or on DETOUR"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id shape-1 trip_id 1 at (28.07,-82.4) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  } ]
+} ]

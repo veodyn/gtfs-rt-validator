@@ -1,0 +1,55 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E002",
+      "severity" : "ERROR",
+      "title" : "stop_times_updates not strictly sorted",
+      "errorDescription" : "stop_time_updates for a given trip_id must be strictly sorted by increasing stop_sequence",
+      "occurrenceSuffix" : "is not strictly sorted by increasing stop_sequence"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 5 stop_sequence [1, 1]"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E036",
+      "severity" : "ERROR",
+      "title" : "Sequential stop_time_updates have the same stop_sequence",
+      "errorDescription" : "Sequential GTFS-rt trip stop_time_updates should never have the same stop_sequence",
+      "occurrenceSuffix" : "- stop_sequence must increase for each stop_time_update"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 5 has repeating stop_sequence 1"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E051",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_sequence not found in GTFS data",
+      "errorDescription" : "All stop_time_update stop_sequences in GTFS-realtime data must appear in GTFS stop_times.txt for that trip",
+      "occurrenceSuffix" : "that does not exist in GTFS stop_times.txt for this trip"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 5 contains stop_sequence 1"
+  } ]
+} ]

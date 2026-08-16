@@ -1,0 +1,91 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E045",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_time_update stop_sequence and stop_id do not match GTFS",
+      "errorDescription" : "If GTFS-rt stop_time_update contains both stop_sequence and stop_id, the values must match the GTFS data in stop_times.txt",
+      "occurrenceSuffix" : "- stop_ids should be the same"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 4 stop_sequence 1 has stop_id 418 but GTFS stop_sequence 1 has stop_id 414"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E016",
+      "severity" : "ERROR",
+      "title" : "trip_ids with schedule_relationship ADDED must not be in GTFS data",
+      "errorDescription" : "Trips that have a schedule_relationship of ADDED must not be included in the GTFS data",
+      "occurrenceSuffix" : "has a schedule_relationship of ADDED but exists in the GTFS data"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 2"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E020",
+      "severity" : "ERROR",
+      "title" : "Invalid start_time format",
+      "errorDescription" : "start_time must be in the format HH:MM:SS or H:MM:SS",
+      "occurrenceSuffix" : "which is not the valid format of HH:MM:SS or H:MM:SS"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 4 start_time is 7:0:0"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E021",
+      "severity" : "ERROR",
+      "title" : "Invalid start_date format",
+      "errorDescription" : "start_date must be in the YYYYMMDD format",
+      "occurrenceSuffix" : "which is not the valid format of YYYYMMDD"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 4 start_date is 2016-01-01"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E013",
+      "severity" : "ERROR",
+      "title" : "Frequency type 0 trip schedule_relationship should be UNSCHEDULED or empty",
+      "errorDescription" : "For frequency-based exact_times=0 trips, schedule_relationship should be UNSCHEDULED or empty.",
+      "occurrenceSuffix" : "schedule_relationship is not UNSCHEDULED or empty"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 2 schedule_relationship ADDED"
+  } ]
+} ]

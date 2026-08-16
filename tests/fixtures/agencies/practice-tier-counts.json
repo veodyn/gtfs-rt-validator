@@ -1,0 +1,673 @@
+{
+  "generated_by": "tools/tier_counts.py",
+  "do_not_edit": "Regenerate with .venv/bin/python tools/tier_counts.py",
+  "tier": "practice",
+  "mode": "modern",
+  "generated_at": "2026-08-16T11:19:26Z",
+  "code_revision": "9cc20c896f01d96a491799aa1fa3b7fa0ab1103c",
+  "validator_version": "0.1.0",
+  "corpus_manifest": "tests/fixtures/agencies/manifest.json",
+  "corpus_recorded_at": "2026-08-15T18:50:34Z",
+  "pins": {
+    "gtfs_realtime_proto": {
+      "repo": "google/transit",
+      "path": "gtfs-realtime/proto/gtfs-realtime.proto",
+      "commit": "68158bdce33d8c9c79d07e3a02972aa32d735e5c",
+      "date": "2026-06-30"
+    },
+    "realtime_best_practices": {
+      "repo": "MobilityData/gtfs.org",
+      "path": "docs/en/documentation/realtime/realtime-best-practices.md",
+      "commit": "5a495dbf9a53c3633e3352e0d2d2caabf761ed8a",
+      "date": "2025-06-05"
+    }
+  },
+  "clock": {
+    "source": "file_name",
+    "derivation": "every message is validated at its own header.timestamp",
+    "why": "a fixed corpus with a moving clock is not reproducible, and one fixed instant for a recording spanning minutes would report the first round's vehicles as stale purely for being recorded first. tools/agencycorpus.py stages the names that carry it."
+  },
+  "entity_identity": {
+    "keys": [
+      "tripId",
+      "vehicleId",
+      "routeId"
+    ],
+    "fallback": "entityPath and sourceFile",
+    "note": "each rule's identified_by says which was used. A rule identified by entityPath has distinct_entities equal to occurrences by construction, since an entity index is not stable between messages; that equality is a property of the occurrence's context and not a finding about the feed."
+  },
+  "agencies": [
+    {
+      "static_mdb_id": "mdb-437",
+      "agency_name": "Massachusetts Bay Transportation Authority",
+      "static_sha256": "d72648a6bbfb8af0a49fb0d373b17e3f0135c70b4a62182de7fb1f3415493739",
+      "rounds": 6,
+      "messages_validated": 18,
+      "files_skipped": 0,
+      "entities": {
+        "tu": 5998,
+        "vp": 2994,
+        "sa": 554
+      },
+      "header_timestamps": {
+        "tu": [
+          1786819176,
+          1786819182,
+          1786819187,
+          1786819194,
+          1786819200,
+          1786819206
+        ],
+        "vp": [
+          1786819177,
+          1786819182,
+          1786819189,
+          1786819194,
+          1786819200,
+          1786819207
+        ],
+        "sa": [
+          1786819110,
+          1786819170,
+          1786819230,
+          1786819290,
+          1786819350,
+          1786819410
+        ]
+      },
+      "system_errors": {},
+      "rules": {
+        "P001": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P002": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P003": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P004": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P005": {
+          "occurrences": 156,
+          "messages": 6,
+          "distinct_entities": 156,
+          "identified_by": [
+            "entityPath"
+          ],
+          "dropped": 0,
+          "by_role": {
+            "vp": 156
+          }
+        },
+        "P006": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P007": {
+          "occurrences": 492,
+          "messages": 6,
+          "distinct_entities": 82,
+          "identified_by": [
+            "tripId"
+          ],
+          "dropped": 0,
+          "by_role": {
+            "tu": 492
+          }
+        },
+        "P008": {
+          "occurrences": 167,
+          "messages": 6,
+          "distinct_entities": 34,
+          "identified_by": [
+            "tripId"
+          ],
+          "dropped": 0,
+          "by_role": {
+            "tu": 167
+          }
+        },
+        "P009": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P010": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P011": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P012": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P013": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P015": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        }
+      }
+    },
+    {
+      "static_mdb_id": "mdb-284",
+      "agency_name": "Whatcom Transportation Authority",
+      "static_sha256": "7c481cd0872302f5842855037f17d7ec3cd52100020a978bef27545e2bab3b01",
+      "rounds": 6,
+      "messages_validated": 12,
+      "files_skipped": 0,
+      "entities": {
+        "tu": 386,
+        "vp": 243
+      },
+      "header_timestamps": {
+        "tu": [
+          1786819499,
+          1786819529,
+          1786819559,
+          1786819589,
+          1786819619,
+          1786819650
+        ],
+        "vp": [
+          1786819529,
+          1786819559,
+          1786819589,
+          1786819619,
+          1786819650,
+          1786819679
+        ]
+      },
+      "system_errors": {},
+      "rules": {
+        "P001": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P002": {
+          "occurrences": 151,
+          "messages": 5,
+          "distinct_entities": 54,
+          "identified_by": [
+            "tripId"
+          ],
+          "dropped": 0,
+          "by_role": {
+            "tu": 126,
+            "vp": 25
+          }
+        },
+        "P003": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P004": {
+          "occurrences": 2,
+          "messages": 2,
+          "distinct_entities": 2,
+          "identified_by": [
+            "entityPath"
+          ],
+          "dropped": 0,
+          "by_role": {
+            "tu": 1,
+            "vp": 1
+          }
+        },
+        "P005": {
+          "occurrences": 28,
+          "messages": 6,
+          "distinct_entities": 28,
+          "identified_by": [
+            "entityPath"
+          ],
+          "dropped": 0,
+          "by_role": {
+            "vp": 28
+          }
+        },
+        "P006": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P007": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P008": {
+          "occurrences": 6,
+          "messages": 4,
+          "distinct_entities": 5,
+          "identified_by": [
+            "tripId"
+          ],
+          "dropped": 0,
+          "by_role": {
+            "tu": 6
+          }
+        },
+        "P009": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P010": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P011": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P012": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P013": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P015": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        }
+      }
+    },
+    {
+      "static_mdb_id": "tld-820",
+      "agency_name": "Valley Transit",
+      "static_sha256": "fdd3492f2f26ae2cb25f2ec2a755288176b7b8763187879e69778c01360665e6",
+      "rounds": 6,
+      "messages_validated": 12,
+      "files_skipped": 0,
+      "entities": {
+        "tu": 24,
+        "vp": 12
+      },
+      "header_timestamps": {
+        "tu": [
+          1786819679,
+          1786819709,
+          1786819739,
+          1786819769,
+          1786819799,
+          1786819829
+        ],
+        "vp": [
+          1786819679,
+          1786819709,
+          1786819739,
+          1786819769,
+          1786819799,
+          1786819829
+        ]
+      },
+      "system_errors": {},
+      "rules": {
+        "P001": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P002": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P003": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P004": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P005": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P006": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P007": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P008": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P009": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P010": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P011": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P012": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P013": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P015": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        }
+      }
+    },
+    {
+      "static_mdb_id": "mdb-2894",
+      "agency_name": "Clovis Transit",
+      "static_sha256": "07bdd273ff5a6bf508139e08633ac978f26c83ab088f6c0d6303cd3a5baca307",
+      "rounds": 6,
+      "messages_validated": 18,
+      "files_skipped": 0,
+      "entities": {
+        "tu": 180,
+        "vp": 90,
+        "sa": 6
+      },
+      "header_timestamps": {
+        "tu": [
+          1786819137,
+          1786819142,
+          1786819149,
+          1786819157,
+          1786819162,
+          1786819167
+        ],
+        "vp": [
+          1786819137,
+          1786819147,
+          1786819153,
+          1786819158,
+          1786819164,
+          1786819169
+        ],
+        "sa": [
+          1786819138,
+          1786819148,
+          1786819153,
+          1786819159,
+          1786819164,
+          1786819169
+        ]
+      },
+      "system_errors": {},
+      "rules": {
+        "P001": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P002": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P003": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P004": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P005": {
+          "occurrences": 6,
+          "messages": 6,
+          "distinct_entities": 6,
+          "identified_by": [
+            "entityPath"
+          ],
+          "dropped": 0,
+          "by_role": {
+            "vp": 6
+          }
+        },
+        "P006": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P007": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P008": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P009": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P010": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P011": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P012": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P013": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        },
+        "P015": {
+          "occurrences": 0,
+          "messages": 0,
+          "distinct_entities": 0,
+          "identified_by": [],
+          "dropped": 0,
+          "by_role": {}
+        }
+      }
+    }
+  ]
+}

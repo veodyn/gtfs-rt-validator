@@ -1,0 +1,73 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W001",
+      "severity" : "WARNING",
+      "title" : "timestamp not populated",
+      "errorDescription" : "Timestamps should be populated for all elements",
+      "occurrenceSuffix" : "does not have a timestamp"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E048",
+      "severity" : "ERROR",
+      "title" : "header timestamp not populated",
+      "errorDescription" : "Header timestamp must be populated for gtfs_realtime_version v2.0 and higher",
+      "occurrenceSuffix" : "Header does not have a timestamp and gtfs_realtime_version is v2.0 or higher"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : ""
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E039",
+      "severity" : "ERROR",
+      "title" : "FULL_DATASET feeds should not include entity.is_deleted",
+      "errorDescription" : "The entity.is_deleted field should only be included in GTFS-rt feeds with header.incrementality of DIFFERENTIAL",
+      "occurrenceSuffix" : "- FULL_DATASET feeds should not include is_deleted field"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "entity ID deleted has is_deleted=true"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E049",
+      "severity" : "ERROR",
+      "title" : "header incrementality not populated",
+      "errorDescription" : "Header incrementality must be populated for gtfs_realtime_version v2.0 and higher",
+      "occurrenceSuffix" : "Header does not have incrementality and gtfs_realtime_version is v2.0 or higher"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : ""
+  } ]
+} ]

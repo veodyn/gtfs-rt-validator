@@ -1,0 +1,114 @@
+{
+  "generated_by": "tools/gen_golden.py",
+  "do_not_edit": "Regenerate with .venv/bin/python tools/gen_golden.py",
+  "repo": "MobilityData/gtfs-realtime-validator",
+  "pin": "7041fa3fcaf674bf730e17325c179d329cdff6f2",
+  "gtfs": "testagency.zip",
+  "gtfs_sha256": "37d5b35887530525a8fba77cdf13b1b11906b26d1bdddb647030c3eab5c028f6",
+  "mtime_base": 1700000000,
+  "inputs": [
+    {
+      "name": "01-no-timestamps.pb",
+      "why": "missing timestamps everywhere",
+      "mtime": 1700000000,
+      "sha256": "80dded82091e71772df1e17faa96144259ada1ec5c63638bc0b7cee463719aeb",
+      "skip": null,
+      "results": "01-no-timestamps.pb.results.json",
+      "results_sha256": "ce5a0d191af6b469c82db89e809ebc75c2639a3f5a0782ea2f71596ec3361d9a",
+      "rules": [
+        "W002",
+        "W001",
+        "E041",
+        "W009"
+      ]
+    },
+    {
+      "name": "02-unsorted-stop-times.pb",
+      "why": "stop_time_updates out of order",
+      "mtime": 1700000001,
+      "sha256": "96e0e10cffed45c1a732df496394afc5a02df4e0379eb122fe739f013f4c7ac6",
+      "skip": null,
+      "results": "02-unsorted-stop-times.pb.results.json",
+      "results_sha256": "1285c9f6d7536718061c2443e0ba68ed7965514d5dbce161a6d3f59bb0b80317",
+      "rules": [
+        "W008",
+        "E002",
+        "W009"
+      ]
+    },
+    {
+      "name": "03-invalid-utf8.pb",
+      "why": "trip_id that is not valid UTF-8",
+      "mtime": 1700000002,
+      "sha256": "adb906df6ad32e2a184ee743180cd96338d6ef0132c859b74836a4957e599b8e",
+      "skip": null,
+      "results": "03-invalid-utf8.pb.results.json",
+      "results_sha256": "1b06d06872e6bcb0ccb7d621f7ef58222559deecafa8ee99b4f4ecb0512c9c30",
+      "rules": [
+        "W002",
+        "W008",
+        "E017",
+        "E041",
+        "E003",
+        "W009"
+      ]
+    },
+    {
+      "name": "04-combined-feed.pb",
+      "why": "TripUpdate and VehiclePosition together",
+      "mtime": 1700000003,
+      "sha256": "1683fa2bf2734ccd6556e95270368e79f1f7635c96c4ac5b9a382f0ae8625230",
+      "skip": null,
+      "results": "04-combined-feed.pb.results.json",
+      "results_sha256": "c6e3efc9b424f35318864bee22b8a37843a9d38631966cd54eddd030a706ff0a",
+      "rules": [
+        "W003",
+        "E028",
+        "W008",
+        "E017",
+        "E041",
+        "W009"
+      ]
+    },
+    {
+      "name": "05-duplicate-of-04.pb",
+      "why": "byte-identical to 04, so dedupe skips it",
+      "mtime": 1700000004,
+      "sha256": "1683fa2bf2734ccd6556e95270368e79f1f7635c96c4ac5b9a382f0ae8625230",
+      "skip": "duplicate",
+      "results": null
+    },
+    {
+      "name": "06-truncated.pb",
+      "why": "six 0xff bytes, which protobuf-java rejects",
+      "mtime": 1700000005,
+      "sha256": "ce8bee525d6736e9825261b19a9b51719f9dc4bb728e95cf7067a2142b03b362",
+      "skip": "decode",
+      "results": null
+    },
+    {
+      "name": "07-empty.pb",
+      "why": "zero bytes, so the required header is missing",
+      "mtime": 1700000006,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "skip": "decode",
+      "results": null
+    },
+    {
+      "name": "08-after-skips.pb",
+      "why": "valid again after three skips, and E017 proves it",
+      "mtime": 1700000007,
+      "sha256": "06406b19ab9f84449f248ea6f1bd0ecdf490e70331837620114904b0714d047b",
+      "skip": null,
+      "results": "08-after-skips.pb.results.json",
+      "results_sha256": "cf8af5042fdfe1af1016cc45332a935604563312b726fbb0aac57d442fc99b86",
+      "rules": [
+        "W008",
+        "E017",
+        "E041",
+        "E003",
+        "W009"
+      ]
+    }
+  ]
+}

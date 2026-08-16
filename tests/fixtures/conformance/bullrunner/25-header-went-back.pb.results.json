@@ -1,0 +1,19 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E018",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt header timestamp decreased between two sequential iterations",
+      "errorDescription" : "The GTFS-rt header timestamp should be monotonically increasing -  it should always be the same value or greater than previous feed iterations if the feed contents are different",
+      "occurrenceSuffix" : "from the previous feed iteration"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "header.timestamp of 1700000050 is less than the header.timestamp of 1700000055"
+  } ]
+} ]

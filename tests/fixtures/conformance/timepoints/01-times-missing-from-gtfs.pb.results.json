@@ -1,0 +1,23 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E046",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_time_update without time doesn't have arrival/departure_time in GTFS",
+      "errorDescription" : "If only delay is provided in a stop_time_update arrival or departure (and not a time), then the GTFS stop_times.txt must contain arrival_times and/or departure_times for these corresponding stops.",
+      "occurrenceSuffix" : "isn't set and GTFS doesn't have arrival/departure_time in stop_times.txt"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 1 stop_sequence 2 arrival.time"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 1 stop_sequence 3 departure.time"
+  } ]
+} ]

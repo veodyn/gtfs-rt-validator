@@ -1,0 +1,2066 @@
+{
+  "generated_by": "tools/scan_clauses.py",
+  "tier": "spec",
+  "source": "upstream/gtfs-realtime.proto",
+  "source_sha256": "ea4bf90005bd1f8484733b8d607cb7d9c630957270a7d04c337434567933e548",
+  "pin": {
+    "repo": "google/transit",
+    "path": "gtfs-realtime/proto/gtfs-realtime.proto",
+    "commit": "68158bdce33d8c9c79d07e3a02972aa32d735e5c",
+    "date": "2026-06-30"
+  },
+  "counts": {
+    "lines": 1271,
+    "messages": 28,
+    "enums": 12,
+    "field_definitions": 140,
+    "required_fields": 9,
+    "deprecated_sites": 2,
+    "experimental_fields": 26,
+    "experimental_messages": 9,
+    "comment_blocks": 234,
+    "comment_sentences": 566,
+    "normative_sentences": 124,
+    "definitional_clauses": 2,
+    "normative_blocks": 75,
+    "found_by_pass_one": 116,
+    "found_by_pass_two": 8
+  },
+  "clauses": [
+    {
+      "id": "9#1",
+      "line": 9,
+      "unit_line": 1,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.",
+      "sha256": "3202acf70470ac50b7f30e5462341575f50fa6446afce4202e18440dbda0275b"
+    },
+    {
+      "id": "34#1",
+      "line": 34,
+      "unit_line": 29,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Note that \"required\" and \"optional\" as stated in this file refer to Protocol Buffer cardinality, not semantic cardinality.",
+      "sha256": "55f8830f43e05147d1d72123909c45b2df74aaf1ba7f474f07f4b0206411fb9f"
+    },
+    {
+      "id": "92#1",
+      "line": 92,
+      "unit_line": 92,
+      "scope": "FeedEntity",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The id should be unique within a FeedMessage.",
+      "sha256": "8378aabd10980d018c1ebbc5a7ee9e0dab5dd195b2111026e31861b3075f7f3c"
+    },
+    {
+      "id": "97#1",
+      "line": 97,
+      "unit_line": 92,
+      "scope": "FeedEntity",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The actual GTFS entities (e.g. stations, routes, trips) referenced by the feed must be specified by explicit selectors (see EntitySelector below for more info).",
+      "sha256": "e61fc891ef3c0b2c2bccaabe8b521ed89fa865d5c0d84e1dfc8bfd4674419908"
+    },
+    {
+      "id": "106#1",
+      "line": 106,
+      "unit_line": 106,
+      "scope": "FeedEntity",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Exactly one of the following fields must be present (unless the entity is being deleted).",
+      "sha256": "bc8afd70230f98fa007743aaff488288884282a93bfbe302c6aa17b6a34bd57d"
+    },
+    {
+      "id": "138#1",
+      "line": 138,
+      "unit_line": 130,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Normally, updates should get more precise and more certain (see uncertainty below) as the events gets closer to current time.",
+      "sha256": "598f4665953b9824ed6c4f434ddffbe82dd77719a7effa5461d0426ac46054d1"
+    },
+    {
+      "id": "140#1",
+      "line": 140,
+      "unit_line": 130,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Even if that is not possible, the information for past events should be precise and certain.",
+      "sha256": "443cb2a90291c834aece95fc9c0261239153b9173457985d9f30b34e7e9e0032"
+    },
+    {
+      "id": "141#1",
+      "line": 141,
+      "unit_line": 130,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "In particular, if an update points to time in the past but its update's uncertainty is not 0, the client should conclude that the update is a (wrong) prediction and that the trip has not completed yet.",
+      "sha256": "010e2fe9f4638b207dd0cf30ba5bfdc76e252c80cd96d3b75453292fb132a4f7"
+    },
+    {
+      "id": "154#1",
+      "line": 154,
+      "unit_line": 130,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "required",
+        "is allowed"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Note that the feed provider is allowed, but not required, to purge past updates - this is one case where this would be practically useful.",
+      "sha256": "c3f5d5bcaa05379c502624f32dcb5d78bfe919c0e9729a489ade426fccb7fefa"
+    },
+    {
+      "id": "157#1",
+      "line": 157,
+      "unit_line": 157,
+      "scope": "TripUpdate",
+      "kind": "comment",
+      "found_by": "pass_two",
+      "modals": [
+        "at most one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "There can be at most one TripUpdate entity for each actual trip instance.",
+      "sha256": "f0e1682a2f544ac0e16ea2faddf91531a6221b78b9cd2c02a920c35d5636de79"
+    },
+    {
+      "id": "169#1",
+      "line": 169,
+      "unit_line": 166,
+      "scope": "TripUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "- delay should be used when the prediction is given relative to some existing schedule in GTFS.",
+      "sha256": "ec54393c5731cd78724d6d0c89c749d71b7aab33b20bfa3134959b766821ab5b"
+    },
+    {
+      "id": "171#1",
+      "line": 171,
+      "unit_line": 166,
+      "scope": "TripUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "- time should be given whether there is a predicted schedule or not.",
+      "sha256": "fce7d0c475d6e43c577722387fcb62d3c98635be2e27f18e4ac7c979de07880e"
+    },
+    {
+      "id": "171#2",
+      "line": 171,
+      "unit_line": 166,
+      "scope": "TripUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If both time and delay are specified, time will take precedence (although normally, time, if given for a scheduled trip, should be equal to scheduled time in GTFS + delay).",
+      "sha256": "24c0ab3b1723f28695d851b27437db8d9ee3ac1f0b51cf8f7a790bdd94aef319"
+    },
+    {
+      "id": "193#1",
+      "line": 193,
+      "unit_line": 192,
+      "scope": "TripUpdate.StopTimeEvent",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If the prediction is unknown or too uncertain, the delay (or time) field should be empty.",
+      "sha256": "2facc9ff4d1b9cdfd132d888664f693196d833484e875e8c724067108cf2e2f5"
+    },
+    {
+      "id": "201#1",
+      "line": 201,
+      "unit_line": 198,
+      "scope": "TripUpdate.StopTimeEvent",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "forbidden"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Optional if TripUpdate.schedule_relationship is NEW, REPLACEMENT or DUPLICATED, forbidden otherwise.",
+      "sha256": "e8446e745dedd20c50b6cbbba5c473326887ede7b857c2b0b26fde61ed8ada92"
+    },
+    {
+      "id": "216#1",
+      "line": 216,
+      "unit_line": 214,
+      "scope": "TripUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "required",
+        "is allowed"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The producer is allowed, although not required, to drop past events.",
+      "sha256": "32499c2207f2bdea126ed70ef72d70e3765429a3091879c24726420825d3948b"
+    },
+    {
+      "id": "218#1",
+      "line": 218,
+      "unit_line": 218,
+      "scope": "TripUpdate.StopTimeUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The update is linked to a specific stop either through stop_sequence or stop_id, so one of the fields below must necessarily be set.",
+      "sha256": "9009c638e6df94bc7f419dec7275929e80011345b09b27072477b9a69c6adf8a"
+    },
+    {
+      "id": "222#1",
+      "line": 222,
+      "unit_line": 222,
+      "scope": "TripUpdate.StopTimeUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Must be the same as in stop_times.txt in the corresponding GTFS feed.",
+      "sha256": "2a30b02539f2357972f6b61abba358aba284e1b79dce4eecb51d5cb50969c40c"
+    },
+    {
+      "id": "224#1",
+      "line": 224,
+      "unit_line": 224,
+      "scope": "TripUpdate.StopTimeUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Must be the same as in stops.txt in the corresponding GTFS feed.",
+      "sha256": "8ad7f84289ad790d47db6029e47bf8fa7ac65fae9801b04f80db86f3490cf36b"
+    },
+    {
+      "id": "231#1",
+      "line": 231,
+      "unit_line": 230,
+      "scope": "TripUpdate.StopTimeUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Should be provided only for future stops.",
+      "sha256": "52491386d6b3b48a0064abc81cd2998fcba0647e71255a27e83c5a34470f59af"
+    },
+    {
+      "id": "232#1",
+      "line": 232,
+      "unit_line": 230,
+      "scope": "TripUpdate.StopTimeUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "In order to provide departure_occupancy_status without either arrival or departure StopTimeEvents, ScheduleRelationship should be set to NO_DATA.",
+      "sha256": "610815bc6046a11ccc7074e8f9d7d0384c76445abb82caa35328b8aa1242b4c6"
+    },
+    {
+      "id": "240#1",
+      "line": 240,
+      "unit_line": 238,
+      "scope": "TripUpdate.StopTimeUpdate.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "at least one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "At least one of arrival and departure must be provided.",
+      "sha256": "25c7b72a10f738fb8d2add64b647cd2c75f0bba8b0c6397321ff77765744e3f0"
+    },
+    {
+      "id": "240#2",
+      "line": 240,
+      "unit_line": 238,
+      "scope": "TripUpdate.StopTimeUpdate.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If the schedule for this stop contains both arrival and departure times then so must this update.",
+      "sha256": "61833a90debc430d1818ca051b2d10d7162e6e55503ab39f2351f0ef3f1cddd9"
+    },
+    {
+      "id": "242#1",
+      "line": 242,
+      "unit_line": 238,
+      "scope": "TripUpdate.StopTimeUpdate.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Frequency-based trips (GTFS frequencies.txt with exact_times = 0) should not have a SCHEDULED value and should use UNSCHEDULED instead.",
+      "sha256": "fc7996b77eecf956a36d997533554063aa623ac059e92e64fa646df4ac55de03"
+    },
+    {
+      "id": "255#1",
+      "line": 255,
+      "unit_line": 250,
+      "scope": "TripUpdate.StopTimeUpdate.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Neither arrival nor departure should be supplied.",
+      "sha256": "1ad2d14f587ce54a2bf316243e60590a653f9822ce6348c00576be80588e3424"
+    },
+    {
+      "id": "259#1",
+      "line": 259,
+      "unit_line": 258,
+      "scope": "TripUpdate.StopTimeUpdate.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "This value should not be used for trips that are not defined in GTFS frequencies.txt, or trips in GTFS frequencies.txt with exact_times = 1.",
+      "sha256": "fe89329ecd739a681f7ce6c175f473c06a258df2165e0c8ed603a4815d8d9310"
+    },
+    {
+      "id": "260#1",
+      "line": 260,
+      "unit_line": 258,
+      "scope": "TripUpdate.StopTimeUpdate.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Trips containing StopTimeUpdates with ScheduleRelationship=UNSCHEDULED must also set TripDescriptor.ScheduleRelationship=UNSCHEDULED.",
+      "sha256": "64a7419aa67f0a31671313dae86c58f2eea644cd25c54f14552911fb48753119"
+    },
+    {
+      "id": "272#1",
+      "line": 272,
+      "unit_line": 272,
+      "scope": "TripUpdate.StopTimeUpdate.StopTimeProperties",
+      "kind": "definitional",
+      "found_by": "declared",
+      "modals": [],
+      "severities": [
+        "ERROR"
+      ],
+      "reason": "Fixes assigned_stop_id's value domain: the set of stop_ids stops.txt defines. A value outside it does not name a stop, so it is malformed rather than ill-advised, which is why the severity is ERROR and not a judgement call. S012 cites it.",
+      "text": "Refers to a stop_id defined in the GTFS stops.txt.",
+      "sha256": "87c376c9cae8e9068bc7af356e3afcf68ff09d6711c708301022d097aedaf063"
+    },
+    {
+      "id": "273#1",
+      "line": 273,
+      "unit_line": 272,
+      "scope": "TripUpdate.StopTimeUpdate.StopTimeProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The new assigned_stop_id should not result in a significantly different trip experience for the end user than the stop_id defined in GTFS stop_times.txt.",
+      "sha256": "a0a31a46e0104d66b72e09fdf6964e376391602218825faa703cdb90536a69f9"
+    },
+    {
+      "id": "274#1",
+      "line": 274,
+      "unit_line": 272,
+      "scope": "TripUpdate.StopTimeUpdate.StopTimeProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "In other words, the end user should not view this new stop_id as an \"unusual change\" if the new stop was presented within an app without any additional context.",
+      "sha256": "92bfb624a098e07fcaf4d7b0b57002beabc06a72d204e7ca6dfa6f8f6e85213b"
+    },
+    {
+      "id": "280#1",
+      "line": 280,
+      "unit_line": 272,
+      "scope": "TripUpdate.StopTimeUpdate.StopTimeProperties",
+      "kind": "comment",
+      "found_by": "pass_two",
+      "modals": [
+        "is preferred"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If this field is populated, it is preferred to omit `StopTimeUpdate.stop_id` and use only `StopTimeUpdate.stop_sequence`.",
+      "sha256": "810686b6ee532076ce6596cbff6e9c03e7d0c6ef3c99a440feba043f641bc450"
+    },
+    {
+      "id": "280#2",
+      "line": 280,
+      "unit_line": 272,
+      "scope": "TripUpdate.StopTimeUpdate.StopTimeProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If `StopTimeProperties.assigned_stop_id` and `StopTimeUpdate.stop_id` are populated, `StopTimeUpdate.stop_id` must match `assigned_stop_id`.",
+      "sha256": "8f03993cae9f619f5906d9131efe546d67f0f604b293d7b1d2706b9d18c4e1bd"
+    },
+    {
+      "id": "282#1",
+      "line": 282,
+      "unit_line": 272,
+      "scope": "TripUpdate.StopTimeUpdate.StopTimeProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Platform assignments should be reflected in other GTFS-realtime fields as well (e.g., `VehiclePosition.stop_id`).",
+      "sha256": "6d98ec9dba4ed293780c14066923bfc3ba17c7f47503222a5cbcea85bfd162c3"
+    },
+    {
+      "id": "298#1",
+      "line": 298,
+      "unit_line": 298,
+      "scope": "TripUpdate.StopTimeUpdate.StopTimeProperties.DropOffPickupType",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Must phone agency to arrange pickup/dropoff.",
+      "sha256": "8d8c27f9415fcb0cd6a173fcf7153b4af9f9d57d94222e5872898c7004c0f0e5"
+    },
+    {
+      "id": "301#1",
+      "line": 301,
+      "unit_line": 301,
+      "scope": "TripUpdate.StopTimeUpdate.StopTimeProperties.DropOffPickupType",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Must coordinate with driver to arrange pickup/dropoff.",
+      "sha256": "8e35d97ac2bfd7cb29733d8d8305632b5f1ff3bdc5bb3b9e27981c1c8030c4de"
+    },
+    {
+      "id": "337#1",
+      "line": 337,
+      "unit_line": 335,
+      "scope": "TripUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The updates must be sorted by stop_sequence, and apply for all the following stops of the trip up to the next specified one.",
+      "sha256": "23207587108bba9c4cc769cd708e4787ba0382d7675400ed1e0f973e6f26fafc"
+    },
+    {
+      "id": "362#1",
+      "line": 362,
+      "unit_line": 362,
+      "scope": "TripUpdate",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Delay should only be specified when the prediction is given relative to some existing schedule in GTFS.",
+      "sha256": "b471cbf15b28200d256c6ba795c1db5cfcb2fbf90d739b609f7aaffbaaa478c1"
+    },
+    {
+      "id": "374#1",
+      "line": 374,
+      "unit_line": 362,
+      "scope": "TripUpdate",
+      "kind": "comment",
+      "found_by": "pass_two",
+      "modals": [
+        "encouraged"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Feed providers are strongly encouraged to provide a TripUpdate.timestamp value indicating when the delay value was last updated, in order to evaluate the freshness of the data.",
+      "sha256": "a04d5a654a9a678d978b91ce79f37118195dc352b34566de54d48f8be6d8d803"
+    },
+    {
+      "id": "388#1",
+      "line": 388,
+      "unit_line": 386,
+      "scope": "TripUpdate.TripProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "must be different"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Its value must be different than the ones used in the (CSV) GTFS.",
+      "sha256": "59d962f6b9b38cb0ce3ff5c70407db13169f289e8814cbc4e818c9c120a5b40b"
+    },
+    {
+      "id": "389#1",
+      "line": 389,
+      "unit_line": 386,
+      "scope": "TripUpdate.TripProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Required if schedule_relationship=DUPLICATED, otherwise this field must not be populated and will be ignored by consumers.",
+      "sha256": "b73df3259faf685859eeeec48e9758d0764b9f929fda65b65660dbfad90dba93"
+    },
+    {
+      "id": "393#1",
+      "line": 393,
+      "unit_line": 393,
+      "scope": "TripUpdate.TripProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Required if schedule_relationship=DUPLICATED, otherwise this field must not be populated and will be ignored by consumers.",
+      "sha256": "b73df3259faf685859eeeec48e9758d0764b9f929fda65b65660dbfad90dba93"
+    },
+    {
+      "id": "406#1",
+      "line": 406,
+      "unit_line": 397,
+      "scope": "TripUpdate.TripProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "This field is required if schedule_relationship is DUPLICATED, otherwise this field must not be populated and will be ignored by consumers.",
+      "sha256": "05a99ea9e085d7587e7f32c992a09c05892cc10f87b73af9f1730c43f47f04e9"
+    },
+    {
+      "id": "413#1",
+      "line": 413,
+      "unit_line": 410,
+      "scope": "TripUpdate.TripProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The order of stops (stop sequences) for this trip must remain the same as (CSV) GTFS.",
+      "sha256": "004fcb71334bb596be6c343bdebf7d8db95e447526e2c6b6988b818dd0c312ed"
+    },
+    {
+      "id": "414#1",
+      "line": 414,
+      "unit_line": 410,
+      "scope": "TripUpdate.TripProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If it refers to a `Shape` entity in the same real-time feed, the value of this field should be the one of the `shape_id` inside the entity, and _not_ the `id` of `FeedEntity`.",
+      "sha256": "ad43c1d198117408911cf4978834ab57622049a9b2c8c6dce44597c0019427f8"
+    },
+    {
+      "id": "415#1",
+      "line": 415,
+      "unit_line": 410,
+      "scope": "TripUpdate.TripProperties",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Stops that are a part of the original trip but will no longer be made, such as when a detour occurs, should be marked as schedule_relationship=SKIPPED or more details can be provided via a `TripModifications` message.",
+      "sha256": "93e9afb37c80aec1187aff0de04c83a35e6e3b0628eeaf9c3ac8fa018ef55a61"
+    },
+    {
+      "id": "464#1",
+      "line": 464,
+      "unit_line": 464,
+      "scope": "VehiclePosition",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The value must be the same as in stops.txt in the corresponding GTFS feed.",
+      "sha256": "bafcbaf2f56a4ede281c605ea4976fa0b5e695e16741230ecd223e83b611f3ac"
+    },
+    {
+      "id": "498#1",
+      "line": 498,
+      "unit_line": 497,
+      "scope": "VehiclePosition",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Therefore, consumers must not assume that the OccupancyStatus values follow a linear scale.",
+      "sha256": "8b8d24bee85e15eeddcfe7544021646c690e1ab44731b48fb39b6c5c95421819"
+    },
+    {
+      "id": "500#1",
+      "line": 500,
+      "unit_line": 497,
+      "scope": "VehiclePosition",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Consumers should represent OccupancyStatus values as the state indicated and intended by the producer.",
+      "sha256": "6e2b311664b2477f489459135cc358f8e3e4be687d62216a97a982bcd45b5b3f"
+    },
+    {
+      "id": "501#1",
+      "line": 501,
+      "unit_line": 497,
+      "scope": "VehiclePosition",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Likewise, producers must use OccupancyStatus values that correspond to actual vehicle occupancy states.",
+      "sha256": "26dfb01574d4e7a83bb6f9dc699224b76978174739308bfb6fddcec8377a468e"
+    },
+    {
+      "id": "544#1",
+      "line": 544,
+      "unit_line": 544,
+      "scope": "VehiclePosition",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If multi_carriage_status is populated with per-carriage OccupancyStatus, then this field should describe the entire vehicle with all carriages accepting passengers considered.",
+      "sha256": "9e6d02405cc6bfee1b25cb9ac298fb987369e3dddc4cda94a1f91beb72044fd1"
+    },
+    {
+      "id": "550#1",
+      "line": 550,
+      "unit_line": 548,
+      "scope": "VehiclePosition",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The value 100 should represent the total maximum occupancy the vehicle was designed for, including both seated and standing capacity, and current operating regulations allow.",
+      "sha256": "af5828e50eb93ec423a04278a4ac31d2c9ea4835e42d0cbcef61fb70fdcb4cb9"
+    },
+    {
+      "id": "553#1",
+      "line": 553,
+      "unit_line": 548,
+      "scope": "VehiclePosition",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should",
+        "cannot"
+      ],
+      "severities": [
+        "ERROR",
+        "WARNING"
+      ],
+      "text": "The precision of occupancy_percentage should be low enough that individual passengers cannot be tracked boarding or alighting the vehicle.",
+      "sha256": "d089ce97a4028d1c1e0a4150fc1f6beed27ede8cb73a825365bb4842c49f323b"
+    },
+    {
+      "id": "554#1",
+      "line": 554,
+      "unit_line": 548,
+      "scope": "VehiclePosition",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If multi_carriage_status is populated with per-carriage occupancy_percentage, then this field should describe the entire vehicle with all carriages accepting passengers considered.",
+      "sha256": "678a93f9322f99017b3c566c0938861ca38c823b4bc590d0ec7e1b1fba04c3ac"
+    },
+    {
+      "id": "563#1",
+      "line": 563,
+      "unit_line": 563,
+      "scope": "VehiclePosition.CarriageDetails",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Should be unique per vehicle.",
+      "sha256": "40c662afff278502a8b558894f05512f4060052b4cd0ce088ae688d7a174782f"
+    },
+    {
+      "id": "583#1",
+      "line": 583,
+      "unit_line": 581,
+      "scope": "VehiclePosition.CarriageDetails",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The first carriage in the direction of travel must have a value of 1.",
+      "sha256": "7a5c2505c063cc73e4d40ea47e61d9e454aa88fe42a64230effd2ba4e9dd3911"
+    },
+    {
+      "id": "584#1",
+      "line": 584,
+      "unit_line": 581,
+      "scope": "VehiclePosition.CarriageDetails",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The second value corresponds to the second carriage in the direction of travel and must have a value of 2, and so forth.",
+      "sha256": "43e46de63ac021343a2de33b2bb34871b9a74c59571114840ec80cde61097973"
+    },
+    {
+      "id": "589#1",
+      "line": 589,
+      "unit_line": 581,
+      "scope": "VehiclePosition.CarriageDetails",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "should"
+      ],
+      "severities": [
+        "ERROR",
+        "WARNING"
+      ],
+      "text": "Carriages without data must be represented with a valid carriage_sequence number and the fields without data should be omitted (alternately, those fields could also be included and set to the \"no data\" values).",
+      "sha256": "a437a50015c057f2cf1770104aa24e0cc3270af41e699cc9cb061f13095d2237"
+    },
+    {
+      "id": "625#1",
+      "line": 625,
+      "unit_line": 625,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Time when the alert should be shown to the user.",
+      "sha256": "c6098d5b9a7455fad0dc2f0592f41aced82246ca78e9a566fff9e3d821e28264"
+    },
+    {
+      "id": "628#1",
+      "line": 628,
+      "unit_line": 625,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Should not be used - for backwards-compatibility only.",
+      "sha256": "b83f57d47d73fd87339fa1ef5eee487a1c2262d5b50fd5702e9106a39695960a"
+    },
+    {
+      "id": "631#1",
+      "line": 631,
+      "unit_line": 631,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Time when the alert should be shown to the user strictly for informative reasons.",
+      "sha256": "d57cbc59d1cf466c51991b2cfa1ae0c4b875b85ec2f6d394b79802d23120067c"
+    },
+    {
+      "id": "636#1",
+      "line": 636,
+      "unit_line": 636,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "at least one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If communication_period is specified, every time interval in impact_period must be fully contained within at least one time interval of communication_period.",
+      "sha256": "0b9588d1cf55f2bfe1b92743ffffe7498a9f58c084e1feab37f97e87d31e8b7a"
+    },
+    {
+      "id": "641#1",
+      "line": 641,
+      "unit_line": 641,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Entities whose users we should notify of this alert.",
+      "sha256": "73b4a39bbf4756ff319dc2d94f30c9d354a78cb127861d0e332619df47cf54f0"
+    },
+    {
+      "id": "644#1",
+      "line": 644,
+      "unit_line": 644,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If cause_detail is included, then Cause must also be included.",
+      "sha256": "e13f7a525a064077d9f2be998b7ae33ffd5b603e17cefb36b64e7b18a3fd97ff"
+    },
+    {
+      "id": "662#1",
+      "line": 662,
+      "unit_line": 662,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If effect_detail is included, then Effect must also be included.",
+      "sha256": "fba5ce1b0980ca6b49a79f89194c4175045aa167f5eeef8de711550189e2ff23"
+    },
+    {
+      "id": "689#1",
+      "line": 689,
+      "unit_line": 689,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The information in the description should add to the information of the header.",
+      "sha256": "17a4e6c211445228a8fb05f5d61fb69351b31c695590055262a9704144822a9d"
+    },
+    {
+      "id": "709#1",
+      "line": 709,
+      "unit_line": 709,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The image must enhance the understanding of the alert.",
+      "sha256": "5809929819f925d603107f57c42052bff3b526de51a285ee63936b2e5fa8d836"
+    },
+    {
+      "id": "709#2",
+      "line": 709,
+      "unit_line": 709,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Any essential information communicated within the image must also be contained in the alert text.",
+      "sha256": "a51fc7d644e7a582d850ecbc7ac77843d15e32aa6e748342c3dc35b69b4a4dfb"
+    },
+    {
+      "id": "710#1",
+      "line": 710,
+      "unit_line": 709,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_two",
+      "modals": [
+        "discouraged"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The following types of images are discouraged : image containing mainly text, marketing or branded images that add no additional information.",
+      "sha256": "f612c60d007723a5e21cd7c7f1b144f08bf95a633994f8556526a4f421540aae"
+    },
+    {
+      "id": "720#1",
+      "line": 720,
+      "unit_line": 720,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If cause_detail is included, then Cause must also be included.",
+      "sha256": "e13f7a525a064077d9f2be998b7ae33ffd5b603e17cefb36b64e7b18a3fd97ff"
+    },
+    {
+      "id": "724#1",
+      "line": 724,
+      "unit_line": 724,
+      "scope": "Alert",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If effect_detail is included, then Effect must also be included.",
+      "sha256": "fba5ce1b0980ca6b49a79f89194c4175045aa167f5eeef8de711550189e2ff23"
+    },
+    {
+      "id": "774#1",
+      "line": 774,
+      "unit_line": 771,
+      "scope": "Position",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "This should not be direction deduced from the sequence of previous positions, which can be computed from previous data.",
+      "sha256": "4b503407c1c170ec37206000b67573bb0b3d95cd64a2c7f98ef05652dad3d535"
+    },
+    {
+      "id": "795#1",
+      "line": 795,
+      "unit_line": 792,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If route_id is also set, then it should be same as one that the given trip corresponds to.",
+      "sha256": "19f1de29538612ced078548d653052aecd47995cc55828f6eeb56aae8ef8d09e"
+    },
+    {
+      "id": "797#1",
+      "line": 797,
+      "unit_line": 792,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "- To specify all the trips along a given route, only the route_id should be set.",
+      "sha256": "c23e99a0e28992636a8115478c0536c88d9cd093824c9c569248a020f508a050"
+    },
+    {
+      "id": "798#1",
+      "line": 798,
+      "unit_line": 792,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Note that if the trip_id is not known, then stop sequence ids in TripUpdate are not sufficient, and stop_ids must be provided as well.",
+      "sha256": "10313aeba60a581fef89747edf94aa4c822eb471ea85e2abccd4ddf2fb1eff08"
+    },
+    {
+      "id": "799#1",
+      "line": 799,
+      "unit_line": 792,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "In addition, absolute arrival/departure times must be provided.",
+      "sha256": "99be03737247c96e9bd3bbf17335e53ae1fabcab3f7f3b0bbe329f508abf646d"
+    },
+    {
+      "id": "806#1",
+      "line": 806,
+      "unit_line": 802,
+      "scope": "TripDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "When schedule_relationship is DUPLICATED within a VehiclePosition, the trip_id identifies the new duplicate trip and must contain the value for the corresponding TripUpdate.TripProperties.trip_id.",
+      "sha256": "fd881fedc27ff04cbd5af053971474fd5a9b528e439c0d29751096373f18ba5d"
+    },
+    {
+      "id": "818#1",
+      "line": 818,
+      "unit_line": 817,
+      "scope": "TripDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "When the trip_id corresponds to a non-frequency-based trip, this field should either be omitted or be equal to the value in the GTFS feed.",
+      "sha256": "e4f2087df3591bc55ba00c6f957dd0debc2deabdaa30f434d4e02260b5dcabcf"
+    },
+    {
+      "id": "819#1",
+      "line": 819,
+      "unit_line": 817,
+      "scope": "TripDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "When the trip_id corresponds to a frequency-based trip, the start_time must be specified for trip updates and vehicle positions.",
+      "sha256": "66e8129b7342251485c0a16030912072b50670aedd58d8a0bda2d13926489371"
+    },
+    {
+      "id": "821#1",
+      "line": 821,
+      "unit_line": 817,
+      "scope": "TripDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If the trip corresponds to exact_times=1 GTFS record, then start_time must be some multiple (including zero) of headway_secs later than frequencies.txt start_time for the corresponding time period.",
+      "sha256": "c7daccbd8ad90afe15eb216fb7ace461e2fa1068434639e3686c2134678e37d2"
+    },
+    {
+      "id": "826#1",
+      "line": 826,
+      "unit_line": 817,
+      "scope": "TripDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Once established, the start_time of this frequency-based trip should be considered immutable, even if the first departure time changes -- that time change may instead be reflected in a StopTimeUpdate.",
+      "sha256": "f8cc2b98ac6639e0886525c8f94e6310152e0257aae79112002f8b8c8dfd4680"
+    },
+    {
+      "id": "834#1",
+      "line": 834,
+      "unit_line": 833,
+      "scope": "TripDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Must be provided to disambiguate trips that are so late as to collide with a scheduled trip on a next day.",
+      "sha256": "78e78f2277961f1c438efd154e4e631cbfb68c45347ac38a340745fbef53e06c"
+    },
+    {
+      "id": "853#1",
+      "line": 853,
+      "unit_line": 853,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_two",
+      "modals": [
+        "deprecated"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "This value has been deprecated as the behavior was unspecified.",
+      "sha256": "fde423b774b1b99085fa0b5afb9d958db16317e7d79964c5d8f5a4d372f4cc10"
+    },
+    {
+      "id": "859#1",
+      "line": 859,
+      "unit_line": 858,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Trips with ScheduleRelationship=UNSCHEDULED must also set all StopTimeUpdates.ScheduleRelationship=UNSCHEDULED.",
+      "sha256": "c7ad80b512360b918a9474695eac9b502c19112dff83d7748808d7fbabcea2b5"
+    },
+    {
+      "id": "872#1",
+      "line": 872,
+      "unit_line": 869,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_two",
+      "modals": [
+        "is allowed"
+      ],
+      "severities": [],
+      "text": "Duplicating a trip is allowed if the service related to the original trip in (CSV) GTFS (in calendar.txt or calendar_dates.txt) is operating within the next 30 days.",
+      "sha256": "e1cbd2bd83a543dd41458f1be1d61caa8f44dd565c059eae799bba96b3317151"
+    },
+    {
+      "id": "874#1",
+      "line": 874,
+      "unit_line": 869,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "This enumeration does not modify the existing trip referenced by TripUpdate.TripDescriptor.trip_id - if a producer wants to cancel the original trip, it must publish a separate TripUpdate with the value of CANCELED or DELETED.",
+      "sha256": "14d93ec58053fbef1ad03153da2624aba582b2bb3620d5088f319e9cb318a75e"
+    },
+    {
+      "id": "876#1",
+      "line": 876,
+      "unit_line": 869,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If a producer wants to replace the original trip, a value of `REPLACEMENT` should be used instead.",
+      "sha256": "66cdde4aed7abc1f5f7d57814808fb2d662f04e4bb979ba1e6b5118ee263fbee"
+    },
+    {
+      "id": "879#1",
+      "line": 879,
+      "unit_line": 869,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "cannot"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Trips defined in GTFS frequencies.txt with exact_times that is empty or equal to 0 cannot be duplicated.",
+      "sha256": "61e6426543e28d90bc18dc6d1cb24ea724f8a97b1e2364c4d805ace26578919b"
+    },
+    {
+      "id": "880#1",
+      "line": 880,
+      "unit_line": 869,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The VehiclePosition.TripDescriptor.trip_id for the new trip must contain the matching value from TripUpdate.TripProperties.trip_id and VehiclePosition.TripDescriptor.ScheduleRelationship must also be set to DUPLICATED.",
+      "sha256": "23f243c8f8f8692d92e3d5a0965d51719bc950a34678dffee0d5317d8e8259a1"
+    },
+    {
+      "id": "883#1",
+      "line": 883,
+      "unit_line": 869,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Existing producers and consumers that were using the ADDED enumeration to represent duplicated trips must follow the migration guide (https://github.com/google/transit/tree/master/gtfs-realtime/spec/en/examples/migration-duplicated.md) to transition to the DUPLICATED enumeration.",
+      "sha256": "9703ff3f0549862ba1e534f86dc111c91c6889d6b6eb4b83254a86c133d3fdfc"
+    },
+    {
+      "id": "890#1",
+      "line": 890,
+      "unit_line": 890,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "A trip that existed in the schedule but was removed and must not be shown to users.",
+      "sha256": "c38c180f2c72bb4ee742e6c12ee4af24854d88b27a9ac01c5731750003a064d9"
+    },
+    {
+      "id": "891#1",
+      "line": 891,
+      "unit_line": 890,
+      "scope": "TripDescriptor.ScheduleRelationship",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "DELETED should be used instead of CANCELED to indicate that a transit provider would like to entirely remove information about the corresponding trip from consuming applications, so the trip is not shown as cancelled to riders, e.g. a trip that is entirely being replaced by another trip.",
+      "sha256": "48f6a4fbf6bbe9077b1bdaeec8c82720fe71435de30f967b8986c959e41d7d65"
+    },
+    {
+      "id": "929#1",
+      "line": 929,
+      "unit_line": 928,
+      "scope": "TripDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If this field is provided, the `trip_id`, `route_id`, `direction_id`, `start_time`, `start_date` fields of the `TripDescriptor` MUST be left empty, to avoid confusion by consumers that aren't looking for the `ModifiedTripSelector` value.",
+      "sha256": "68e29849b7480732bfd19f05ca62184bdb1b7f0776b7c1ec7b6b82f570617b5e"
+    },
+    {
+      "id": "943#1",
+      "line": 943,
+      "unit_line": 943,
+      "scope": "VehicleDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Should be unique per vehicle, and can be used for tracking the vehicle as it proceeds through the system.",
+      "sha256": "00d8c9f5c9e84023ce0cb747a8c0a93a00bd3a38535c0bf7496e4c0a9d5e7d4a"
+    },
+    {
+      "id": "948#1",
+      "line": 948,
+      "unit_line": 948,
+      "scope": "VehicleDescriptor",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "User visible label, i.e., something that must be shown to the passenger to help identify the correct vehicle.",
+      "sha256": "9dfff2951d0b53b1df848ad2f9f5ecbacfb5bc3b9b9113af82961ff1a9e06133"
+    },
+    {
+      "id": "986#1",
+      "line": 986,
+      "unit_line": 986,
+      "scope": "EntitySelector",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The values of the fields should correspond to the appropriate fields in the GTFS feed.",
+      "sha256": "2fc76bdc1fa18899eb4a6ec40ca46f92405c6810e48298cd490e265f6846ed0c"
+    },
+    {
+      "id": "988#1",
+      "line": 988,
+      "unit_line": 986,
+      "scope": "EntitySelector",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "at least one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "At least one specifier must be given.",
+      "sha256": "0e8dbc5abcbef38f00898bbc05c63cebe2a0881b69b94c5eea9f3567798e1fd9"
+    },
+    {
+      "id": "988#2",
+      "line": 988,
+      "unit_line": 986,
+      "scope": "EntitySelector",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "has to"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If several are given, then the matching has to apply to all the given specifiers.",
+      "sha256": "fd67d236d12d94ecb98e95890e0896ab56e82d7d75a1dfbdfd5b2ed7c7487c6d"
+    },
+    {
+      "id": "996#1",
+      "line": 996,
+      "unit_line": 996,
+      "scope": "EntitySelector",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If provided the route_id must also be provided.",
+      "sha256": "7fe8b5b9fb6c13c3f9fa46d002828b32901d36476f34ea8c61fad5f7406f89db"
+    },
+    {
+      "id": "1024#1",
+      "line": 1024,
+      "unit_line": 1023,
+      "scope": "TranslatedString.Translation",
+      "kind": "comment",
+      "found_by": "pass_two",
+      "modals": [
+        "is allowed",
+        "at most one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "At most one translation is allowed to have an unspecified language tag.",
+      "sha256": "3eebbae571ae792eb6c2373945b986f44ce9afb917b8e1c5604e6c93a2c87d44"
+    },
+    {
+      "id": "1036#1",
+      "line": 1036,
+      "unit_line": 1036,
+      "scope": "TranslatedString",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "at least one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "At least one translation must be provided.",
+      "sha256": "34627585baf6c7095b866fbf09564edff4b3460670eabf605e8e1ef1d24fd3d3"
+    },
+    {
+      "id": "1061#1",
+      "line": 1061,
+      "unit_line": 1061,
+      "scope": "TranslatedImage.LocalizedImage",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "String containing an URL linking to an image The image linked must be less than 2MB.",
+      "sha256": "60a56e93db07e6f44204698131ed0143d1d9205d91282ee341da7ce091912263"
+    },
+    {
+      "id": "1063#1",
+      "line": 1063,
+      "unit_line": 1061,
+      "scope": "TranslatedImage.LocalizedImage",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If an image changes in a significant enough way that an update is required on the consumer side, the producer must update the URL to a new one.",
+      "sha256": "be08dceb17e71fd4abf56212718c80589345689eb322b591b64dc4a123cfda94"
+    },
+    {
+      "id": "1064#1",
+      "line": 1064,
+      "unit_line": 1061,
+      "scope": "TranslatedImage.LocalizedImage",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "should"
+      ],
+      "severities": [
+        "ERROR",
+        "WARNING"
+      ],
+      "text": "The URL should be a fully qualified URL that includes http:// or https://, and any special characters in the URL must be correctly escaped.",
+      "sha256": "edc3eddbbcc4268ab349e09701b514e9bc13e2050444aba3fc77b63b15d113a7"
+    },
+    {
+      "id": "1068#1",
+      "line": 1068,
+      "unit_line": 1067,
+      "scope": "TranslatedImage.LocalizedImage",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The type must start with \"image/\"",
+      "sha256": "4d46767a63fc24143047d782a7563410ff47dff78c347efd8740b50b0789b461"
+    },
+    {
+      "id": "1072#1",
+      "line": 1072,
+      "unit_line": 1071,
+      "scope": "TranslatedImage.LocalizedImage",
+      "kind": "comment",
+      "found_by": "pass_two",
+      "modals": [
+        "is allowed",
+        "at most one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "At most one translation is allowed to have an unspecified language tag.",
+      "sha256": "3eebbae571ae792eb6c2373945b986f44ce9afb917b8e1c5604e6c93a2c87d44"
+    },
+    {
+      "id": "1085#1",
+      "line": 1085,
+      "unit_line": 1085,
+      "scope": "TranslatedImage",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "at least one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "At least one localized image must be provided.",
+      "sha256": "3fb13d8bcebf84f4617068b735ae00821db917044201699c98a00dc8797a392f"
+    },
+    {
+      "id": "1099#1",
+      "line": 1099,
+      "unit_line": 1097,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Shapes do not need to intercept the location of Stops exactly, but all Stops on a trip should lie within a small distance of the shape for that trip, i.e. close to straight line segments connecting the shape points",
+      "sha256": "79f59650c762598ea3b99eb7a07c59417a4430196ff3e26716b81e2ead3aa573"
+    },
+    {
+      "id": "1104#1",
+      "line": 1104,
+      "unit_line": 1104,
+      "scope": "Shape",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "must be different"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Must be different than any shape_id defined in the (CSV) GTFS.",
+      "sha256": "d0bc8f2ac3226e0ba98e959cb6aff859f2a65840248753524a0d3129e4401105"
+    },
+    {
+      "id": "1105#1",
+      "line": 1105,
+      "unit_line": 1104,
+      "scope": "Shape",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "This field is required as per reference.md, but needs to be specified here optional because \"Required is Forever\"",
+      "sha256": "ef808d181410c85b6529ae68cfa0aa2e7e71247c3a130b950d052173b1c01429"
+    },
+    {
+      "id": "1110#1",
+      "line": 1110,
+      "unit_line": 1110,
+      "scope": "Shape",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "This polyline must contain at least two points and represent the full shape of the trip where it's used.",
+      "sha256": "7dfd9a5b866d2c9901f1745ebef3e69a615c06281bad6f5a8379bff93876f810"
+    },
+    {
+      "id": "1112#1",
+      "line": 1112,
+      "unit_line": 1110,
+      "scope": "Shape",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "This field is required as per reference.md, but needs to be specified here optional because \"Required is Forever\"",
+      "sha256": "ef808d181410c85b6529ae68cfa0aa2e7e71247c3a130b950d052173b1c01429"
+    },
+    {
+      "id": "1165#1",
+      "line": 1165,
+      "unit_line": 1163,
+      "scope": "TripModifications.Modification",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "`start_stop_selector` is required and is used to define the reference stop used with `travel_time_to_stop`.",
+      "sha256": "be5b20ac7a6038f3d676eccd18f83cfe6304983eacfe363136d82349a3ab45f6"
+    },
+    {
+      "id": "1169#1",
+      "line": 1169,
+      "unit_line": 1168,
+      "scope": "TripModifications.Modification",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The selection is inclusive, so if only one stop_time is replaced by that modification, `start_stop_selector` and `end_stop_selector` must be equivalent.",
+      "sha256": "9fe703158a68f51394e6fd32f5212fa098f122fb9df6e553b0b0ad553f810616"
+    },
+    {
+      "id": "1170#1",
+      "line": 1170,
+      "unit_line": 1168,
+      "scope": "TripModifications.Modification",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "If no stop_time is replaced, `end_stop_selector` must not be provided.",
+      "sha256": "0e41460df99aa8f7cf85c3a639f704796fa7c06f1187bc63cd5cb99d23de9f3d"
+    },
+    {
+      "id": "1170#2",
+      "line": 1170,
+      "unit_line": 1168,
+      "scope": "TripModifications.Modification",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "It's otherwise required.",
+      "sha256": "c961603927aa78f903902bb4b7bef5a82d21f376572915716f02c45e04c49aa7"
+    },
+    {
+      "id": "1198#1",
+      "line": 1198,
+      "unit_line": 1198,
+      "scope": "TripModifications.SelectedTrips",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "A `TripUpdate` with `schedule_relationship=REPLACEMENT` must not already exist for the trip.",
+      "sha256": "06df2d21b51c6175f5502fcbc116ef7cfbc43bfcbb1c6cedc92329123cbef06f"
+    },
+    {
+      "id": "1202#1",
+      "line": 1202,
+      "unit_line": 1200,
+      "scope": "TripModifications.SelectedTrips",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If it refers to a `Shape` entity in the real-time feed, the value of this field should be the one of the `shape_id` inside the entity, and _not_ the `id` of `FeedEntity`.",
+      "sha256": "41ffe4d1d90a8b7cd004ae2ea8405af2332cbbb9e953e3cac1f453e95d9b8b6f"
+    },
+    {
+      "id": "1221#1",
+      "line": 1221,
+      "unit_line": 1221,
+      "scope": "TripModifications",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Producers SHOULD only transmit detours occurring within the next week.",
+      "sha256": "1c79b8d2d95d7ebcbf02b53fed1925b667756f5fca8f78c0bc6529275ad63a9a"
+    },
+    {
+      "id": "1221#2",
+      "line": 1221,
+      "unit_line": 1221,
+      "scope": "TripModifications",
+      "kind": "definitional",
+      "found_by": "declared",
+      "modals": [],
+      "severities": [
+        "ERROR"
+      ],
+      "reason": "Fixes service_dates' value domain: dates in YYYYMMDD. A value outside it is not a date, so no consumer can apply the modification at all. S050 cites it, and E021 is the same predicate on TripDescriptor.start_date.",
+      "text": "Dates on which the modifications occurs, in the YYYYMMDD format.",
+      "sha256": "6b334582f48e3ea4ca4be4a858712cd8e4ad01080e72228210ed420b67926646"
+    },
+    {
+      "id": "1222#1",
+      "line": 1222,
+      "unit_line": 1221,
+      "scope": "TripModifications",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The dates provided should not be used as user-facing information, if a user-facing start and end date needs to be provided, they can be provided in the linked service alert with `service_alert_id`",
+      "sha256": "f21b12f1b0cca7495b6f6b17523e84d88e669e2abf2e62f67cea90e8f2b9ed42"
+    },
+    {
+      "id": "1238#1",
+      "line": 1238,
+      "unit_line": 1237,
+      "scope": "",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "at least one"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "At least one of the two values must be provided.",
+      "sha256": "70298876b2852c053698c53c6a217ed11f14c070c6545c3960df9f98282e237f"
+    },
+    {
+      "id": "1240#1",
+      "line": 1240,
+      "unit_line": 1240,
+      "scope": "StopSelector",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Must be the same as in stop_times.txt in the corresponding GTFS feed.",
+      "sha256": "2a30b02539f2357972f6b61abba358aba284e1b79dce4eecb51d5cb50969c40c"
+    },
+    {
+      "id": "1242#1",
+      "line": 1242,
+      "unit_line": 1242,
+      "scope": "StopSelector",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Must be the same as in stops.txt in the corresponding GTFS feed.",
+      "sha256": "8ad7f84289ad790d47db6029e47bf8fa7ac65fae9801b04f80db86f3490cf36b"
+    },
+    {
+      "id": "1257#1",
+      "line": 1257,
+      "unit_line": 1256,
+      "scope": "ReplacementStop",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "may only"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "This value MUST be monotonically increasing and may only be a negative number if the first stop of the original trip is the reference stop.",
+      "sha256": "476ae8c86548d7ecf17dd6c121e40cdf0ef42e5323f5aeab1a3d6261b144ce00"
+    },
+    {
+      "id": "1261#1",
+      "line": 1261,
+      "unit_line": 1260,
+      "scope": "ReplacementStop",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If it refers to a `Shape` entity in the real-time feed, the value of this field should be the one of the `stop_id` inside the entity, and _not_ the `id` of `FeedEntity`.",
+      "sha256": "cdc64c4bc2ade4d0b45d8aeba0485d40dfaf14c93ed2bcac8647066dd3ac0a37"
+    },
+    {
+      "id": "1261#2",
+      "line": 1261,
+      "unit_line": 1260,
+      "scope": "ReplacementStop",
+      "kind": "comment",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "The replacement stop MUST have `location_type=0` (routable stops).",
+      "sha256": "0e33883ef7f30929ceb92e8bd98f181a0f64470d40180cf4482b91eebfba00f1"
+    }
+  ]
+}

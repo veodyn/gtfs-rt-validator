@@ -1,0 +1,95 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E009",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_sequence isn't provided for trip that visits same stop_id more than once",
+      "errorDescription" : "If a GTFS trip contains multiple references to the same stop_id (i.e., the vehicle visits the same stop_id more than once in the same trip), then GTFS-rt stop_time_updates for this trip must include stop_sequence",
+      "occurrenceSuffix" : "more than once and GTFS-rt stop_time_update is missing stop_sequence field - stop_sequence must be provided"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1 visits stop_id [222]"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E040",
+      "severity" : "ERROR",
+      "title" : "stop_time_update doesn't contain stop_id or stop_sequence",
+      "errorDescription" : "All stop_time_updates must contain stop_id or stop_sequence - both fields cannot be left blank",
+      "occurrenceSuffix" : "doesn't contain stop_id or stop_sequence"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E042",
+      "severity" : "ERROR",
+      "title" : "arrival or departure provided for NO_DATA stop_time_update",
+      "errorDescription" : "If a stop_time_update has a schedule_relationship of NO_DATA, then neither arrival nor departure should be provided",
+      "occurrenceSuffix" : "and schedule_relationship of NO_DATA"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1 stop_sequence 5 has arrival"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E043",
+      "severity" : "ERROR",
+      "title" : "stop_time_update doesn't have arrival or departure",
+      "errorDescription" : "If a stop_time_update doesn't have a schedule_relationship of SKIPPED or NO_DATA, then either arrival or departure must be provided",
+      "occurrenceSuffix" : "doesn't have arrival or departure"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1 stop_sequence 2"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E044",
+      "severity" : "ERROR",
+      "title" : "stop_time_update arrival/departure doesn't have delay or time",
+      "errorDescription" : "stop_time_update.arrival and stop_time_update.departure must have either delay or time - both fields cannot be missing",
+      "occurrenceSuffix" : "doesn't have delay or time"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1 stop_sequence 3 arrival"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1 stop_sequence 4 departure"
+  } ]
+} ]

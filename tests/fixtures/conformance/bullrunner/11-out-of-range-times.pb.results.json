@@ -1,0 +1,59 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E001",
+      "severity" : "ERROR",
+      "title" : "Not in POSIX time",
+      "errorDescription" : "All timestamps must be in POSIX time (i.e., number of seconds since January 1st 1970 00:00:00 UTC)",
+      "occurrenceSuffix" : "is not POSIX time"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1 timestamp 1500000000000"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E012",
+      "severity" : "ERROR",
+      "title" : "Header timestamp should be greater than or equal to all other timestamps",
+      "errorDescription" : "No timestamps for individual entities (TripUpdate, VehiclePosition) in the feeds should be greater than the header timestamp",
+      "occurrenceSuffix" : "is greater than the header"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1 timestamp 1500000000000"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 2 timestamp 1700100000"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E050",
+      "severity" : "ERROR",
+      "title" : "timestamp is in the future",
+      "errorDescription" : "All timestamps must be less than the current time",
+      "occurrenceSuffix" : "- the current time in milliseconds"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 2 timestamp 21:00:00 (1700100000) is 1666 min 30 sec greater than 17:13:30 (1700000010000)"
+  } ]
+} ]

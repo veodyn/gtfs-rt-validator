@@ -1,0 +1,55 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E026",
+      "severity" : "ERROR",
+      "title" : "Invalid vehicle position",
+      "errorDescription" : "Vehicle position latitude must be between -90 and 90 (inclusive), and vehicle longitude must be between -180  and 180 (inclusive)",
+      "occurrenceSuffix" : "- these are invalid WGS84 coordinates"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id pos-1 has latitude/longitude of (100.0,-82.41899)"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E027",
+      "severity" : "ERROR",
+      "title" : "Invalid vehicle bearing",
+      "errorDescription" : "Vehicle bearing must be between 0 and 360 degrees (inclusive)",
+      "occurrenceSuffix" : "- bearing must be between 0 and 360 degrees (inclusive)"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id pos-2 has bearing of 400.0"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W004",
+      "severity" : "WARNING",
+      "title" : "vehicle speed is unrealistic",
+      "errorDescription" : "vehicle.position.speed has an unrealistic speed that may be incorrect",
+      "occurrenceSuffix" : "is unrealistic"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id pos-3 speed of 90.0 m/s (201.32 mph)"
+  } ]
+} ]

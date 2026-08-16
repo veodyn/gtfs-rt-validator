@@ -1,0 +1,113 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W002",
+      "severity" : "WARNING",
+      "title" : "vehicle_id not populated",
+      "errorDescription" : "vehicle_id should be populated for TripUpdates and VehiclePositions",
+      "occurrenceSuffix" : "does not have a vehicle_id"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 3"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E045",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_time_update stop_sequence and stop_id do not match GTFS",
+      "errorDescription" : "If GTFS-rt stop_time_update contains both stop_sequence and stop_id, the values must match the GTFS data in stop_times.txt",
+      "occurrenceSuffix" : "- stop_ids should be the same"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 3 stop_sequence 1 has stop_id 426 but GTFS stop_sequence 1 has stop_id 414"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E035",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt trip.trip_id does not belong to GTFS-rt trip.route_id in GTFS trips.txt",
+      "errorDescription" : "The GTFS-rt trip.trip_id should belong to the specified trip.route_id in GTFS trips.txt",
+      "occurrenceSuffix" : "in GTFS trips.txt"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt entity ID wrong-route trip_id 1 has route_id B but belongs to GTFS route_id A"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E006",
+      "severity" : "ERROR",
+      "title" : "Missing required trip field for frequency-based exact_times = 0",
+      "errorDescription" : "Frequency-based exact_times=0 trip_updates must contain trip_id, start_time, and start_date",
+      "occurrenceSuffix" : "which is required for frequency-based exact_times = 0 trips"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 3 is missing start_date"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 3 is missing start_time"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E013",
+      "severity" : "ERROR",
+      "title" : "Frequency type 0 trip schedule_relationship should be UNSCHEDULED or empty",
+      "errorDescription" : "For frequency-based exact_times=0 trips, schedule_relationship should be UNSCHEDULED or empty.",
+      "occurrenceSuffix" : "schedule_relationship is not UNSCHEDULED or empty"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 3 schedule_relationship SCHEDULED"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W005",
+      "severity" : "WARNING",
+      "title" : "Missing vehicle_id for frequency-based exact_times = 0",
+      "errorDescription" : "Frequency-based exact_times = 0 trip_updates and vehicle positions should contain vehicle_id",
+      "occurrenceSuffix" : "is missing vehicle_id, which is suggested for frequency-based exact_times=0 trips"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 3"
+  } ]
+} ]

@@ -1,0 +1,19 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E017",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt content changed but has the same header timestamp",
+      "errorDescription" : "The GTFS-rt header timestamp value should always change if the feed contents change - the feed contents must not change without updating the header timestamp",
+      "occurrenceSuffix" : "was the same for this and the previous feed iteration but the feed content was not the same"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "header.timestamp of 1699999980"
+  } ]
+} ]

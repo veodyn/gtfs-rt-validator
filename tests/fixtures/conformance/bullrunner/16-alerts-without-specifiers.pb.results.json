@@ -1,0 +1,37 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E032",
+      "severity" : "ERROR",
+      "title" : "Alert does not have an informed_entity",
+      "errorDescription" : "All alerts must have at least one informed_entity.",
+      "occurrenceSuffix" : "- alerts must have at least one informed_entity"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "alert ID no-informed-entity does not have an informed_entity"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E033",
+      "severity" : "ERROR",
+      "title" : "Alert informed_entity does not have any specifiers",
+      "errorDescription" : "Alert informed_entity should have at least one specified value (route_id, trip_id, stop_id, etc) to which the alert applies.",
+      "occurrenceSuffix" : "- alert informed_entity should have at least one specified value"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "alert ID selector-names-nothing informed_entity and informed_entity.trip do not not reference any agency, route, trip, or stop"
+  } ]
+} ]

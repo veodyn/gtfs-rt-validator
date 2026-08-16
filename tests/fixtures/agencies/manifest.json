@@ -1,0 +1,800 @@
+{
+  "generated_by": "tools/fetch_corpus.py",
+  "do_not_edit": "Regenerate with .venv/bin/python tools/fetch_corpus.py",
+  "recorded_at": "2026-08-15T18:50:34Z",
+  "note": "Bytes live under corpus/ and are gitignored. This manifest is committed.",
+  "rounds_are": "one distinct producer message per role, keyed on header.timestamp advancing, not one poll. Each agency's refresh block holds the intervals between them, which is the producer's cadence rather than this recorder's.",
+  "poll_interval_seconds": 5.0,
+  "agencies": [
+    {
+      "agency_name": "Massachusetts Bay Transportation Authority",
+      "state": "MA",
+      "size_class": "large",
+      "total_voms": 2006,
+      "static_mdb_id": "mdb-437",
+      "static": {
+        "path": "corpus/agencies/mdb-437/static.zip",
+        "bytes": 18797509,
+        "sha256": "d72648a6bbfb8af0a49fb0d373b17e3f0135c70b4a62182de7fb1f3415493739",
+        "url": "https://cdn.mbta.com/MBTA_GTFS.zip"
+      },
+      "license_urls": {
+        "sa": "https://www.mass.gov/files/documents/2017/10/27/develop_license_agree_0.pdf",
+        "tu": "https://www.mass.gov/files/documents/2017/10/27/develop_license_agree_0.pdf",
+        "vp": "https://www.mass.gov/files/documents/2017/10/27/develop_license_agree_0.pdf"
+      },
+      "refresh": {
+        "tu": {
+          "intervals_seconds": [
+            6,
+            5,
+            7,
+            6,
+            6
+          ],
+          "may_be_faster_than_recorded": true
+        },
+        "vp": {
+          "intervals_seconds": [
+            5,
+            7,
+            5,
+            6,
+            7
+          ],
+          "may_be_faster_than_recorded": true
+        },
+        "sa": {
+          "intervals_seconds": [
+            60,
+            60,
+            60,
+            60,
+            60
+          ],
+          "may_be_faster_than_recorded": false
+        }
+      },
+      "failures": [],
+      "rounds": [
+        {
+          "round": 0,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-437/round-00/sa.pb",
+              "bytes": 370822,
+              "sha256": "f671e4071caccd4354f1b89107bac4c5e21be404cde2cea8db7cb69b0bff5104",
+              "url": "https://cdn.mbta.com/realtime/Alerts.pb",
+              "header_timestamp": 1786819110,
+              "poll": 0
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-437/round-00/tu.pb",
+              "bytes": 625966,
+              "sha256": "13a7772f5b98bea2f5cf076930315e0b64693a2ffdff267d77e7cd1954faeab3",
+              "url": "https://cdn.mbta.com/realtime/TripUpdates.pb",
+              "header_timestamp": 1786819176,
+              "poll": 0
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-437/round-00/vp.pb",
+              "bytes": 54636,
+              "sha256": "4aeef6eb5c6a8233372056315b36f4f645ef2d042e1250ace9e25154e5879e34",
+              "url": "https://cdn.mbta.com/realtime/VehiclePositions.pb",
+              "header_timestamp": 1786819177,
+              "poll": 0
+            }
+          }
+        },
+        {
+          "round": 1,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-437/round-01/sa.pb",
+              "bytes": 370822,
+              "sha256": "6225e7792d1ffa26554e07818a7371d1ba1e0aacbb058d7acc0bd334d584645b",
+              "url": "https://cdn.mbta.com/realtime/Alerts.pb",
+              "header_timestamp": 1786819170,
+              "poll": 1
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-437/round-01/tu.pb",
+              "bytes": 625906,
+              "sha256": "12130b11e86a28554721ee64052fd239a2b986fc763241cb6628fb20621cd642",
+              "url": "https://cdn.mbta.com/realtime/TripUpdates.pb",
+              "header_timestamp": 1786819182,
+              "poll": 1
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-437/round-01/vp.pb",
+              "bytes": 54580,
+              "sha256": "e9c82ccf72f2e989528b1199f5032dbc6a56a5d4c9ca858a69623671c333210d",
+              "url": "https://cdn.mbta.com/realtime/VehiclePositions.pb",
+              "header_timestamp": 1786819182,
+              "poll": 1
+            }
+          }
+        },
+        {
+          "round": 2,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-437/round-02/sa.pb",
+              "bytes": 370822,
+              "sha256": "35619aa53180cc2ba7bbd41f81e48479cc5528d646f6060454d8de6e26040435",
+              "url": "https://cdn.mbta.com/realtime/Alerts.pb",
+              "header_timestamp": 1786819230,
+              "poll": 11
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-437/round-02/tu.pb",
+              "bytes": 624428,
+              "sha256": "ab3c7e3411d21d7ad94ae438b0ca8416454f2dd6fcf9c1f3f41d61e0467925b5",
+              "url": "https://cdn.mbta.com/realtime/TripUpdates.pb",
+              "header_timestamp": 1786819187,
+              "poll": 2
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-437/round-02/vp.pb",
+              "bytes": 54561,
+              "sha256": "a2e51b2e841503357a711c8e2173360fddf3be6946be143e8708d099ab021dc8",
+              "url": "https://cdn.mbta.com/realtime/VehiclePositions.pb",
+              "header_timestamp": 1786819189,
+              "poll": 2
+            }
+          }
+        },
+        {
+          "round": 3,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-437/round-03/sa.pb",
+              "bytes": 370822,
+              "sha256": "5290509b64d7cf10fc9229d7e93dd40d4754be1091c81b2350356e2f5fb0b5c2",
+              "url": "https://cdn.mbta.com/realtime/Alerts.pb",
+              "header_timestamp": 1786819290,
+              "poll": 23
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-437/round-03/tu.pb",
+              "bytes": 624952,
+              "sha256": "0fd2802ff078e2e9f0e73c0ce9ef0028a27181380f6128bb90345b5e83449e04",
+              "url": "https://cdn.mbta.com/realtime/TripUpdates.pb",
+              "header_timestamp": 1786819194,
+              "poll": 3
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-437/round-03/vp.pb",
+              "bytes": 54615,
+              "sha256": "48408c15e7f3ce3dddc65a31dde81e07b121b7457abc342cea5a416441d0a90c",
+              "url": "https://cdn.mbta.com/realtime/VehiclePositions.pb",
+              "header_timestamp": 1786819194,
+              "poll": 3
+            }
+          }
+        },
+        {
+          "round": 4,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-437/round-04/sa.pb",
+              "bytes": 372061,
+              "sha256": "d39f55c5baca0565ffb0d12ea51add9ac6be7952932453b98ab371dd4f4cc712",
+              "url": "https://cdn.mbta.com/realtime/Alerts.pb",
+              "header_timestamp": 1786819350,
+              "poll": 35
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-437/round-04/tu.pb",
+              "bytes": 623891,
+              "sha256": "f4f0a712fae4db300947c4518de3f339705d28a9015b73b1f189c301052062fb",
+              "url": "https://cdn.mbta.com/realtime/TripUpdates.pb",
+              "header_timestamp": 1786819200,
+              "poll": 4
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-437/round-04/vp.pb",
+              "bytes": 54483,
+              "sha256": "d41ff9ad0639bafda0d98cc612ac1f159bca8e1a2a4ca2625431f69c321b7b30",
+              "url": "https://cdn.mbta.com/realtime/VehiclePositions.pb",
+              "header_timestamp": 1786819200,
+              "poll": 4
+            }
+          }
+        },
+        {
+          "round": 5,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-437/round-05/sa.pb",
+              "bytes": 372061,
+              "sha256": "a2f4323dbca687d51df65eb1e5bb49e347150349c684747013a9f4485ee91801",
+              "url": "https://cdn.mbta.com/realtime/Alerts.pb",
+              "header_timestamp": 1786819410,
+              "poll": 45
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-437/round-05/tu.pb",
+              "bytes": 623797,
+              "sha256": "1aa9e955d1bdd304b034da221f15a1606b14d89325e5f8957b20030c8c5b241d",
+              "url": "https://cdn.mbta.com/realtime/TripUpdates.pb",
+              "header_timestamp": 1786819206,
+              "poll": 5
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-437/round-05/vp.pb",
+              "bytes": 54414,
+              "sha256": "c6956dd53adeda277bff6e2bcb9877e03c905eeb8a540ff1c0b52ca54ba90aeb",
+              "url": "https://cdn.mbta.com/realtime/VehiclePositions.pb",
+              "header_timestamp": 1786819207,
+              "poll": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "agency_name": "Whatcom Transportation Authority",
+      "state": "WA",
+      "size_class": "mid",
+      "total_voms": 103,
+      "static_mdb_id": "mdb-284",
+      "static": {
+        "path": "corpus/agencies/mdb-284/static.zip",
+        "bytes": 2071170,
+        "sha256": "7c481cd0872302f5842855037f17d7ec3cd52100020a978bef27545e2bab3b01",
+        "url": "https://github.com/whatcomtrans/publicwtadata/raw/master/GTFS/wta_gtfs_latest.zip"
+      },
+      "license_urls": {
+        "tu": null,
+        "vp": null
+      },
+      "refresh": {
+        "tu": {
+          "intervals_seconds": [
+            30,
+            30,
+            30,
+            30,
+            31
+          ],
+          "may_be_faster_than_recorded": false
+        },
+        "vp": {
+          "intervals_seconds": [
+            30,
+            30,
+            30,
+            31,
+            29
+          ],
+          "may_be_faster_than_recorded": false
+        }
+      },
+      "failures": [],
+      "rounds": [
+        {
+          "round": 0,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/mdb-284/round-00/tu.pb",
+              "bytes": 17274,
+              "sha256": "143b379fbac8275dbceacd31c2b7970f6fca01abd5147029390aa4cd3113bdc9",
+              "url": "https://bustracker.ridewta.com/gtfsrt/trips",
+              "header_timestamp": 1786819499,
+              "poll": 0
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-284/round-00/vp.pb",
+              "bytes": 2728,
+              "sha256": "1bc09985b279ca53f4ae846ea197d72405dd41b0c8c2dc8feb0a71b13c166c37",
+              "url": "https://bustracker.ridewta.com/gtfsrt/vehicles",
+              "header_timestamp": 1786819529,
+              "poll": 0
+            }
+          }
+        },
+        {
+          "round": 1,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/mdb-284/round-01/tu.pb",
+              "bytes": 17184,
+              "sha256": "9a8deaafee5f1e99462930d99c0034c5a30691246cbaf948145ccb087654854f",
+              "url": "https://bustracker.ridewta.com/gtfsrt/trips",
+              "header_timestamp": 1786819529,
+              "poll": 1
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-284/round-01/vp.pb",
+              "bytes": 2723,
+              "sha256": "0c80af814f1e48b6177c8717bb47fa92d87b63f4590731d0a0bfeb35fdbdc1b4",
+              "url": "https://bustracker.ridewta.com/gtfsrt/vehicles",
+              "header_timestamp": 1786819559,
+              "poll": 6
+            }
+          }
+        },
+        {
+          "round": 2,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/mdb-284/round-02/tu.pb",
+              "bytes": 17376,
+              "sha256": "02ed97f1bb5a9233bfb0c2a04b038349ebf7182058da1b241e8a3c2bd7d27b36",
+              "url": "https://bustracker.ridewta.com/gtfsrt/trips",
+              "header_timestamp": 1786819559,
+              "poll": 6
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-284/round-02/vp.pb",
+              "bytes": 2724,
+              "sha256": "c0ce5d52bf8d657e93b7deb5dcf1a1e0effdcdb9b052d7935a0715042d418524",
+              "url": "https://bustracker.ridewta.com/gtfsrt/vehicles",
+              "header_timestamp": 1786819589,
+              "poll": 12
+            }
+          }
+        },
+        {
+          "round": 3,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/mdb-284/round-03/tu.pb",
+              "bytes": 17392,
+              "sha256": "2246c9efa5939879f26c3cf5378e9b6ab0dbdfe552841d6bfc7a6d76df4d8779",
+              "url": "https://bustracker.ridewta.com/gtfsrt/trips",
+              "header_timestamp": 1786819589,
+              "poll": 12
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-284/round-03/vp.pb",
+              "bytes": 2686,
+              "sha256": "a16c4bd0391a4a343a621dffe55b44ef61c5fa4aafb64b0a6b6f0a23052bcbec",
+              "url": "https://bustracker.ridewta.com/gtfsrt/vehicles",
+              "header_timestamp": 1786819619,
+              "poll": 17
+            }
+          }
+        },
+        {
+          "round": 4,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/mdb-284/round-04/tu.pb",
+              "bytes": 17390,
+              "sha256": "ee30dd9449120d8ebfa3d97f9f8ebfdf26a75ce321569acf3bfad1e7850457a1",
+              "url": "https://bustracker.ridewta.com/gtfsrt/trips",
+              "header_timestamp": 1786819619,
+              "poll": 17
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-284/round-04/vp.pb",
+              "bytes": 2684,
+              "sha256": "317227f501c31b607ba24d088f3ea64e17e1ed9b292cec2df3b224acb0db2b0d",
+              "url": "https://bustracker.ridewta.com/gtfsrt/vehicles",
+              "header_timestamp": 1786819650,
+              "poll": 23
+            }
+          }
+        },
+        {
+          "round": 5,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/mdb-284/round-05/tu.pb",
+              "bytes": 17413,
+              "sha256": "ddfc59f0bae0eabe2add9dfcb50c7d139bfa23f9320cc143bd2c360d2f306850",
+              "url": "https://bustracker.ridewta.com/gtfsrt/trips",
+              "header_timestamp": 1786819650,
+              "poll": 23
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-284/round-05/vp.pb",
+              "bytes": 2679,
+              "sha256": "e14fd84037184639173a8e8ddd30fc48306303b4944feeb346a13adf8f356180",
+              "url": "https://bustracker.ridewta.com/gtfsrt/vehicles",
+              "header_timestamp": 1786819679,
+              "poll": 28
+            }
+          }
+        }
+      ]
+    },
+    {
+      "agency_name": "Valley Transit",
+      "state": "WA",
+      "size_class": "small",
+      "total_voms": 19,
+      "static_mdb_id": "tld-820",
+      "static": {
+        "path": "corpus/agencies/tld-820/static.zip",
+        "bytes": 53195,
+        "sha256": "fdd3492f2f26ae2cb25f2ec2a755288176b7b8763187879e69778c01360665e6",
+        "url": "https://itransitnw.com/rtt/public/resource/gtfs.zip"
+      },
+      "license_urls": {
+        "tu": null,
+        "vp": null
+      },
+      "refresh": {
+        "tu": {
+          "intervals_seconds": [
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "may_be_faster_than_recorded": false
+        },
+        "vp": {
+          "intervals_seconds": [
+            30,
+            30,
+            30,
+            30,
+            30
+          ],
+          "may_be_faster_than_recorded": false
+        }
+      },
+      "failures": [],
+      "rounds": [
+        {
+          "round": 0,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/tld-820/round-00/tu.pb",
+              "bytes": 215,
+              "sha256": "45dbae3e217c8f70bffc2345efffbcf888d49f52813882f048c701d1d71da693",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/tripupdate",
+              "header_timestamp": 1786819679,
+              "poll": 0
+            },
+            "vp": {
+              "path": "corpus/agencies/tld-820/round-00/vp.pb",
+              "bytes": 119,
+              "sha256": "f20dcef97cf149877d122b2baabd88b3c00b44a9cd7825c08fc64b60cc7c07b2",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/vehicleposition",
+              "header_timestamp": 1786819679,
+              "poll": 0
+            }
+          }
+        },
+        {
+          "round": 1,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/tld-820/round-01/tu.pb",
+              "bytes": 224,
+              "sha256": "476006adcbe31bead9e504afe89e11374a0c84b42c84bb392dfe3ce98573e246",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/tripupdate",
+              "header_timestamp": 1786819709,
+              "poll": 4
+            },
+            "vp": {
+              "path": "corpus/agencies/tld-820/round-01/vp.pb",
+              "bytes": 119,
+              "sha256": "005789352cf31fcb04e3140d2a2e545d281671d0cd58888b758ea8de86f975c8",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/vehicleposition",
+              "header_timestamp": 1786819709,
+              "poll": 4
+            }
+          }
+        },
+        {
+          "round": 2,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/tld-820/round-02/tu.pb",
+              "bytes": 224,
+              "sha256": "6e58b300257007ed7e377695fe06afe250c7a6b06bca4f4e1f454fa0c2d5a359",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/tripupdate",
+              "header_timestamp": 1786819739,
+              "poll": 9
+            },
+            "vp": {
+              "path": "corpus/agencies/tld-820/round-02/vp.pb",
+              "bytes": 119,
+              "sha256": "c13765b830fdf62465f27128369bad6b26c2f94ca6e667353d200a8360facf64",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/vehicleposition",
+              "header_timestamp": 1786819739,
+              "poll": 9
+            }
+          }
+        },
+        {
+          "round": 3,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/tld-820/round-03/tu.pb",
+              "bytes": 215,
+              "sha256": "56363827218dddcf4c98d76343441b8a6606e1d835647d0ba011484bab50f579",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/tripupdate",
+              "header_timestamp": 1786819769,
+              "poll": 14
+            },
+            "vp": {
+              "path": "corpus/agencies/tld-820/round-03/vp.pb",
+              "bytes": 119,
+              "sha256": "fbaaaa99de195d7998ec5aa39f1d6b46348d91723bbf0671051c056e772b1f1a",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/vehicleposition",
+              "header_timestamp": 1786819769,
+              "poll": 14
+            }
+          }
+        },
+        {
+          "round": 4,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/tld-820/round-04/tu.pb",
+              "bytes": 224,
+              "sha256": "2b45ee9ad3caf3bdbb425ae81dffb654afb5e715901505d5988192104e6d3408",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/tripupdate",
+              "header_timestamp": 1786819799,
+              "poll": 20
+            },
+            "vp": {
+              "path": "corpus/agencies/tld-820/round-04/vp.pb",
+              "bytes": 119,
+              "sha256": "af0e7b395c0a0fd574eefff4052cfc70714569cd72c63eb0268ec6f4d5427f8d",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/vehicleposition",
+              "header_timestamp": 1786819799,
+              "poll": 20
+            }
+          }
+        },
+        {
+          "round": 5,
+          "files": {
+            "tu": {
+              "path": "corpus/agencies/tld-820/round-05/tu.pb",
+              "bytes": 224,
+              "sha256": "7ff8fd57d560a794a611660d450267f8f132e9211e75b6551f0e87a5ccfc97c8",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/tripupdate",
+              "header_timestamp": 1786819829,
+              "poll": 25
+            },
+            "vp": {
+              "path": "corpus/agencies/tld-820/round-05/vp.pb",
+              "bytes": 119,
+              "sha256": "fcf434097c9946df6282faa31cea04711ab6b9676ba20817ca548d036eaae90b",
+              "url": "https://itransitnw.com/rtt/public/utility/gtfsrealtime.aspx/vehicleposition",
+              "header_timestamp": 1786819829,
+              "poll": 25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "agency_name": "Clovis Transit",
+      "state": "CA",
+      "size_class": "small",
+      "total_voms": null,
+      "static_mdb_id": "mdb-2894",
+      "static": {
+        "path": "corpus/agencies/mdb-2894/static.zip",
+        "bytes": 61118,
+        "sha256": "07bdd273ff5a6bf508139e08633ac978f26c83ab088f6c0d6303cd3a5baca307",
+        "url": "https://passio3.com/clovis/passioTransit/gtfs/google_transit.zip"
+      },
+      "license_urls": {
+        "sa": null,
+        "tu": null,
+        "vp": null
+      },
+      "refresh": {
+        "tu": {
+          "intervals_seconds": [
+            5,
+            7,
+            8,
+            5,
+            5
+          ],
+          "may_be_faster_than_recorded": true
+        },
+        "vp": {
+          "intervals_seconds": [
+            10,
+            6,
+            5,
+            6,
+            5
+          ],
+          "may_be_faster_than_recorded": true
+        },
+        "sa": {
+          "intervals_seconds": [
+            10,
+            5,
+            6,
+            5,
+            5
+          ],
+          "may_be_faster_than_recorded": true
+        }
+      },
+      "failures": [],
+      "rounds": [
+        {
+          "round": 0,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-2894/round-00/sa.pb",
+              "bytes": 246,
+              "sha256": "4052904f7671956353155807e0961b628e63156f7c787fd6c0573238b86f2f65",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/serviceAlerts",
+              "header_timestamp": 1786819138,
+              "poll": 0
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-2894/round-00/tu.pb",
+              "bytes": 23270,
+              "sha256": "8021a9801774309a9c6c352924eef0bbfa60fed4c15b0c6af6fd66310dce6e1a",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/tripUpdates",
+              "header_timestamp": 1786819137,
+              "poll": 0
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-2894/round-00/vp.pb",
+              "bytes": 1496,
+              "sha256": "42cf17e7300db3f18a77bab7f8cec3f6af15130b180b8356af9f1bf8fa206f2f",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/vehiclePositions",
+              "header_timestamp": 1786819137,
+              "poll": 0
+            }
+          }
+        },
+        {
+          "round": 1,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-2894/round-01/sa.pb",
+              "bytes": 246,
+              "sha256": "eb2663472a6bcc77509ab49a5460b74292892d22d6f3e0c7287d6d662e0c8d7b",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/serviceAlerts",
+              "header_timestamp": 1786819148,
+              "poll": 1
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-2894/round-01/tu.pb",
+              "bytes": 23214,
+              "sha256": "f9f0aa542a859a933bc2624b30c4a145b2b9b9dbc460bb5e0f4bb78b0c467eb5",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/tripUpdates",
+              "header_timestamp": 1786819142,
+              "poll": 1
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-2894/round-01/vp.pb",
+              "bytes": 1491,
+              "sha256": "13af6579906612e01dd46c7b395c0fd5eed9ce37e5926945a113193b8b79d868",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/vehiclePositions",
+              "header_timestamp": 1786819147,
+              "poll": 1
+            }
+          }
+        },
+        {
+          "round": 2,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-2894/round-02/sa.pb",
+              "bytes": 246,
+              "sha256": "7bbbd6b8ba3405d9ab2fed4303e7fb3f8e1282a5015f90efe570f205d7b18688",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/serviceAlerts",
+              "header_timestamp": 1786819153,
+              "poll": 2
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-2894/round-02/tu.pb",
+              "bytes": 23186,
+              "sha256": "e4fd380b2ae211a934a52539e1bac4c178cf0b5add68d5ba116077036f8ea3c3",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/tripUpdates",
+              "header_timestamp": 1786819149,
+              "poll": 2
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-2894/round-02/vp.pb",
+              "bytes": 1496,
+              "sha256": "5a62166f3fdd60cece4dfc131946eef3d5762939d6323500d5513ab0731be258",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/vehiclePositions",
+              "header_timestamp": 1786819153,
+              "poll": 2
+            }
+          }
+        },
+        {
+          "round": 3,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-2894/round-03/sa.pb",
+              "bytes": 246,
+              "sha256": "14398086a621665cf1e87f02285e9d33d04d01d72b108650cf778ed9662c2b6e",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/serviceAlerts",
+              "header_timestamp": 1786819159,
+              "poll": 3
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-2894/round-03/tu.pb",
+              "bytes": 23158,
+              "sha256": "ce779931c616de8483e6277d019e1983e7df1118d1156c1a07cae07fc977352b",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/tripUpdates",
+              "header_timestamp": 1786819157,
+              "poll": 3
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-2894/round-03/vp.pb",
+              "bytes": 1501,
+              "sha256": "6d30b49519a181b565db1bfd0a943342fe249e7b2ee6694c8c8ff40b4514d6c2",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/vehiclePositions",
+              "header_timestamp": 1786819158,
+              "poll": 3
+            }
+          }
+        },
+        {
+          "round": 4,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-2894/round-04/sa.pb",
+              "bytes": 246,
+              "sha256": "8f32d3b9d60e1864d7f1c061fcc62c042a78a56a361da95c7d35b3b8dd404ddc",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/serviceAlerts",
+              "header_timestamp": 1786819164,
+              "poll": 4
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-2894/round-04/tu.pb",
+              "bytes": 23158,
+              "sha256": "c90a04dea53ee2cef1dff3177990e4ca5dcffe1975a41d26c2a1d5dcd7e642ec",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/tripUpdates",
+              "header_timestamp": 1786819162,
+              "poll": 4
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-2894/round-04/vp.pb",
+              "bytes": 1491,
+              "sha256": "acc4bd0bb74cd4b370691a46985a6bff280bb0841f582d5a7bef3d0e7876bab9",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/vehiclePositions",
+              "header_timestamp": 1786819164,
+              "poll": 4
+            }
+          }
+        },
+        {
+          "round": 5,
+          "files": {
+            "sa": {
+              "path": "corpus/agencies/mdb-2894/round-05/sa.pb",
+              "bytes": 246,
+              "sha256": "0de461709dc233ae0c4bca471ba19f9ab93be60d7617f7e8147d076a7e8e260e",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/serviceAlerts",
+              "header_timestamp": 1786819169,
+              "poll": 5
+            },
+            "tu": {
+              "path": "corpus/agencies/mdb-2894/round-05/tu.pb",
+              "bytes": 23158,
+              "sha256": "95793c4049ecae103d34a9bb459bb79c965e2b49aa9902465444b406b0e4c64a",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/tripUpdates",
+              "header_timestamp": 1786819167,
+              "poll": 5
+            },
+            "vp": {
+              "path": "corpus/agencies/mdb-2894/round-05/vp.pb",
+              "bytes": 1491,
+              "sha256": "ea1453d32b1a23054a3cf130a8978e591f52de3d612598f9e02176099d083767",
+              "url": "https://passio3.com/clovis/passioTransit/gtfs/realtime/vehiclePositions",
+              "header_timestamp": 1786819169,
+              "poll": 5
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

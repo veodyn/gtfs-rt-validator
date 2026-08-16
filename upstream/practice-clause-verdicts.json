@@ -1,0 +1,430 @@
+{
+  "index": "upstream/practice-clauses.json",
+  "tier": "practice",
+  "hand_written": true,
+  "seeded_from": "Hand written. Each statement of the pinned Best Practices document is either cited by a P rule, rejected under one of the R1 to R5 codes below, folded into another statement's rule, or accepted in part with the narrowing recorded in its note. tools/scan_clauses.py produces the statement list this answers; it does not produce the verdicts.",
+  "about": [
+    "Every distinct normative statement of the pinned Best Practices document gets a",
+    "verdict here. Same contract as upstream/spec-clause-verdicts.json: hand written,",
+    "seeded from the plan's decisions rather than from the rules, and keyed by the index's",
+    "clause ids so a moved pin re-adjudicates every statement.",
+    "Eight of the document's recommendations are repeated verbatim, so the index carries",
+    "one entry per distinct statement with the other lines under `also_at`. One statement,",
+    "one verdict."
+  ],
+  "verdict_kinds": {
+    "rule": "cited verbatim by exactly one rule, which enforces the whole statement",
+    "rule_in_part": "cited by a rule that deliberately enforces a strict subset; the note says which part and what the narrowing costs",
+    "folded": "covered by a rule that cites a different statement",
+    "rejected": "not a rule, with a reason code below",
+    "deferred": "reviewed and not turned into a rule in this release"
+  },
+  "reason_codes": {
+    "R1": "Already checked by one of the 56; the note names the id",
+    "R2": "It is about transport or hosting, not about a message",
+    "R3": "It describes consumer behaviour or unrecorded producer intent",
+    "R4": "The document gives no threshold, and this project will not invent one under somebody else's citation",
+    "R5": "Document metadata, or the same statement resolved to the `spec` tier"
+  },
+  "hand_added": [
+    {
+      "line": 18,
+      "text": "Maintain persistent identifiers (id fields) within a GTFS Realtime feed (e.g., FeedEntity.id, VehicleDescriptor.id, CarriageDetails.id) across feed iterations.",
+      "note": "Imperative, so the modal-verb sweep cannot see it."
+    },
+    {
+      "line": 95,
+      "text": "Provide `stop_sequence` whenever possible, as it unambiguously resolves to a GTFS stop time in `stop_times.txt` unlike `stop_id`, which can occur more than once in a trip (e.g., loop route).",
+      "note": "Imperative."
+    },
+    {
+      "line": 128,
+      "text": "Do not apply the alert to every stop of the line.",
+      "note": "Imperative, and P012 cites it. Without this slot the tier's one alert-scope rule would have no citable statement."
+    },
+    {
+      "line": 129,
+      "text": "Please be concise.",
+      "note": "Imperative, and rejected under R4."
+    },
+    {
+      "line": 133,
+      "text": "Use line breaks to make your service alert easier to read.",
+      "note": "Imperative."
+    },
+    {
+      "line": 162,
+      "text": "Please link here in order to provide feed producers with guidance for correct formation of GTFS Realtime data.",
+      "note": "Imperative, and rejected under R5."
+    }
+  ],
+  "notes": [
+    "The hand_added list above is an input to tools/scan_clauses.py, not a comment. Six of",
+    "the document's recommendations are written in the imperative and carry no modal verb,",
+    "so no keyword sweep can reach them; the tool verifies each is a verbatim substring of",
+    "the line it names before merging it into the index. Widening the sweep until it",
+    "matched prose was the alternative, and it would have swept in the document's",
+    "narration as well.",
+    "Two divergences are recorded rather than fixed. `:20` allows Service",
+    "Alerts ten minutes where W008 reports any feed at 65 seconds, so upstream over-",
+    "reports on an alerts feed by this document's lights. `:120` says 200 metres where",
+    "E029 buffers by 0.0017986 degrees, planar and uncorrected for latitude. Neither is",
+    "repairable by a tier that may only add notices."
+  ],
+  "verdicts": {
+    "5#1": {
+      "verdict": "rejected",
+      "code": "R5",
+      "note": "The document describing itself."
+    },
+    "9#1": {
+      "verdict": "rejected",
+      "code": "R5",
+      "note": "The document describing its own structure."
+    },
+    "16#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "About where a feed is published."
+    },
+    "17#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "About access to the URL."
+    },
+    "17#2": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "About API key registration."
+    },
+    "18#1": {
+      "verdict": "folded",
+      "rules": [
+        "P002",
+        "P003"
+      ],
+      "note": "The imperative form of :44 and :89, which P002 and P003 cite. Kept in the index so the class of statement the keyword sweep misses is visible rather than absent."
+    },
+    "19#1": {
+      "verdict": "rule",
+      "rules": [
+        "P004"
+      ],
+      "severity": "WARNING",
+      "note": "P004 fires only for an interval strictly greater than 30 seconds and at most 35, which is exactly the band W007's strict `> 35` cannot reach. 30 exactly satisfies the statement and gets neither."
+    },
+    "19#2": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "'As frequently as possible' names no interval."
+    },
+    "19#3": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "W007. A feed whose header timestamp does not advance is what this statement's violation looks like from outside."
+    },
+    "20#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "W008, which fires on a header older than 65 seconds and is therefore strictly stricter than the 90 this asks for. The ten minutes this allows Service Alerts is the divergence recorded above."
+    },
+    "20#2": {
+      "verdict": "rule",
+      "rules": [
+        "P005"
+      ],
+      "severity": "WARNING",
+      "note": "The second sentence is about the entity timestamp, and the example exists to say a fresh header does not make stale entities fresh. Nothing in the 56 compares an entity timestamp against the clock."
+    },
+    "21#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "About server reliability."
+    },
+    "21#2": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "A statistic over many fetches, not a property of one message."
+    },
+    "22#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "About an HTTP header."
+    },
+    "23#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "About content negotiation."
+    },
+    "24#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Tells consumers to check hasX()."
+    },
+    "24#2": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Tells consumers what to assume when hasX() is false."
+    },
+    "25#1": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "A rule is (message, ctx) and RuleContext carries no URL by design, so the same feed would be valid or invalid depending on how it was handed over. If HTTPS is to be reported it belongs in the run summary, not in the notice stream."
+    },
+    "26#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "'Vast majority' names no fraction."
+    },
+    "26#2": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "'High-density and high-traffic' names no threshold."
+    },
+    "34#1": {
+      "verdict": "rule",
+      "rules": [
+        "P001"
+      ],
+      "severity": "WARNING",
+      "note": "E038 checks validity and \"1.0\" is valid; E048 and E049 gate on v2 rather than asking for it."
+    },
+    "35#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E018."
+    },
+    "36#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E017."
+    },
+    "36#2": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "About HTTP headers."
+    },
+    "36#3": {
+      "verdict": "rejected",
+      "code": "R2",
+      "note": "About load balancer configuration."
+    },
+    "40#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Whether an entity is still relevant to users is producer knowledge."
+    },
+    "40#2": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Tells the consumer what to assume about a dropped entity."
+    },
+    "44#1": {
+      "verdict": "rule",
+      "rules": [
+        "P002"
+      ],
+      "severity": "WARNING"
+    },
+    "50#1": {
+      "verdict": "rule",
+      "rules": [
+        "P006"
+      ],
+      "severity": "WARNING"
+    },
+    "51#1": {
+      "verdict": "rule",
+      "rules": [
+        "P007"
+      ],
+      "severity": "WARNING"
+    },
+    "56#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E047. Stated four times in the document; the index carries it once."
+    },
+    "56#2": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E047. The worked example of the sentence above, also stated four times."
+    },
+    "59#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E002 and E036."
+    },
+    "60#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "P008"
+      ],
+      "severity": "WARNING",
+      "note": "'While the trip is in progress' is the antecedent and the feed does not state trip progress. P008's proxy is 'the TripUpdate exists, is not cancelled, carries at least one stop_time_update, and not every one of those is SKIPPED'. Two shapes fall outside it. A finished trip whose TripUpdate is still published will be reported; that false positive is named in the rule docstring rather than discovered by a user, and it is measured at 9 to 18 occurrences per message, 1.1 to 2.3 percent of TripUpdates, over the recorded MBTA feed, which settles the question in the negative: a VehiclePosition-informed guard would buy 2 percent at the price of a cross-role dependency. The all-SKIPPED conjunct was added after the same measurement, where 618 of P008's 685 occurrences, 90.2 percent, were the 103 trips P007 already reported under :51; such a trip carries no time anywhere so it could never predict, and reporting one finding twice under two citations helps nobody. P007 exempts CANCELED, NEW and DUPLICATED, so those three all-SKIPPED trips are now reported by neither rule, which is what both sentences say: :51 blesses all three by name and a trip calling at no stop is not in progress."
+    },
+    "60#2": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "A validator sees what a feed contains, never what an earlier version contained and this one omits."
+    },
+    "61#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "What the timestamp 'reflects' is producer intent."
+    },
+    "62#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Whether a delay is an observed past value or a prediction is not in the bytes."
+    },
+    "62#2": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E043 and E044."
+    },
+    "72#1": {
+      "verdict": "rejected",
+      "code": "R5",
+      "note": "Owned by S024. The proto marks it `ADDED = 1 [deprecated = true]`, which is machine readable, so the tier whose source states it more precisely owns it."
+    },
+    "78#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "P009"
+      ],
+      "severity": "WARNING",
+      "note": "P009 drops the REPLACEMENT half, 'if the trip is diverted', because diversion is not observable."
+    },
+    "89#1": {
+      "verdict": "rule",
+      "rules": [
+        "P003"
+      ],
+      "severity": "WARNING",
+      "note": "E052 owns the unique half within one message; P003 is the stable half across messages."
+    },
+    "95#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "'Whenever possible' asks whether the producer could have provided stop_sequence, which is producer knowledge."
+    },
+    "96#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E022."
+    },
+    "97#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E025."
+    },
+    "98#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E022."
+    },
+    "99#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E025."
+    },
+    "105#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E046."
+    },
+    "106#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "P010"
+      ],
+      "severity": "WARNING",
+      "note": "P010 asks for scheduled_time somewhere rather than 'for all timepoints', because which stops are timepoints comes from stop_times.timepoint. Reporting 'this NEW trip provides no scheduled times at all' is the half that never false-positives on a partially timepointed trip."
+    },
+    "110#1": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Introduces the table below rather than constraining a message."
+    },
+    "115#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "W001."
+    },
+    "115#2": {
+      "verdict": "rejected",
+      "code": "R3",
+      "note": "Tells consumers which timestamp to use."
+    },
+    "120#1": {
+      "verdict": "rule_in_part",
+      "rules": [
+        "P015"
+      ],
+      "severity": "WARNING",
+      "note": "E029 buffers in degrees, planar, so east to west it is 200*cos(lat) metres while its occurrence text still says 200. P015 covers the north-south axis and the general case where a geodesic 200-metre buffer and the degree buffer disagree in the direction that matters, and fires only where E029 did not. E029 over-reports east-west and a practice rule may only add, so that half is the divergence recorded above."
+    },
+    "126#1": {
+      "verdict": "rule",
+      "rules": [
+        "P011"
+      ],
+      "severity": "WARNING",
+      "note": "E019 has a TripUpdate branch and a VehiclePosition branch and no Alert branch. P011 must not reproduce E019's `% 360` typo or its report-the-last-multiple-tried behaviour: those are compat parity artefacts and P011 has no jar to match."
+    },
+    "128#1": {
+      "verdict": "rule",
+      "rules": [
+        "P012"
+      ],
+      "severity": "WARNING",
+      "note": "P012 fires only on complete coverage of a route's stop set, which is the exact shape this forbids, and never on 'many stops of a route'."
+    },
+    "129#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "'Be concise' names no length."
+    },
+    "133#1": {
+      "verdict": "rejected",
+      "code": "R4",
+      "note": "The document says to use line breaks but bounds neither the length that needs them nor how many."
+    },
+    "141#1": {
+      "verdict": "rule",
+      "rules": [
+        "P013"
+      ],
+      "severity": "WARNING",
+      "note": "E046 asks whether GTFS has times to add the delay to; this says the delay should not be there at all."
+    },
+    "141#2": {
+      "verdict": "folded",
+      "rules": [
+        "P013"
+      ],
+      "note": "The positive half of the same bullet. A feed that drops `delay` and provides `time` satisfies both, so a second rule would report the same stop_time_update twice."
+    },
+    "143#1": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "E006."
+    },
+    "143#2": {
+      "verdict": "rejected",
+      "code": "R1",
+      "note": "Both halves of this sentence are already checked by one of the 56, and the split was measured against the pinned jar rather than argued. Absent: W009, unconditionally. TripDescriptorValidator.java:470-474 fires on !hasScheduleRelationship() for any TripDescriptor, and rules/_shared/walk_trip_descriptor.py:141-142 calls it with none of the whole-feed suppression its stop_time_update overload has, so no feed shape escapes it. Present and not UNSCHEDULED: E013, whose manifest description accepts 'UNSCHEDULED or empty' because the empty exemption is load bearing for compat. Measured over a static feed with frequencies.txt at exact_times=0, one jar invocation per case: the field absent produced W009, present and SCHEDULED produced E013, present and UNSCHEDULED produced nothing. P014 was proposed for the absent half as a band E013 cannot reach; the band against E013 holds, but P014's trigger is a strict subset of W009's, so it was retired rather than shipped with a permanent exemption from the tier overlap invariant. Restoring the module and this verdict is what reverses that."
+    },
+    "162#1": {
+      "verdict": "rejected",
+      "code": "R5",
+      "note": "The document asking to be linked to."
+    },
+    "164#1": {
+      "verdict": "rejected",
+      "code": "R5",
+      "note": "The document asking consuming applications to publish their own."
+    }
+  }
+}

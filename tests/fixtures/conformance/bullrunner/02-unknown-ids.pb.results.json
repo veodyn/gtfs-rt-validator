@@ -1,0 +1,55 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E003",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt trip_id does not exist in GTFS data and does not have schedule_relationship of ADDED",
+      "errorDescription" : "All trip_ids provided in the GTFS-rt feed must exist in the GTFS data, unless the schedule_relationship is ADDED",
+      "occurrenceSuffix" : "does not exist in the GTFS data and does not have schedule_relationship of ADDED"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id not-in-gtfs"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E004",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt route_id does not exist in GTFS data",
+      "errorDescription" : "All route_ids provided in the GTFS-rt feed must exist in the GTFS data",
+      "occurrenceSuffix" : "does not exist in the GTFS data routes.txt"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "route_id ZZ"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E011",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_id does not exist in GTFS data",
+      "errorDescription" : "All stop_ids referenced in GTFS-rt feeds must exist in GTFS stops.txt",
+      "occurrenceSuffix" : "does not exist in GTFS data stops.txt"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id not-in-gtfs stop_id no-such-stop"
+  } ]
+} ]

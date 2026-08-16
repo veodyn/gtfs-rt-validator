@@ -1,0 +1,37 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W008",
+      "severity" : "WARNING",
+      "title" : "Header timestamp is older than 65 seconds",
+      "errorDescription" : "The data in a GTFS-realtime feed should always be less than one minute old",
+      "occurrenceSuffix" : "old which is greater than the recommended age of 65 seconds"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "header.timestamp is 2 min 6 sec"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E038",
+      "severity" : "ERROR",
+      "title" : "Invalid header.gtfs_realtime_version",
+      "errorDescription" : "header.gtfs_realtime_version should be a valid value",
+      "occurrenceSuffix" : "is invalid"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "header.gtfs_realtime_version of 3.0"
+  } ]
+} ]

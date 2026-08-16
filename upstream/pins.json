@@ -1,0 +1,23 @@
+{
+  "gtfs_realtime_validator": {
+    "repo": "MobilityData/gtfs-realtime-validator",
+    "commit": "7041fa3fcaf674bf730e17325c179d329cdff6f2",
+    "date": "2026-04-14"
+  },
+  "gtfs_realtime_proto": {
+    "repo": "google/transit",
+    "path": "gtfs-realtime/proto/gtfs-realtime.proto",
+    "commit": "68158bdce33d8c9c79d07e3a02972aa32d735e5c",
+    "date": "2026-06-30"
+  },
+  "realtime_best_practices": {
+    "repo": "MobilityData/gtfs.org",
+    "path": "docs/en/documentation/realtime/realtime-best-practices.md",
+    "commit": "5a495dbf9a53c3633e3352e0d2d2caabf761ed8a",
+    "date": "2025-06-05"
+  },
+  "bindings_2015": {
+    "artifact": "com.google.transit:gtfs-realtime-bindings:0.0.4",
+    "published": "2015-02-27"
+  }
+}

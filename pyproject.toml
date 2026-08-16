@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gtfs-rt-validator"
+version = "0.1.0"
+description = "Pure-Python validator for GTFS-Realtime feeds. No JVM."
+readme = "README.md"
+requires-python = ">=3.11"
+# The sibling gtfs-validator, and nothing else. It has no dependencies of its
+# own, so the zero-third-party-runtime promise holds transitively;
+# tests/test_no_runtime_dependency.py asserts it, and
+# tests/test_only_adapter_touches_the_sibling.py confines the import to one
+# module.
+#
+# A version pin, not a git SHA. This project reads two things the sibling only
+# exposes from 0.1.2: `open_feed_view`, which landed in 35fac77 after the 0.1.1
+# tag, and `open_raw_view`, which landed in 0a0f678 and is how compat reads a
+# feed the way onebusaway does. Both shipped in 0.1.2, published to PyPI on
+# 2026-08-15, so the earlier git+https pin is gone and a plain install resolves
+# from the index.
+#
+# A lower bound rather than `==`, because the sibling is this project's own
+# sibling and a fix there should reach here without a release on this side.
+dependencies = [
+  "gtfs-validator>=0.1.2",
+]
+license = "MIT"
+
+# `main` returns the exit code rather than raising `SystemExit`, which is what a
+# console script wants: setuptools' generated wrapper passes the return value to
+# `sys.exit`, and a test can read it as a value instead of catching it.
+[project.scripts]
+gtfs-rt-validator = "gtfs_rt_validator.cli:main"
+
+[project.optional-dependencies]
+# gtfs-realtime-bindings is an oracle, never a runtime import. The suite asserts
+# that in tests/test_no_runtime_dependency.py.
+dev = ["pytest>=8", "ruff>=0.6", "coverage>=7", "gtfs-realtime-bindings>=2.2"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# packages.find ships Python modules and stops there. `data/rules.json` is read
+# at run time by report/manifest.py, so without this the package imports fine
+# from a checkout and raises on the first rule lookup after an install.
+# `data/` is deliberately not a package: nothing imports from it, and
+# importlib.resources anchors on `gtfs_rt_validator` itself.
+# tests/test_wheel_ships_the_rules.py builds a wheel and reads the JSON back out
+# of the zip, which is the only check in the suite that would notice this line
+# being deleted.
+[tool.setuptools.package-data]
+gtfs_rt_validator = ["data/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# A skip that only shows as a dot is a check nobody knows stopped running, and
+# two of this suite's skips stand in for the strongest drift enforcement it has:
+# regenerating the rule manifest from upstream's Java, and diffing geometry
+# against the JTS jar. `-ra` prints the reason for every one of them.
+addopts = "-ra"
+
+[tool.coverage.run]
+source = ["src/gtfs_rt_validator"]
+branch = true

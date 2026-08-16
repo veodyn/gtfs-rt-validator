@@ -1,0 +1,59 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W008",
+      "severity" : "WARNING",
+      "title" : "Header timestamp is older than 65 seconds",
+      "errorDescription" : "The data in a GTFS-realtime feed should always be less than one minute old",
+      "occurrenceSuffix" : "old which is greater than the recommended age of 65 seconds"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "header.timestamp is 3333333 min 21 sec"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E002",
+      "severity" : "ERROR",
+      "title" : "stop_times_updates not strictly sorted",
+      "errorDescription" : "stop_time_updates for a given trip_id must be strictly sorted by increasing stop_sequence",
+      "occurrenceSuffix" : "is not strictly sorted by increasing stop_sequence"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.1 stop_sequence [3, 1]"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W009",
+      "severity" : "WARNING",
+      "title" : "schedule_relationship not populated",
+      "errorDescription" : "trip.schedule_relationship and stop_time_update.schedule_relationship should be populated",
+      "occurrenceSuffix" : "does not have a schedule_relationship"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.1 stop_sequence 3 (and potentially more for this trip)"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "trip_id 1.1"
+  } ]
+} ]

@@ -1,0 +1,1086 @@
+{
+  "generated_by": "tools/scan_clauses.py",
+  "tier": "practice",
+  "source": "upstream/realtime-best-practices.md",
+  "source_sha256": "07121d3b8bc0e2b4383010156962ee1641135c868d01b21a0531875051a444ee",
+  "pin": {
+    "repo": "MobilityData/gtfs.org",
+    "path": "docs/en/documentation/realtime/realtime-best-practices.md",
+    "commit": "5a495dbf9a53c3633e3352e0d2d2caabf761ed8a",
+    "date": "2025-06-05"
+  },
+  "counts": {
+    "lines": 166,
+    "headings": 22,
+    "table_recommendation_rows": 26,
+    "top_level_bullets": 23,
+    "free_paragraphs": 16,
+    "normative_statements_raw": 71,
+    "normative_statements_distinct": 62,
+    "found_by_pass_one": 51,
+    "found_by_pass_two": 5,
+    "found_by_hand": 6
+  },
+  "clauses": [
+    {
+      "id": "5#1",
+      "line": 5,
+      "unit_line": 5,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_two",
+      "modals": [
+        "recommended"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "These are recommended practices for describing realtime public transportation information in the [GTFS Realtime](../reference) data format.",
+      "sha256": "69c8f410a3b7c68bf94eaad5a2e4e723670556c12c187e56b6ebfc9999998d6a",
+      "also_at": []
+    },
+    {
+      "id": "9#1",
+      "line": 9,
+      "unit_line": 9,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_two",
+      "modals": [
+        "recommended"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Recommended practices are organized into two primary sections",
+      "sha256": "ff66536141c3f6299deeb835e8929192b7fc2ea8db5ac4b082be314cc0fe68fe",
+      "also_at": []
+    },
+    {
+      "id": "16#1",
+      "line": 16,
+      "unit_line": 16,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Feeds should be published at a public, permanent URL",
+      "sha256": "c4fa1dc3ed2ce309dd91d88e03a063388577d48993427bf174065c1b200a0ede",
+      "also_at": []
+    },
+    {
+      "id": "17#1",
+      "line": 17,
+      "unit_line": 17,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The URL should be directly accessible without requiring a login to access the feed.",
+      "sha256": "7e316847fabe6ef0ca5458eaf566e3ad6e273f145adfd926ed9fe3c37de3cd2c",
+      "also_at": []
+    },
+    {
+      "id": "17#2",
+      "line": 17,
+      "unit_line": 17,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If desired, API keys may be used but registration for API keys should be automated and available to all.",
+      "sha256": "f1960559e5790a36d44b455518ffe6f074e00623e63946f9ea40d66abf70f754",
+      "also_at": []
+    },
+    {
+      "id": "18#1",
+      "line": 18,
+      "unit_line": 18,
+      "scope": "",
+      "kind": "imperative",
+      "found_by": "hand",
+      "modals": [],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Maintain persistent identifiers (id fields) within a GTFS Realtime feed (e.g., FeedEntity.id, VehicleDescriptor.id, CarriageDetails.id) across feed iterations.",
+      "sha256": "3a57ca729f2c3137f8a47d22ee41720192fb742318746440d6540b7ad5daae46",
+      "also_at": []
+    },
+    {
+      "id": "19#1",
+      "line": 19,
+      "unit_line": 19,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "GTFS Realtime feeds should be refreshed at least once every 30 seconds, or whenever the information represented within the feed (position of a vehicle) changes, whichever is more frequent.",
+      "sha256": "f47b16b27b77da41d732979753d20f7010743ef8a992e88e636c2fada5a17c7a",
+      "also_at": []
+    },
+    {
+      "id": "19#2",
+      "line": 19,
+      "unit_line": 19,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "VehiclePositions tend to change more frequently than other feed entities and should be updated as frequently as possible.",
+      "sha256": "0b0f65783638cbe00e02fddd2474a820d73ac9743a712f3f0dd6e0921d913b0b",
+      "also_at": []
+    },
+    {
+      "id": "19#3",
+      "line": 19,
+      "unit_line": 19,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If the content has not changed, the feed should be updated with a new `FeedHeader.timestamp` reflecting that the information is still relevant as of that timestamp.",
+      "sha256": "89e5d2802761f748dea31259ca89e9beaaa81321993358730dd52868df1576ba",
+      "also_at": []
+    },
+    {
+      "id": "20#1",
+      "line": 20,
+      "unit_line": 20,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Data within a GTFS Realtime feed should not be older than 90 seconds for Trip Updates and Vehicle Positions and not older than 10 minutes for Service Alerts.",
+      "sha256": "b922b717d0ef82d4caaf17007df531a44ee08f69a53c27d6e0a629b5788eb032",
+      "also_at": []
+    },
+    {
+      "id": "20#2",
+      "line": 20,
+      "unit_line": 20,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "For example, even if a producer is continuously refreshing the `FeedHeader.timestamp` timestamp every 30 seconds, the age of VehiclePositions within that feed should not be older than 90 seconds.",
+      "sha256": "352f371bb278bf754312225b930a22edad6e430eb7ca6cb0e0d321db7c6136cf",
+      "also_at": []
+    },
+    {
+      "id": "21#1",
+      "line": 21,
+      "unit_line": 21,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The server hosting GTFS Realtime data should be reliable and consistently return validly-formatted protobuf-encoded responses.",
+      "sha256": "d707b42e93ab92e235a347afb74d4834a1be1acd207f6f687146ef8c3545785a",
+      "also_at": []
+    },
+    {
+      "id": "21#2",
+      "line": 21,
+      "unit_line": 21,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Fewer than 1% of responses should be invalid (protobuf errors or fetching errors).",
+      "sha256": "5ba5b4886c1357f02d56c0541560a8a6d588f929861f0067c433a259e6e012ce",
+      "also_at": []
+    },
+    {
+      "id": "22#1",
+      "line": 22,
+      "unit_line": 22,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The web-server hosting GTFS Realtime data should be configured to correctly report the file modification date (see HTTP/1.1 - Request for Comments 2616, under Section 14.29) so consumers can leverage the `If-Modified-Since` HTTP header.",
+      "sha256": "90760a8d38dbf12e1f95b5127557701f6113f9a909a1fd93ce534896903fb200",
+      "also_at": []
+    },
+    {
+      "id": "23#1",
+      "line": 23,
+      "unit_line": 23,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Feeds should provide protocol buffer-encoded feed content by default when queried via an HTTP request at the given URL - consumers should not need to define special HTTP accept headers to receive protocol-buffer encoded content.",
+      "sha256": "653cb59253f267be0e6bab82f5b3f97a85a5e4bf0274672ebf3f6bfd9f0b48d5",
+      "also_at": []
+    },
+    {
+      "id": "24#1",
+      "line": 24,
+      "unit_line": 24,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Due to how protocol buffers encode [optional values](https://developers.google.com/protocol-buffers/docs/proto#optional), before reading data from a GTFS Realtime feed consumers should check for the presence of values using the protocol buffer-generated `hasX()` methods before using that value and should only use the value if `hasX()` is true (where `X` is the name of the field).",
+      "sha256": "02dd5fbf1e5a023a178eccfa37eea295b1e6af908d5d5dee843ef4b9a04d7032",
+      "also_at": []
+    },
+    {
+      "id": "24#2",
+      "line": 24,
+      "unit_line": 24,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If `hasX()` returns `false`, the default value for that field defined in the `gtfs-realtime.proto` value should be assumed.",
+      "sha256": "99029582ad3b60253ed519ee27ce274b3958704aed64297c640997d95314c4da",
+      "also_at": []
+    },
+    {
+      "id": "25#1",
+      "line": 25,
+      "unit_line": 25,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Feeds should use HTTPS instead of HTTP (without encryption) to ensure feed integrity.",
+      "sha256": "6f8da50764bba63c60bbfa3052fd4d9ba28382530c3732e538d642e9c78d4b09",
+      "also_at": []
+    },
+    {
+      "id": "26#1",
+      "line": 26,
+      "unit_line": 26,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Feeds should cover the vast majority of trips included in the companion static GTFS dataset.",
+      "sha256": "fc69543c725589cd22eade55460f468305511299f7fa6df69236c299011ce1fc",
+      "also_at": []
+    },
+    {
+      "id": "26#2",
+      "line": 26,
+      "unit_line": 26,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "In particular, it should include data for high-density and high-traffic city areas and busy routes.",
+      "sha256": "71961eff30c8c836137a533d35cd040c2e91e71a091d3141839bf6dcaa0df236",
+      "also_at": []
+    },
+    {
+      "id": "34#1",
+      "line": 34,
+      "unit_line": 34,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "All GTFS Realtime feeds should be \"2.0\" or higher, as early version of GTFS Realtime did not require all fields needed to represent various transit situations adequately.",
+      "sha256": "4c4e528bfb7b19872412939939c28f9bae292cafe7924befe55b475dfe172f06",
+      "also_at": []
+    },
+    {
+      "id": "35#1",
+      "line": 35,
+      "unit_line": 35,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "This timestamp should not decrease between two sequential feed iterations.",
+      "sha256": "432e4deebf6317fa2f1f1b8155cf7aae70ca5534ce10a72dcfe4abb04a2efe85",
+      "also_at": []
+    },
+    {
+      "id": "36#1",
+      "line": 36,
+      "unit_line": 36,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "This timestamp value should always change if the feed contents change - the feed contents should not change without updating the header `timestamp`.",
+      "sha256": "de5e3aeb0f704c59993121d6adfa0cab4daf760315245402040c869233b44f26",
+      "also_at": []
+    },
+    {
+      "id": "36#2",
+      "line": 36,
+      "unit_line": 36,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "*Possible solution* - Producers should provide a `Last-Modified` HTTP header, and consumers should pass their most recent `If-Modified-Since` HTTP header to avoid receiving stale data.",
+      "sha256": "986cdaa784b24da93ec56cdb94ad79e2ce14547e5e3f7f60383d2c864609ea37",
+      "also_at": []
+    },
+    {
+      "id": "36#3",
+      "line": 36,
+      "unit_line": 36,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "cannot"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "*Possible solution* - If HTTP headers cannot be used, options such as sticky sessions can be used to ensure that each consumer is routed to the same producer server.",
+      "sha256": "73535bf25ad2eba316aa5227b5f0fa92fe18ebd18013dd284508e6c256cec1b2",
+      "also_at": []
+    },
+    {
+      "id": "40#1",
+      "line": 40,
+      "unit_line": 40,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "All entities should only be removed from a GTFS Realtime feed when they are no longer relevant to users.",
+      "sha256": "9f7535b94e371ddf8f34fa04907b5d38472d8ffa0dd0f6e2ccc1246c07df8bc9",
+      "also_at": []
+    },
+    {
+      "id": "40#2",
+      "line": 40,
+      "unit_line": 40,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If an entity is provided in one feed instance but dropped in a subsequent feed update, it should be assumed that there is no real-time information for that entity.",
+      "sha256": "afc422d682eb95940ded261c82ae039f50ddc1a659707cab3730662b8e7ff6ff",
+      "also_at": []
+    },
+    {
+      "id": "44#1",
+      "line": 44,
+      "unit_line": 44,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Should be kept stable over the entire trip duration",
+      "sha256": "a9a6b8a9f589f4ecd5e22f8f5ed5c2b1b5955a38765fb9e181c7e083d81b49f8",
+      "also_at": [
+        114
+      ]
+    },
+    {
+      "id": "50#1",
+      "line": 50,
+      "unit_line": 50,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "When canceling trips over a number of days, producers should provide TripUpdates referencing the given `trip_ids` and `start_dates` as `CANCELED` as well as an Alert with `NO_SERVICE` referencing the same `trip_ids` and `TimeRange` that can be shown to riders explaining the cancellation (e.g., detour).",
+      "sha256": "592f0cdbcd1e8ed361667e0427308eac7aa2a7c6032efae9764ba3ef27dd700c",
+      "also_at": [
+        127
+      ]
+    },
+    {
+      "id": "51#1",
+      "line": 51,
+      "unit_line": 51,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If no stops in a trip will be visited, the trip should be `CANCELED` instead of having all `stop_time_updates` being marked as `SKIPPED`, unless the trip was a `NEW` or `DUPLICATED` trip and was subsequently canceled.",
+      "sha256": "78b267b508f05fc5eed7b051e4e086d55d0617848814cbb635f190256546a672",
+      "also_at": []
+    },
+    {
+      "id": "56#1",
+      "line": 56,
+      "unit_line": 56,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If separate `VehiclePosition` and `TripUpdate` feeds are provided, [TripDescriptor](#tripdescriptor) and [VehicleDescriptor](#vehicledescriptor) ID values pairing should match between the two feeds.",
+      "sha256": "9044cbb1cceebec3eae75df2332715a3a84e3649a88ed6d389f29a1cc7a11e77",
+      "also_at": [
+        58,
+        66,
+        83
+      ]
+    },
+    {
+      "id": "56#2",
+      "line": 56,
+      "unit_line": 56,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "For example, a `VehiclePosition` entity has `vehicle_id:A` and `trip_id:4`, then the corresponding `TripUpdate` entity should also have `vehicle_id:A` and `trip_id:4`.",
+      "sha256": "2550b3f57967dbe99389f874c7a48982df3f7c5047a4879a1d7433bd5e2c3cdb",
+      "also_at": [
+        58,
+        68,
+        85
+      ]
+    },
+    {
+      "id": "59#1",
+      "line": 59,
+      "unit_line": 59,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "`stop_time_updates` for a given `trip_id` should be strictly ordered by increasing `stop_sequence` and no `stop_sequence` should be repeated.",
+      "sha256": "503fff6202c07f6540b0d9d8455d0c059be690abe7656e035ea88a884e74db48",
+      "also_at": []
+    },
+    {
+      "id": "60#1",
+      "line": 60,
+      "unit_line": 60,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should",
+        "at least one"
+      ],
+      "severities": [
+        "ERROR",
+        "WARNING"
+      ],
+      "text": "While the trip is in progress, all `TripUpdates` should include at least one `stop_time_update` with a predicted arrival or departure time in the future.",
+      "sha256": "fa5b1b54a21bcc7489aa7584c456cc41d3aea9ff86246d167337e788336607f0",
+      "also_at": []
+    },
+    {
+      "id": "60#2",
+      "line": 60,
+      "unit_line": 60,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Note that the [GTFS Realtime spec](../feed-entities/trip-updates/#stoptimeupdate) says that producers should not drop a past `StopTimeUpdate` if it refers to a stop with a scheduled arrival time in the future for the given trip (i.e. the vehicle has passed the stop ahead of schedule), as otherwise it will be concluded that there is no update for this stop.",
+      "sha256": "f6ac6a64a6f4a6d840af2c7f2e9de13022253f6a75769426f53dfb96c4f0328c",
+      "also_at": []
+    },
+    {
+      "id": "61#1",
+      "line": 61,
+      "unit_line": 61,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Should reflect the time this prediction for this trip was updated.",
+      "sha256": "696c37a6ea7f8aca3f3d43390700c200c5f064543c8626d9b6eb3ea2a14f8e02",
+      "also_at": []
+    },
+    {
+      "id": "62#1",
+      "line": 62,
+      "unit_line": 62,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "`TripUpdate.delay` should represent schedule deviation, i.e., the observed past value for how ahead/behind schedule the vehicle is.",
+      "sha256": "79852a86d02238c503af8093ecdc043e9efb1758a562bdedefb2e0f8f4816356",
+      "also_at": []
+    },
+    {
+      "id": "62#2",
+      "line": 62,
+      "unit_line": 62,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Predictions for future stops should be provided through `StopTimeEvent.delay` or `StopTimeEvent.time`.",
+      "sha256": "8f4325cbab326370172fe3e0b79c69c5986789c180ec9dd636a6049e583f81ff",
+      "also_at": []
+    },
+    {
+      "id": "72#1",
+      "line": 72,
+      "unit_line": 72,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_two",
+      "modals": [
+        "recommended"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The behavior of `ADDED` trips are unspecified and the use of this enumeration is not recommended.",
+      "sha256": "6877c0347ab6a69656ab9dc61d367faa6225a039882325dc81c30dd6c3c4e335",
+      "also_at": []
+    },
+    {
+      "id": "78#1",
+      "line": 78,
+      "unit_line": 78,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Should always be provided for a trip with `TripDescriptor.schedule_relationship` = `NEW`, and provided for a trip with `TripDescriptor.schedule_relationship` = `REPLACEMENT` if the trip is diverted.",
+      "sha256": "15259bf795aabfa9f95d67b4530a6253d2b36eddf06250fed4688d413b875baa",
+      "also_at": []
+    },
+    {
+      "id": "89#1",
+      "line": 89,
+      "unit_line": 89,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Should uniquely and stably identify a vehicle over the entire trip duration",
+      "sha256": "ef27cd2d380a35d9317eabfbee3e1fd2f097184831686e9973b4147479286813",
+      "also_at": [
+        116
+      ]
+    },
+    {
+      "id": "95#1",
+      "line": 95,
+      "unit_line": 95,
+      "scope": "",
+      "kind": "imperative",
+      "found_by": "hand",
+      "modals": [],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Provide `stop_sequence` whenever possible, as it unambiguously resolves to a GTFS stop time in `stop_times.txt` unlike `stop_id`, which can occur more than once in a trip (e.g., loop route).",
+      "sha256": "f84414c697a22ee53a73bec931d5b28ab265428acb344e4a534484b75da8f869",
+      "also_at": []
+    },
+    {
+      "id": "96#1",
+      "line": 96,
+      "unit_line": 96,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Arrival times between sequential stops should increase - they should not be the same or decrease.",
+      "sha256": "172d54de9ac4533a08df43fa1417dc87df76c1be3397d10948404253c91dd3f2",
+      "also_at": []
+    },
+    {
+      "id": "97#1",
+      "line": 97,
+      "unit_line": 97,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Arrival `time` (specified in [StopTimeEvent](#stoptimeevent)) should be before the departure `time` for the same stop if a layover or dwell time is expected - otherwise, arrival `time` should be be the same as departure `time`.",
+      "sha256": "25b2f0d499973ec3980180f4c8d1e593cd4e96cd708d266e84e963fd2b28607b",
+      "also_at": []
+    },
+    {
+      "id": "98#1",
+      "line": 98,
+      "unit_line": 98,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Departure times between sequential stops should increase - they should not be the same or decrease.",
+      "sha256": "c804b6e734bdd74648896f9e747bfaf3000e29c86e5da2ac202a49a53bcaf584",
+      "also_at": []
+    },
+    {
+      "id": "99#1",
+      "line": 99,
+      "unit_line": 99,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Departure `time` (specified in [StopTimeEvent](#stoptimeevent)) should be the same as the arrival `time` for the same stop if no layover or dwell time is expected - otherwise, departure `time` should be after arrival `time` .",
+      "sha256": "9f2913e3898d6c3860b4fd025da536a15a3219e0c9c1411b3d8d9b8f395fbeee",
+      "also_at": []
+    },
+    {
+      "id": "105#1",
+      "line": 105,
+      "unit_line": 105,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If only `delay` is provided in a `stop_time_update` `arrival` or `departure` (and not `time`), then the GTFS [`stop_times.txt`](../../schedule/reference/#stop_timestxt) should contain `arrival_times` and/or `departure_times` for these corresponding stops.",
+      "sha256": "00268344735f50cbc9d6cedebc692a54b8905dcd92d072e3aa98e5e73bd41b17",
+      "also_at": []
+    },
+    {
+      "id": "106#1",
+      "line": 106,
+      "unit_line": 106,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If the trip is a new or replacement trip, and the trip will run according to a schedule (which can be a modified schedule in case of a replacement trip), `scheduled_time` should be provided for all timepoints.",
+      "sha256": "112d005bc3ce7332400ddf15da6534b844028c9415202c86b35ef73940a19c5c",
+      "also_at": []
+    },
+    {
+      "id": "110#1",
+      "line": 110,
+      "unit_line": 110,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should",
+        "recommended"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Following are the recommended fields that should be included for a VehiclePostions feed to provide consumers with high-quality data (e.g., for generating predictions)",
+      "sha256": "cb621709df783511091eedce37fece071c773def249ae9d0ec313bc15e91251e",
+      "also_at": []
+    },
+    {
+      "id": "115#1",
+      "line": 115,
+      "unit_line": 115,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_two",
+      "modals": [
+        "recommended"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Providing the timestamp at which vehicle position was measured is strongly recommended.",
+      "sha256": "dbcaa23bf9da63f9d31608e210da5e68d5d87d3b0d024018523c3cbaef4fc5cf",
+      "also_at": []
+    },
+    {
+      "id": "115#2",
+      "line": 115,
+      "unit_line": 115,
+      "scope": "",
+      "kind": "table_row",
+      "found_by": "pass_one",
+      "modals": [
+        "must"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "Otherwise, consumers must use the message timestamp, which can have misleading results for riders when the last message was updated more frequently than the individual position.",
+      "sha256": "f2552c9531a5d582aa8b98eec40d85b6f00643c5c27d807a5218548e2d03f048",
+      "also_at": []
+    },
+    {
+      "id": "120#1",
+      "line": 120,
+      "unit_line": 120,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "The vehicle position should be within 200 meters of the GTFS `shapes.txt` data for the current trip unless there is an alert with the effect of `DETOUR` for this `trip_id`.",
+      "sha256": "fc080284fe052ab23fc4558a2b226c6c4b16a338fd1b9fc3175deaf38d81e77e",
+      "also_at": []
+    },
+    {
+      "id": "126#1",
+      "line": 126,
+      "unit_line": 126,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "When `trip_id` and `start_time` are within `exact_time=1` interval, `start_time` should be later than the beginning of the interval by an exact multiple of `headway_secs`.",
+      "sha256": "e5192971a5dd585f3aaa16a71f96dd92ffc7309db99af15e44f851fd8e1dc202",
+      "also_at": []
+    },
+    {
+      "id": "128#1",
+      "line": 128,
+      "unit_line": 128,
+      "scope": "",
+      "kind": "imperative",
+      "found_by": "hand",
+      "modals": [],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Do not apply the alert to every stop of the line.",
+      "sha256": "f1cfc73dfdba824b521812dd12307fd7cc053b46a22b2ac0114d24d4b6f3958e",
+      "also_at": []
+    },
+    {
+      "id": "129#1",
+      "line": 129,
+      "unit_line": 129,
+      "scope": "",
+      "kind": "imperative",
+      "found_by": "hand",
+      "modals": [],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Please be concise.",
+      "sha256": "be34a47e48cacd6a0e2ea34f0e9d074435e6f2ae33a5f5c7bccbf72de484ca65",
+      "also_at": []
+    },
+    {
+      "id": "133#1",
+      "line": 133,
+      "unit_line": 133,
+      "scope": "",
+      "kind": "imperative",
+      "found_by": "hand",
+      "modals": [],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Use line breaks to make your service alert easier to read.",
+      "sha256": "782c0d6083f715da2a4e9f4cff52045754aed52660791a1f2893b5498bb578fa",
+      "also_at": []
+    },
+    {
+      "id": "141#1",
+      "line": 141,
+      "unit_line": 141,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "In [TripUpdate.StopTimeUpdate](#stoptimeupdate), the [StopTimeEvent](#stoptimeevent) for `arrival` and `departure` should not contain `delay` because frequency-based trips do not follow a fixed schedule.",
+      "sha256": "a3ae3269bde55def717d5b1f2b221f3c2007b350dbda95454d980d702d0f4933",
+      "also_at": []
+    },
+    {
+      "id": "141#2",
+      "line": 141,
+      "unit_line": 141,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Instead, `time` should be provided to indicate arrival/departure predictions.",
+      "sha256": "819e2d7865229dd6a20e92c3aeec4df5fc5f0254c3aece5d7fa91911fa2f1482",
+      "also_at": []
+    },
+    {
+      "id": "143#1",
+      "line": 143,
+      "unit_line": 143,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "must",
+        "required"
+      ],
+      "severities": [
+        "ERROR"
+      ],
+      "text": "As required by the spec, when describing `trip` in [TripUpdate](#tripupdate) or [VehiclePosition](#vehicleposition) by using [TripDescriptor](#tripdescriptor), all of `trip_id`, `start_time`, and `start_date` must be provided.",
+      "sha256": "503db128756578d471863ce417612cde8c370e2b8a6c0421e476decb8fd3a99f",
+      "also_at": []
+    },
+    {
+      "id": "143#2",
+      "line": 143,
+      "unit_line": 143,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_one",
+      "modals": [
+        "should"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Additionally, `schedule_relationship` should be `UNSCHEDULED`.",
+      "sha256": "c33299e6d358ded66467b1a089cbe394c5ec47242d14444c95e989c6e8650c34",
+      "also_at": []
+    },
+    {
+      "id": "162#1",
+      "line": 162,
+      "unit_line": 162,
+      "scope": "",
+      "kind": "imperative",
+      "found_by": "hand",
+      "modals": [],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "Please link here in order to provide feed producers with guidance for correct formation of GTFS Realtime data.",
+      "sha256": "0a72805cd9fe5da9126ec796dea13020d5200be6a5a0f219d1c5d7f417559149",
+      "also_at": []
+    },
+    {
+      "id": "164#1",
+      "line": 164,
+      "unit_line": 164,
+      "scope": "",
+      "kind": "paragraph",
+      "found_by": "pass_two",
+      "modals": [
+        "recommended"
+      ],
+      "severities": [
+        "WARNING"
+      ],
+      "text": "If a GTFS Realtime-consuming application makes requirements or recommendations for GTFS Realtime data practices that are not described here, it is recommended to publish a document with those requirements or recommendations to supplement these common best practices.",
+      "sha256": "43e7e2ac826e5d3194dc6e020b8d9c7bb3a284a0e3a8a12467f8bc4e3f953101",
+      "also_at": []
+    }
+  ]
+}

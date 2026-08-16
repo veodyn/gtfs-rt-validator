@@ -1,0 +1,801 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "W003",
+      "severity" : "WARNING",
+      "title" : "ID in one feed missing from the other",
+      "errorDescription" : "a trip_id that is provided in the VehiclePositions feed should be provided in the TripUpdates feed, and a vehicle_id that is provided in the TripUpdates feed should be provided in the VehiclePositions feed",
+      "occurrenceSuffix" : ""
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh55 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh56 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh57 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh58 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh59 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh45 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh46 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh47 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh48 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh49 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh50 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh51 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh52 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh53 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh54 is in TripUpdates but not in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh35 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh34 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh37 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh36 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh39 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh38 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh40 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh42 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh41 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh44 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh43 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh24 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh23 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh26 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh25 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh28 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh27 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh29 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh9 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh31 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh30 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh7 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh33 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh8 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh32 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh5 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh6 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh3 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh4 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh1 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh2 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh0 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh13 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh57 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh12 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh56 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh15 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh59 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh14 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh58 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh17 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh16 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh19 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh18 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh20 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh22 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh21 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh46 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh45 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh48 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh47 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh49 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh51 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh50 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh53 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh52 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh11 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh55 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh10 is in VehiclePositions but not in TripUpdates feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id vpVeh54 is in VehiclePositions but not in TripUpdates feed"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E047",
+      "severity" : "ERROR",
+      "title" : "VehiclePosition and TripUpdate ID pairing mismatch",
+      "errorDescription" : "If separate `VehiclePositions` and `TripUpdates` feeds are provided, `VehicleDescriptor` or `TripDescriptor` ID value pairing should match between the two feeds.",
+      "occurrenceSuffix" : "- ID pairing between feeds should match"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh55 and trip_id 11 pairing in TripUpdates does not match vehicle_id vpVeh48 and trip_id 11 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh56 and trip_id 12 pairing in TripUpdates does not match vehicle_id vpVeh49 and trip_id 12 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh57 and trip_id 13 pairing in TripUpdates does not match vehicle_id vpVeh50 and trip_id 13 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh58 and trip_id 14 pairing in TripUpdates does not match vehicle_id vpVeh51 and trip_id 14 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh59 and trip_id 15 pairing in TripUpdates does not match vehicle_id vpVeh52 and trip_id 15 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh45 and trip_id 1 pairing in TripUpdates does not match vehicle_id vpVeh53 and trip_id 1 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh46 and trip_id 2 pairing in TripUpdates does not match vehicle_id vpVeh54 and trip_id 2 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh47 and trip_id 3 pairing in TripUpdates does not match vehicle_id vpVeh55 and trip_id 3 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh48 and trip_id 4 pairing in TripUpdates does not match vehicle_id vpVeh56 and trip_id 4 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh49 and trip_id 5 pairing in TripUpdates does not match vehicle_id vpVeh57 and trip_id 5 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh50 and trip_id 6 pairing in TripUpdates does not match vehicle_id vpVeh58 and trip_id 6 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh51 and trip_id 7 pairing in TripUpdates does not match vehicle_id vpVeh59 and trip_id 7 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh52 and trip_id 8 pairing in TripUpdates does not match vehicle_id vpVeh45 and trip_id 8 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh53 and trip_id 9 pairing in TripUpdates does not match vehicle_id vpVeh46 and trip_id 9 pairing in VehiclePositions feed"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle_id tuVeh54 and trip_id 10 pairing in TripUpdates does not match vehicle_id vpVeh47 and trip_id 10 pairing in VehiclePositions feed"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E029",
+      "severity" : "ERROR",
+      "title" : "Vehicle position far from trip shape",
+      "errorDescription" : "The vehicle position should be within a certain distance of the GTFS shapes.txt data for the current trip unless there is a Service Alert with the Effect of DETOUR for this trip_id.",
+      "occurrenceSuffix" : "- vehicle should be near trip shape or on DETOUR"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh0 trip_id 8 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh1 trip_id 9 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh2 trip_id 10 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh5 trip_id 13 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh6 trip_id 14 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh7 trip_id 15 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh10 trip_id 3 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh11 trip_id 4 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh12 trip_id 5 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh13 trip_id 6 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh14 trip_id 7 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh15 trip_id 8 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh16 trip_id 9 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh17 trip_id 10 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh20 trip_id 13 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh21 trip_id 14 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh22 trip_id 15 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh25 trip_id 3 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh26 trip_id 4 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh27 trip_id 5 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh28 trip_id 6 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh29 trip_id 7 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh30 trip_id 8 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh31 trip_id 9 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh32 trip_id 10 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh35 trip_id 13 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh36 trip_id 14 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh37 trip_id 15 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh40 trip_id 3 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh41 trip_id 4 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh42 trip_id 5 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh43 trip_id 6 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh44 trip_id 7 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh45 trip_id 8 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh46 trip_id 9 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh47 trip_id 10 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh50 trip_id 13 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh51 trip_id 14 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh52 trip_id 15 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh55 trip_id 3 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh56 trip_id 4 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh57 trip_id 5 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh58 trip_id 6 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "vehicle.id vpVeh59 trip_id 7 at (28.063805,-82.41899) is more than 200.0 meters (0.12 mile(s)) from the GTFS trip shape"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E045",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt stop_time_update stop_sequence and stop_id do not match GTFS",
+      "errorDescription" : "If GTFS-rt stop_time_update contains both stop_sequence and stop_id, the values must match the GTFS data in stop_times.txt",
+      "occurrenceSuffix" : "- stop_ids should be the same"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 3 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 414"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 4 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 414"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 5 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 6 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 7 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 8 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 9 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 10 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 11 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 12 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 13 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 14 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 15 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 3 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 414"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 4 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 414"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 5 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 6 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 7 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 8 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 9 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 10 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 11 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 12 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 13 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 14 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 15 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 3 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 414"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 4 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 414"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 5 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 6 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 7 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 8 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 9 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 10 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 11 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 12 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 13 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 14 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 15 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 3 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 414"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 4 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 414"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 5 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 6 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 7 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 8 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 9 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 10 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 302"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 11 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 12 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 13 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 14 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  }, {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt trip_id 15 stop_sequence 1 has stop_id 222 but GTFS stop_sequence 1 has stop_id 421"
+  } ]
+} ]

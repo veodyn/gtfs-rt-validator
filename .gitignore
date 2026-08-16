@@ -1,0 +1,35 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.env
+*.log
+.DS_Store
+
+# The differential needs a jar built from the pinned upstream SHA, plus a corpus
+# of archived .pb files. Both are large, and the corpus is recorded from live
+# feeds rather than authored here. tools/build_jar.py builds the first and
+# tools/fetch_corpus.py records the second; the README says what each is for.
+corpus/
+*.jar
+jar-build/
+
+# The 2015 schema generator downloads these from Maven Central on demand.
+tools/.jars/
+
+# tools/map_rules.py caches upstream's Java here, one directory per pinned SHA.
+# The manifest it produces is committed; the sources it reads are upstream's.
+tools/.upstream/
+
+# Session and review logs. They are transcripts of a machine rather than of this
+# project: absolute home paths, the names of unrelated repositories sitting
+# beside this one, and whatever the tool happened to print. What a review
+# establishes belongs in the code it corrects.
+tasks/

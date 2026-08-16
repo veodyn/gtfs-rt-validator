@@ -1,0 +1,73 @@
+[ {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E030",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt alert trip_id does not belong to GTFS-rt alert route_id in GTFS trips.txt",
+      "errorDescription" : "The alert.informed_entity.trip.trip_id should belong to the specified alert.informed_entity.route_id in GTFS trips.txt",
+      "occurrenceSuffix" : "- informed_entity.route_id must match GTFS data"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "alert ID trip-not-on-route informed_entity.trip.trip_id 1 does not belong to informed_entity.route_id B (GTFS says it belongs to route_id A)"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E031",
+      "severity" : "ERROR",
+      "title" : "Alert informed_entity.route_id does not match informed_entity.trip.route_id",
+      "errorDescription" : "The alert.informed_entity.trip.route_id should be the same as the specified alert-informed_entity.route_id.",
+      "occurrenceSuffix" : "- routes_ids must be the same"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "alert ID route-contradicts-trip informed_entity.route_id A does not equal informed_entity.trip.route_id B"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E034",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt agency_id does not exist in GTFS data",
+      "errorDescription" : "All agency_ids provided in the GTFS-rt alert.informed_entity.agency_id should also exist in GTFS agency.txt",
+      "occurrenceSuffix" : "does not exist in the GTFS data agency.txt"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "alert ID unknown-agency agency_id no-such-agency"
+  } ]
+}, {
+  "errorMessage" : {
+    "messageId" : null,
+    "gtfsRtFeedIterationModel" : null,
+    "validationRule" : {
+      "errorId" : "E035",
+      "severity" : "ERROR",
+      "title" : "GTFS-rt trip.trip_id does not belong to GTFS-rt trip.route_id in GTFS trips.txt",
+      "errorDescription" : "The GTFS-rt trip.trip_id should belong to the specified trip.route_id in GTFS trips.txt",
+      "occurrenceSuffix" : "in GTFS trips.txt"
+    },
+    "errorDetails" : null
+  },
+  "occurrenceList" : [ {
+    "occurrenceId" : 0,
+    "messageLogModel" : null,
+    "prefix" : "GTFS-rt entity ID route-contradicts-trip trip_id 1 has route_id B but belongs to GTFS route_id A"
+  } ]
+} ]
