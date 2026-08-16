@@ -29,7 +29,7 @@ carrying its severity, a total, and samples that name the entity:
 ```json
 {
   "summary": {
-    "validatorVersion": "0.1.0",
+    "validatorVersion": "0.1.1",
     "validatedAt": "2026-08-16T15:51:39Z",
     "gtfsInput": "bullrunner-gtfs.zip",
     "gtfsRealtimeInputs": ["TripUpdates.pb"],
