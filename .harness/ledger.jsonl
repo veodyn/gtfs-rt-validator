@@ -1,0 +1,15 @@
+{"ts":"2026-08-16T17:41:12Z","rule":"lint","severity":"block","file":"src/gtfs_rt_validator/runner/config.py","detail":"ruff check failed","session":""}
+{"ts":"2026-08-16T17:41:49Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/runner/config.py","detail":"208 lines (target <200)","session":""}
+{"ts":"2026-08-16T17:42:00Z","rule":"lint","severity":"block","file":"src/gtfs_rt_validator/runner/__init__.py","detail":"ruff check failed","session":""}
+{"ts":"2026-08-16T17:42:03Z","rule":"lint","severity":"block","file":"src/gtfs_rt_validator/runner/__init__.py","detail":"ruff check failed","session":""}
+{"ts":"2026-08-16T17:42:13Z","rule":"file-size","severity":"block","file":"src/gtfs_rt_validator/api.py","detail":"302 lines (limit 300)","session":""}
+{"ts":"2026-08-16T17:43:39Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/api.py","detail":"226 lines (target <200)","session":""}
+{"ts":"2026-08-16T17:44:14Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/runner/run.py","detail":"269 lines (target <200)","session":""}
+{"ts":"2026-08-16T17:44:16Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/runner/run.py","detail":"270 lines (target <200)","session":""}
+{"ts":"2026-08-16T17:44:49Z","rule":"file-size","severity":"warn","file":"tests/test_api.py","detail":"288 lines (target <200)","session":""}
+{"ts":"2026-08-16T17:44:51Z","rule":"file-size","severity":"warn","file":"tests/test_cli.py","detail":"269 lines (target <200)","session":""}
+{"ts":"2026-08-16T17:52:10Z","rule":"file-size","severity":"warn","file":"tests/test_prepared_feed.py","detail":"210 lines (target <200)","session":""}
+{"ts":"2026-08-16T17:52:10Z","rule":"lint","severity":"block","file":"tests/test_prepared_feed.py","detail":"ruff check failed","session":""}
+{"ts":"2026-08-16T17:52:30Z","rule":"lint","severity":"block","file":"tests/test_prepared_feed.py","detail":"ruff check failed","session":""}
+{"ts":"2026-08-16T17:52:30Z","rule":"file-size","severity":"warn","file":"tests/test_prepared_feed.py","detail":"204 lines (target <200)","session":""}
+{"ts":"2026-08-16T17:52:33Z","rule":"file-size","severity":"warn","file":"tests/test_prepared_feed.py","detail":"205 lines (target <200)","session":""}

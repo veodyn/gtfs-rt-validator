@@ -3,9 +3,9 @@
   "do_not_edit": "Regenerate with .venv/bin/python tools/tier_counts.py",
   "tier": "spec",
   "mode": "modern",
-  "generated_at": "2026-08-16T16:49:20Z",
-  "code_revision": "57eac5fdf5cf87428e9b45b74de1122c4f2b12d1",
-  "validator_version": "0.1.1",
+  "generated_at": "2026-08-16T18:11:52Z",
+  "code_revision": "d0611f5685b338e66a074badcb6093344f6e37ac",
+  "validator_version": "0.2.0",
   "corpus_manifest": "tests/fixtures/agencies/manifest.json",
   "corpus_recorded_at": "2026-08-15T18:50:34Z",
   "pins": {

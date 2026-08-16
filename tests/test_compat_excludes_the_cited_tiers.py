@@ -13,7 +13,7 @@ not, and what it adds is *scope*.
   a cleared registration table. Once `rules/spec/` has real modules that is no
   longer the same claim, which is why the assertions here run against whatever
   `discover()` actually imported.
-- **The writer.** `report/compat.py:_validation_rule` calls `manifest.rule()`
+- **The writer.** `report/compat.py:validation_rule` calls `manifest.rule()`
   for the five strings it emits inline, so an `S` id raises `KeyError` there
   rather than producing a bean of empty strings. Defence in depth: a rule that
   never ran never reaches it.
@@ -91,12 +91,12 @@ def test_a_real_cited_tier_module_on_disk_does_not_reach_compat(tier, tmp_path):
 
 
 def test_the_writer_refuses_a_cited_tier_id_rather_than_emitting_an_empty_bean():
-    """The second guard, exercised rather than described. `_validation_rule`
+    """The second guard, exercised rather than described. `validation_rule`
     resolves five strings through the packed manifest, which has no `S` row, so
     the failure is loud at the point of writing instead of a results file with
     an empty title that diffs clean against nothing."""
     from gtfs_rt_validator.report import compat
 
     with pytest.raises(KeyError):
-        compat._validation_rule("S001")
-    assert compat._validation_rule("E001")["errorId"] == manifest.rule("E001").error_id
+        compat.validation_rule("S001")
+    assert compat.validation_rule("E001")["errorId"] == manifest.rule("E001").error_id

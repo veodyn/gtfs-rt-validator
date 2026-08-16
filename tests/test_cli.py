@@ -33,7 +33,7 @@ def result_with(rule_id: str) -> api.Result:
     return api.Result(
         mode=Mode.MODERN,
         gtfs_input="feed.zip",
-        run=RunResult(notices, NoticeContainer(), 1, 0, ("tu.pb",), {"rt": "tu.pb"}),
+        run=RunResult(notices, NoticeContainer(), 1, 0, ("tu.pb",), {"rt": "tu.pb"}, ("E001",)),
         validated_at="2026-08-14T09:00:00Z",
         validation_time_seconds=0.5,
     )

@@ -30,6 +30,8 @@ def test_the_report_is_a_summary_and_then_the_notices():
     assert payload["summary"]["validatorVersion"] == VERSION
     assert payload["summary"]["gtfsInput"] == "feed.zip"
     assert payload["summary"]["gtfsRealtimeInputs"] == [MESSAGE]
+    assert payload["summary"]["mode"] == "modern"
+    assert payload["summary"]["rulesRun"] == ["E002", "W002"]
 
 
 def test_a_summary_field_that_was_never_set_is_absent_rather_than_null():
@@ -38,6 +40,12 @@ def test_a_summary_field_that_was_never_set_is_absent_rather_than_null():
     assert "gtfsInput" not in summary["summary"]
     assert "validationTimeSeconds" not in summary["summary"]
     assert summary["summary"]["gtfsRealtimeInputs"] == []
+    # `rulesRun` is `None` by default rather than `()`, so a summary nobody
+    # handed a registry to says nothing instead of claiming no rules ran.
+    # `tests/test_rules_run_inventory.py` owns the other half: a run whose
+    # registry really was empty reports `[]`.
+    assert "rulesRun" not in summary["summary"]
+    assert "mode" not in summary["summary"]
 
 
 def test_the_run_dependent_fields_are_named_once():

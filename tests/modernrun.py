@@ -47,8 +47,14 @@ def a_run() -> NoticeContainer:
 def a_summary() -> RunSummary:
     return RunSummary(
         validated_at="2026-08-14T09:00:00Z",
+        mode="modern",
         gtfs_input="feed.zip",
         gtfs_realtime_inputs=(MESSAGE,),
         output_directory="out",
         messages_validated=1,
+        #: The registry this small run walked, so the writer's tests see the
+        #: field a real run fills. What proves it is *derived* rather than
+        #: written down is `tests/test_rules_run_inventory.py`, which drives
+        #: real runs against deliberately short registries.
+        rules_run=("E002", "W002"),
     )

@@ -61,9 +61,10 @@ def test_an_unreadable_realtime_path_exits_zero(tmp_path, capsys):
         "before walking the realtime path at :168, so an agency-less archive dies on "
         "TimeZone.getTimeZone(null) first and exits nonzero. This project resolves "
         "the walk first and reports the realtime failure, exiting 0. Fixing it means "
-        "loading the static feed before resolving inputs, which the api boundary does "
-        "not currently allow without preparing twice, and preparing an 18 MB archive "
-        "twice costs about a minute. Recorded rather than hidden."
+        "loading the static feed before resolving inputs. That used to cost a second "
+        "read of an 18 MB archive, about a minute; api.prepare_feed now reads it once "
+        "and hands the result to the run, so the cost objection is gone and only the "
+        "cli ordering is left. Recorded rather than hidden."
     ),
 )
 def test_a_broken_gtfs_beats_an_unreadable_realtime_path(tmp_path):

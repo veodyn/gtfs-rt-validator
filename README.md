@@ -23,20 +23,26 @@ Python 3.11 or newer.
 
 ## What you get
 
-`reports/report.json` holds a summary and one entry per rule that fired, each
-carrying its severity, a total, and samples that name the entity:
+`reports/report.json` holds a summary, which names the run and every rule it
+walked, and one entry per rule that fired, each carrying its severity, a total,
+and samples that name the entity:
 
 ```json
 {
   "summary": {
-    "validatorVersion": "0.1.1",
-    "validatedAt": "2026-08-16T15:51:39Z",
+    "validatorVersion": "0.2.0",
+    "mode": "modern",
+    "validatedAt": "2026-08-16T17:49:54Z",
     "gtfsInput": "bullrunner-gtfs.zip",
     "gtfsRealtimeInputs": ["TripUpdates.pb"],
     "feedRoles": {"rt": "TripUpdates.pb"},
+    "outputDirectory": "reports",
+    "validationReportName": "report.json",
+    "systemErrorsReportName": "system_errors.json",
     "messagesValidated": 1,
     "filesSkipped": 0,
-    "validationTimeSeconds": 0.076
+    "validationTimeSeconds": 0.062,
+    "rulesRun": ["E001", "E002", "E003", "E004", "E006", "..."]
   },
   "notices": [
     {
@@ -57,6 +63,14 @@ carrying its severity, a total, and samples that name the entity:
 
 `entityPath` points at the exact field inside the message, so a finding is
 actionable without opening the feed by hand.
+
+`rulesRun` is the only thing shortened above: the file lists every id the run
+walked, 121 of them here and 56 under `--compat`. It is read off the registry
+the run was built with rather than written down anywhere, so a run that walked
+fewer rules reports fewer, and a clean report can be checked against what
+actually ran instead of being taken on trust. `mode` says which of the two
+validators produced the file, so a stored report does not need its filename to
+say what its 121 or 56 ids mean.
 
 `reports/system_errors.json` holds anything the run could not turn into
 findings, whether the bytes were unreadable or they decoded and then failed on a
@@ -110,6 +124,51 @@ result.write(Path("reports/"))
 `resolve` takes the same targets as `-rt`, including a URL. `resolve_roles`
 takes a mapping such as `{"tu": ..., "vp": ...}` for the named-role form.
 Nothing is written to disk unless you call `write`.
+
+### Validating many messages against one feed
+
+Each `validate` call re-reads the GTFS archive, so a run can never be judged
+against a feed that changed underneath it. That read dominates: on a large
+agency's archive it is around 45 seconds against a rule pass of well under one.
+If you are validating a stream of messages, read it once instead:
+
+```python
+from gtfs_rt_validator.api import Mode, Request, prepare_feed, resolve, validate
+
+feed = prepare_feed(Path("feed.zip"), mode=Mode.MODERN)   # pay the read once
+
+for message in incoming:
+    result = validate(Request(mode=Mode.MODERN, gtfs=feed, inputs=resolve(message)))
+```
+
+Measured on one real agency's archive, 18 MB and 92,360 trips: 47.6s to prepare,
+then 0.5s per message. The prepared feed retains about 1.9 GB, so it is a real
+memory commitment as well as a speed one.
+
+**You take ownership of staleness.** The archive is not read again until you
+build another `prepare_feed`, so deciding when to rebuild is yours. A feed
+prepared for one mode is refused by a run in the other, loudly, because the two
+modes read the archive differently and a silent mismatch would change findings
+rather than fail.
+
+A `Path` for `gtfs` is read on every call, so two calls read `feed.zip` twice.
+That is the default because the file can change between them. For a service
+validating repeatedly against one archive, `prepare_feed` does the reading once
+and `gtfs` takes the result:
+
+```python
+from gtfs_rt_validator.api import prepare_feed
+
+feed = prepare_feed(Path("feed.zip"), mode=Mode.MODERN)
+result = validate(Request(mode=Mode.MODERN, gtfs=feed, inputs=resolve("TripUpdates.pb")))
+```
+
+Reading is the expensive half: on an 18 MB archive of 92,360 trips it is about
+45 of a 49-second call, against a sub-second rule pass, and the feed it produces
+holds roughly 1.9 GB. Reusing one moves staleness onto you, since the archive is
+not read again until you build another. It must be prepared for the `mode` and
+`ignore_shapes` the request uses, because both change what was read; a mismatch
+is a `UsageError` rather than a wrong answer.
 
 ## What it checks
 

@@ -23,6 +23,17 @@ Where this project differs from the sibling, and why:
   archive replay is thousands of files and a summary that cannot say how many
   were read, or how many were skipped as duplicates or decode failures, does
   not describe the run.
+- **`mode` and `rulesRun` are new.** A run here is either this project's own
+  validator or a reproduction of the jar, and the two make different assurance
+  claims: 121 rules against 56. A consumer that will not take a verdict from an
+  empty rule set needs the inventory rather than the count, and a stored report
+  should not need its filename to say which mode produced it. `rulesRun` is the
+  ids the run's registry actually held, threaded from `RunConfig.registry`
+  through `RunResult`, so a tree that lost a rule module reports a shorter list
+  rather than the number this paragraph claims. Only a modern run writes this
+  file today, compat's writer being per message and summary-less, so `mode` is
+  the file describing itself rather than a switch between two shapes; the
+  summary is public through `Result.summary()` and answers for either mode.
 - **`threads` is dropped.** Nothing here runs in parallel yet, so reporting a
   thread count would be a claim, not a fact.
 - **`countryCode` and `dateForValidation` are dropped.** Both are static-feed
@@ -63,6 +74,9 @@ class RunSummary:
 
     validated_at: str
     validator_version: str = VERSION
+    #: Which validator the run was being, `"modern"` or `"compat"`. A `Mode`
+    #: member is already the string, so a caller hands one straight over.
+    mode: str | None = None
     gtfs_input: str | None = None
     gtfs_realtime_inputs: tuple[str, ...] = ()
     feed_roles: dict[str, str] = field(default_factory=dict)
@@ -72,6 +86,19 @@ class RunSummary:
     messages_validated: int | None = None
     files_skipped: int | None = None
     validation_time_seconds: float | None = None
+    #: The ids the run's registry actually held, in the order the run walked
+    #: them. Derived from `RunConfig.registry` and never from a constant or a
+    #: second `Registry.modern()` call: a hard-coded inventory would keep
+    #: reporting 121 ids after a rule module stopped being there, which is the
+    #: one thing this field exists to catch. Walk order rather than sorted,
+    #: because under compat that order is upstream's registration order and so
+    #: its output order; sorting would throw that away for nothing.
+    #:
+    #: `None` rather than `()` by default, because an empty inventory is a
+    #: claim about the registry and a summary that was never handed one has no
+    #: business making it. Absent says "not recorded"; `[]` would say "nothing
+    #: ran", and those are the two states this consumer has to tell apart.
+    rules_run: tuple[str, ...] | None = None
 
 
 def _drop_nulls(payload: dict[str, object]) -> dict[str, object]:
@@ -89,6 +116,7 @@ def build_summary(summary: RunSummary) -> dict[str, object]:
     return _drop_nulls(
         {
             "validatorVersion": summary.validator_version,
+            "mode": summary.mode,
             "validatedAt": summary.validated_at,
             "gtfsInput": summary.gtfs_input,
             "gtfsRealtimeInputs": list(summary.gtfs_realtime_inputs),
@@ -99,5 +127,6 @@ def build_summary(summary: RunSummary) -> dict[str, object]:
             "messagesValidated": summary.messages_validated,
             "filesSkipped": summary.files_skipped,
             "validationTimeSeconds": summary.validation_time_seconds,
+            "rulesRun": None if summary.rules_run is None else list(summary.rules_run),
         }
     )

@@ -93,6 +93,13 @@ class RunResult:
     files_skipped: int
     inputs: tuple[str, ...]
     roles: dict[str, str]
+    #: The ids of the registry this run walked, in walk order: `RunSummary`'s
+    #: `rulesRun`. Read off `config.registry` in `_Run.result` rather than
+    #: rebuilt at write time, so a run whose registry was short reports a short
+    #: list instead of the number the mode is supposed to hold. No default, for
+    #: the same reason: a constructor that could leave it out would let a caller
+    #: publish "no rules ran" by omission.
+    rules_run: tuple[str, ...]
 
 
 def _message_container(mode: Mode) -> NoticeContainer:
@@ -171,6 +178,7 @@ class _Run:
             files_skipped=self.skipped,
             inputs=tuple(self.inputs),
             roles=self.roles,
+            rules_run=config.registry.ids(),
         )
 
 

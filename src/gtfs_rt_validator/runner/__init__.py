@@ -33,6 +33,7 @@ from gtfs_rt_validator.runner.clock import (
     remove_extension,
     timestamp_from_file_name,
 )
+from gtfs_rt_validator.runner.config import PreparedFeed, prepare_feed
 from gtfs_rt_validator.runner.context import (
     DEFAULT_ROLE,
     ROLE_ALERTS,
@@ -74,6 +75,7 @@ __all__ = [
     "FileNameTimestampError",
     "MessageResult",
     "Mode",
+    "PreparedFeed",
     "Reading",
     "RuleContext",
     "RuleContractError",
@@ -90,6 +92,7 @@ __all__ = [
     "millis_from_datetime",
     "modern_reading",
     "prepare",
+    "prepare_feed",
     "remove_extension",
     "role_cycle",
     "run",

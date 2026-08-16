@@ -69,6 +69,7 @@ __all__ = [
     "entries",
     "output_order",
     "results_path",
+    "validation_rule",
     "write_results",
 ]
 
@@ -108,8 +109,16 @@ def _ordered_groups(container: NoticeContainer) -> dict[str, list[Occurrence]]:
     return {rule_id: grouped[rule_id] for rule_id in output_order() if rule_id in grouped}
 
 
-def _validation_rule(rule_id: str) -> dict[str, object]:
-    """Upstream's `ValidationRule` bean, in its declaration order."""
+def validation_rule(rule_id: str) -> dict[str, object]:
+    """Upstream's `ValidationRule` bean, in its declaration order.
+
+    Public because it is the only way to build that bean. `manifest.rule()` is
+    exported and carries all five values, but as a snake_case dataclass, so a
+    caller assembling MobilityData's webapp-shaped body (`report` beside an
+    `enabledRules` list of these) would otherwise have to re-implement the
+    five-key rename here and let it drift from the writer it mirrors.
+    `entries()` and `output_order()` are the rest of that surface.
+    """
     rule = manifest.rule(rule_id)
     return {
         "errorId": rule.error_id,
@@ -118,6 +127,13 @@ def _validation_rule(rule_id: str) -> dict[str, object]:
         "errorDescription": rule.error_description,
         "occurrenceSuffix": rule.occurrence_suffix,
     }
+
+
+#: The name this was reachable under before it was public. Kept because a
+#: consumer was told the export would be additive, and removing the old spelling
+#: in the same breath would have made that untrue. Nothing here reads it and it
+#: can go once no caller does.
+_validation_rule = validation_rule
 
 
 def _occurrence(occurrence: Occurrence) -> dict[str, object]:
@@ -137,7 +153,7 @@ def _entry(rule_id: str, occurrences: list[Occurrence]) -> dict[str, object]:
         "errorMessage": {
             "messageId": None,
             "gtfsRtFeedIterationModel": None,
-            "validationRule": _validation_rule(rule_id),
+            "validationRule": validation_rule(rule_id),
             "errorDetails": None,
         },
         "occurrenceList": [_occurrence(one) for one in occurrences],
