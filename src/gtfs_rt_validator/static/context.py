@@ -119,7 +119,10 @@ class StaticContext:
     exact_times_zero_trip_ids: frozenset[str]
     exact_times_one_trips: dict[str, list[Row]]
     shape_points: dict[str, list[Row]]
-    trip_shapes: dict[str, list[Point]]
+    #: One polyline per trip, `(lon, lat)`. Trips sharing a `shape_id` share the
+    #: tuple: see `_tables.build_trips` for the measurement and for why it is a
+    #: tuple rather than a list.
+    trip_shapes: dict[str, tuple[Point, ...]]
     stop_bounding_box: Rectangle
     stop_bounding_box_buffered: Rectangle
     shape_bounding_box: Rectangle | None

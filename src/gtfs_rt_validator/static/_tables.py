@@ -105,7 +105,7 @@ def group_stop_times(rows: list[Row]) -> dict[str, list[Row]]:
 
 def build_trips(
     rows: list[Row], shape_points: dict[str, list[Row]]
-) -> tuple[dict[str, Row], dict[str, list[Point]]]:
+) -> tuple[dict[str, Row], dict[str, tuple[Point, ...]]]:
     """`GtfsMetadata.java:166-189`: the trip map, and a polyline per trip.
 
     A trip gets a shape only when its `shape_id` is set and names a shape that
@@ -113,9 +113,25 @@ def build_trips(
     zero-length, and the sibling's loader maps an empty cell to `None`, so the
     two agree. Points are `(lon, lat)`, matching `pointXY(p.getLon(), p.getLat())`
     and every other coordinate pair in this project.
+
+    **One polyline per shape, shared by every trip that names it**, where
+    upstream builds one per trip inside its loop. Trips outnumber shapes heavily
+    on a real feed: 92,360 against 1,157 on the MBTA's archive, so converting per
+    trip held 25,737,031 point tuples for 393,779 points on disk, 1.75 GB of the
+    3.55 GB a prepared feed retained. Identical values cannot reach output
+    differently, so the sharing is invisible to every rule and every report.
+
+    **A tuple rather than a list, and that is what makes sharing safe.**
+    `trip_shapes` is reachable from a caller's `PreparedFeed`, which may outlive
+    hundreds of runs, and a shared list would turn one accidental `append` into a
+    change to every trip on that shape rather than to one. A tuple cannot be
+    edited into that state at all. It is also the cheaper object, and both
+    readers already call `tuple(...)` on what they get, which on a tuple hands
+    back the same object instead of copying it.
     """
     trips: dict[str, Row] = {}
-    trip_shapes: dict[str, list[Point]] = {}
+    trip_shapes: dict[str, tuple[Point, ...]] = {}
+    polylines: dict[str, tuple[Point, ...]] = {}
     for row in rows:
         trip_id = row["trip_id"]
         trips[trip_id] = row
@@ -123,8 +139,13 @@ def build_trips(
         if shape_id is None:
             continue
         points = shape_points.get(shape_id)
-        if points is not None:
-            trip_shapes[trip_id] = [(p["shape_pt_lon"], p["shape_pt_lat"]) for p in points]
+        if points is None:
+            continue
+        polyline = polylines.get(shape_id)
+        if polyline is None:
+            polyline = tuple((p["shape_pt_lon"], p["shape_pt_lat"]) for p in points)
+            polylines[shape_id] = polyline
+        trip_shapes[trip_id] = polyline
     return trips, trip_shapes
 
 

@@ -147,6 +147,39 @@ def test_a_trip_gets_a_shape_only_when_its_shape_id_resolves(tmp_path):
     assert ctx.buffered_trip_shape("NOT_A_TRIP") is None
 
 
+def test_trips_on_one_shape_share_the_polyline_object_rather_than_copying_it(tmp_path):
+    """Identity, not equality, and the difference is 1.7 GB on a real feed.
+
+    `build_trips` converts a shape's rows into `(lon, lat)` pairs once per
+    *trip*, which is the shape upstream's Java has: it walks trips and builds a
+    list inside the loop. On the MBTA's archive that is 92,360 trips over 1,157
+    distinct shapes, so 393,779 shape points on disk became 25,737,031 tuples
+    held for the life of the feed, a factor of 65. Measured at 1.75 GB of the
+    3.55 GB a prepared feed retains, which is most of the reason `prepare_feed`
+    is a memory commitment at all.
+
+    Sharing is invisible to output, the values being identical either way, so no
+    rule and no report can tell whether two trips point at one polyline or two.
+    What makes it *safe* is that the polyline is a tuple: `trip_shapes` reaches a
+    caller through `PreparedFeed.static`, which may outlive hundreds of runs, and
+    a shared list would turn one stray `append` into a change to every trip on
+    that shape. The immutability is asserted here rather than assumed, because it
+    is the whole argument for sharing.
+
+    `==` would pass against the old per-trip copies, so this asserts `is`.
+    """
+    tables = two_shape_tables(FOUR_POINTS)
+    tables["trips.txt"].append(dict(trip("T3"), shape_id="SH1"))
+    tables["stop_times.txt"].append(stop_time("T3", "S1", "1"))
+
+    ctx = context_from(tmp_path, tables)
+
+    assert ctx.trip_shapes["T1"] is ctx.trip_shapes["T3"], "same shape_id, one polyline"
+    assert ctx.trip_shapes["T1"] is not ctx.trip_shapes["T2"], "different shape_id, two"
+    assert ctx.trip_shapes["T1"] == ((-82.45, 27.95), (-82.43, 27.97))
+    assert isinstance(ctx.trip_shapes["T1"], tuple), "shared, so it must not be editable"
+
+
 def test_the_boxes_are_built_over_the_right_points_and_buffered_by_a_mile(tmp_path):
     """Stops box over every stop with both coordinates; shapes box over every point."""
     tables = two_shape_tables(FOUR_POINTS)
