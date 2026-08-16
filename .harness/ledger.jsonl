@@ -13,3 +13,4 @@
 {"ts":"2026-08-16T17:52:30Z","rule":"lint","severity":"block","file":"tests/test_prepared_feed.py","detail":"ruff check failed","session":""}
 {"ts":"2026-08-16T17:52:30Z","rule":"file-size","severity":"warn","file":"tests/test_prepared_feed.py","detail":"204 lines (target <200)","session":""}
 {"ts":"2026-08-16T17:52:33Z","rule":"file-size","severity":"warn","file":"tests/test_prepared_feed.py","detail":"205 lines (target <200)","session":""}
+{"ts":"2026-08-16T19:07:50Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/runner/config.py","detail":"218 lines (target <200)","session":""}

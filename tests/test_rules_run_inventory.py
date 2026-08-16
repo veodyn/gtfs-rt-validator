@@ -113,6 +113,31 @@ def test_the_written_report_carries_the_inventory_and_the_mode(tmp_path):
     assert summary["mode"] == "modern"
 
 
+def test_a_compat_run_answers_for_itself_through_a_summary_it_never_writes(tmp_path):
+    """The half of `mode` that no shipped file can carry.
+
+    Compat's writer is per message and summary-less, and `Result.write` refuses
+    a compat result outright (`tests/test_api.py` owns that refusal). So every
+    `report.json` this project has ever written says `"modern"`, and the only
+    way to reach `"compat"` is to ask a result for its summary in process, which
+    is what a caller running compat and reporting elsewhere would do. `mode`'s
+    docstring in `report/summary.py` claims the summary answers for either mode;
+    without this the claim is true only of the one that is exercised.
+
+    `rulesRun` is checked beside it because the two are the same assurance
+    statement: 56 ids under compat against 121 under modern is the difference
+    the field was added to make visible.
+    """
+    config = a_config(tmp_path, mode=Mode.COMPAT)
+    result = result_of(config, archive(tmp_path, "one.pb"))
+
+    summary = build_summary(result.summary())
+
+    assert summary["mode"] == "compat"
+    assert summary["rulesRun"] == list(Registry.compat().ids())
+    assert len(summary["rulesRun"]) < len(Registry.modern().ids())
+
+
 def test_a_real_modern_run_reports_the_registry_modern_mode_builds(tmp_path):
     """The cross-check: the real thing, still read off the run rather than
     counted. Compared against `Registry.modern().ids()` rather than a number,
