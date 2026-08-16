@@ -32,10 +32,9 @@ from gtfs_rt_validator.proto.schema_current import SCHEMA
 from gtfs_rt_validator.report.occurrence import Occurrence
 from gtfs_rt_validator.runner.clock import ClockSource, Reading
 from gtfs_rt_validator.runner.context import CombinedFeed, RuleContext
-from gtfs_rt_validator.static._stoptimes import EMPTY_STOP_TIMES
-from gtfs_rt_validator.static.adapter import RawTables, load_static
+from gtfs_rt_validator.static.adapter import load_static
 from gtfs_rt_validator.static.context import StaticContext
-from gtfsfixtures import build_feed, minimal_tables
+from gtfsfixtures import build_feed, empty_static, minimal_tables
 from rulefixtures import minimal
 
 __all__ = [
@@ -81,7 +80,7 @@ def entity(entity_id: str = ENTITY_ID, **payloads: object) -> dict[str, object]:
 def context(**overrides: object) -> RuleContext:
     """A context over a static feed with nothing in it, for its `memo` alone."""
     built: dict[str, object] = {
-        "static": StaticContext.build(RawTables([], [], [], [], EMPTY_STOP_TIMES, [], [])),
+        "static": empty_static(),
         "timezone": "America/New_York",
         "clock": READING,
         "source": "rt.pb",

@@ -43,9 +43,7 @@ from gtfs_rt_validator.runner.context import (
     collect,
     host_role,
 )
-from gtfs_rt_validator.static._stoptimes import EMPTY_STOP_TIMES
-from gtfs_rt_validator.static.adapter import RawTables
-from gtfs_rt_validator.static.context import StaticContext
+from gtfsfixtures import empty_static
 from runnerfixtures import feed
 
 READING = Reading(1_700_000_000_000, ClockSource.FIXED)
@@ -62,7 +60,7 @@ def a_context(**kwargs) -> RuleContext:
     no file at all, so they say what they are about and nothing else.
     """
     return RuleContext(
-        static=StaticContext.build(RawTables([], [], [], [], EMPTY_STOP_TIMES, [], [])),
+        static=empty_static(),
         timezone="America/New_York",
         clock=READING,
         source="a.pb",

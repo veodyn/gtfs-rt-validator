@@ -28,9 +28,7 @@ from gtfs_rt_validator.rules._shared.walks import (
 from gtfs_rt_validator.rules.errors import RuleContractError
 from gtfs_rt_validator.runner.clock import ClockSource, Reading
 from gtfs_rt_validator.runner.context import RuleContext
-from gtfs_rt_validator.static._stoptimes import EMPTY_STOP_TIMES
-from gtfs_rt_validator.static.adapter import RawTables
-from gtfs_rt_validator.static.context import StaticContext
+from gtfsfixtures import empty_static
 
 READING = Reading(1_700_000_000_000, ClockSource.FIXED)
 
@@ -55,7 +53,7 @@ SECOND_MESSAGE = "message two"
 def a_context() -> RuleContext:
     """A context over a static feed with nothing in it, for its `memo` alone."""
     return RuleContext(
-        static=StaticContext.build(RawTables([], [], [], [], EMPTY_STOP_TIMES, [], [])),
+        static=empty_static(),
         timezone="America/New_York",
         clock=READING,
         source="a.pb",

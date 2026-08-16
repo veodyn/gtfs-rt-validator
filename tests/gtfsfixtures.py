@@ -22,6 +22,10 @@ import zipfile
 from collections.abc import Mapping, Sequence
 from pathlib import Path
 
+from gtfs_rt_validator.static._stoptimes import EMPTY_STOP_TIMES
+from gtfs_rt_validator.static.adapter import RawTables
+from gtfs_rt_validator.static.context import StaticContext
+
 Row = Mapping[str, object]
 Tables = Mapping[str, Sequence[Row]]
 
@@ -197,3 +201,14 @@ def minimal_tables() -> dict[str, list[dict[str, object]]]:
             }
         ],
     }
+
+
+def empty_static() -> StaticContext:
+    """A `StaticContext` over a feed with no rows at all.
+
+    What a rule test uses when the rule under test reads nothing from the static
+    feed, so that building one costs nothing and says so. Three modules wanted
+    the same seven-empty-tables incantation, and `RawTables` is positional, so
+    the odds of one of them drifting were only going up.
+    """
+    return StaticContext.build(RawTables([], [], [], [], EMPTY_STOP_TIMES, [], []))
