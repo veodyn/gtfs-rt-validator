@@ -119,12 +119,30 @@ def test_write_produces_both_reports_and_the_summary_names_the_run(tmp_path):
 def test_compat_writes_one_file_beside_each_input_through_the_sink(tmp_path):
     """Compat's unit of work is the message, so its writer is a sink rather than
     a call at the end of the run. `tests/test_compat_writer.py` owns the bytes;
-    what the API promises is that the sink is where they come from."""
+    what the API promises is that the sink is where they come from.
+
+    **Sorted by name, and that is the point rather than a detail.** `workspace`
+    writes `one.pb` and `two.pb` back to back, and `dedupe.last_modified_millis`
+    has millisecond resolution, so the two share an mtime: measured at 20 of 20
+    runs locally. Under the default date sort they therefore compare equal, and
+    `walk`'s docstring says what happens then, faithfully to upstream's stable
+    `Comparator`: they keep the order the directory scan produced, which is the
+    platform's. This assertion used to run under that default and passed only
+    because APFS enumerated them alphabetically; every CI runner failed it on
+    the first public run. A test that wants a fixed order needs distinct sort
+    keys, which is exactly what `walk` tells it to do.
+    """
     space = workspace(tmp_path)
     writer = api.ResultsWriter()
 
     result = api.validate(
-        request_for(space, api.resolve(str(space.archive)), mode=Mode.COMPAT), sink=writer
+        request_for(
+            space,
+            api.resolve(str(space.archive), sort_by=SortBy.NAME),
+            mode=Mode.COMPAT,
+            sort_by=SortBy.NAME,
+        ),
+        sink=writer,
     )
 
     assert result.run.messages_validated == 2
