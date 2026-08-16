@@ -1,5 +1,10 @@
 # gtfs-rt-validator
 
+[![CI](https://github.com/veodyn/gtfs-rt-validator/actions/workflows/ci.yml/badge.svg)](https://github.com/veodyn/gtfs-rt-validator/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/gtfs-rt-validator)](https://pypi.org/project/gtfs-rt-validator/)
+[![Python versions](https://img.shields.io/pypi/pyversions/gtfs-rt-validator)](https://pypi.org/project/gtfs-rt-validator/)
+[![License](https://img.shields.io/pypi/l/gtfs-rt-validator)](https://github.com/veodyn/gtfs-rt-validator/blob/main/LICENSE)
+
 Validate GTFS-Realtime feeds from Python. No JVM, and one dependency.
 
 The only maintained GTFS-Realtime rule validator is
@@ -209,7 +214,7 @@ CI runs on `workflow_dispatch` only until this repository is public.
 
 An independent reimplementation, not an official port, not affiliated with
 MobilityData and not endorsed by them. Rule ids, severities, titles and
-occurrence text come from their Apache-2.0 project; [`NOTICE`](NOTICE) names what
+occurrence text come from their Apache-2.0 project; [`NOTICE`](https://github.com/veodyn/gtfs-rt-validator/blob/main/NOTICE) names what
 is copied rather than derived.
 
 Where upstream and this project's intuition disagree, upstream wins: under
@@ -233,7 +238,7 @@ time.
 
 ## License
 
-MIT; see [`LICENSE`](LICENSE).
+MIT; see [`LICENSE`](https://github.com/veodyn/gtfs-rt-validator/blob/main/LICENSE).
 
 [upstream]: https://github.com/MobilityData/gtfs-realtime-validator
 [sibling]: https://github.com/veodyn/gtfs-validator
