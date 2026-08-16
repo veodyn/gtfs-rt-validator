@@ -199,8 +199,8 @@ def test_trip_stop_times_are_sorted_by_stop_sequence(tmp_path):
 
     ctx = context_from(tmp_path, tables)
 
-    assert [row["stop_sequence"] for row in ctx.trip_stop_times["T1"]] == [3, 7]
-    assert [row["stop_id"] for row in ctx.trip_stop_times["T1"]] == ["S2", "S1"]
+    assert [stop.stop_sequence for stop in ctx.trip_stop_times["T1"]] == [3, 7]
+    assert [stop.stop_id for stop in ctx.trip_stop_times["T1"]] == ["S2", "S1"]
 
 
 def test_trip_stop_times_holds_no_trip_absent_from_trips(tmp_path):

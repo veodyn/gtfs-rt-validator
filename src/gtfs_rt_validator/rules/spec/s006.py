@@ -71,7 +71,7 @@ repeated stop_id at all.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from gtfs_rt_validator.report import manifest
 from gtfs_rt_validator.report.occurrence import ENTITY_PATH_KEY, Occurrence
@@ -83,13 +83,14 @@ from gtfs_rt_validator.rules.registry import rule
 
 if TYPE_CHECKING:  # Type-only: `runner.context` reaches the static layer and so
     # the sibling, which nothing under `rules/` may import at run time.
-    from collections.abc import Mapping, Sequence
+    from collections.abc import Sequence
 
     from gtfs_rt_validator.proto.decode import Msg
     from gtfs_rt_validator.rules._shared.schedule_relationship import (
         StopTimeRelationship,
         TripRelationship,
     )
+    from gtfs_rt_validator.rules._shared.stop_time_update_checks import StopTime
     from gtfs_rt_validator.runner.context import RuleContext, RuleResult
 
 RULE_ID = "S006"
@@ -100,8 +101,6 @@ CLAUSE = (
 )
 
 ONLY_ONE = "trip_id {trip_id} {stop} gives only {given} where stop_times.txt gives both times"
-
-SCHEDULE_TIMES = ("arrival_time", "departure_time")
 
 ARRIVAL, DEPARTURE = "arrival", "departure"
 
@@ -139,14 +138,14 @@ def _of_trip(record: TripRelationship, ctx: RuleContext) -> list[Occurrence]:
 def _of_update(
     trip_id: str,
     stop_time: StopTimeRelationship,
-    rows: Sequence[Mapping[str, Any]],
+    rows: Sequence[StopTime],
     revisited: frozenset[str],
 ) -> list[Occurrence]:
     position = _position_of(stop_time.update, rows, revisited)
     if position is None:
         return []
     row = rows[position]
-    if any(row.get(name) is None for name in SCHEDULE_TIMES):
+    if row.arrival_time is None or row.departure_time is None:
         return []
     given = [event for event in EVENTS if stop_time.update.has(event)]
     if len(given) != 1 or _at_a_terminal(given[0], position, len(rows)):
@@ -160,9 +159,7 @@ def _of_update(
     ]
 
 
-def _position_of(
-    update: Msg, rows: Sequence[Mapping[str, Any]], revisited: frozenset[str]
-) -> int | None:
+def _position_of(update: Msg, rows: Sequence[StopTime], revisited: frozenset[str]) -> int | None:
     """Where in the trip this update sits, by sequence then by id, or `None`.
 
     An index rather than the row itself, because the row alone cannot say
@@ -175,12 +172,12 @@ def _position_of(
     """
     if update.has("stop_sequence"):
         wanted = update.get("stop_sequence")
-        return next((at for at, row in enumerate(rows) if row.get("stop_sequence") == wanted), None)
+        return next((at for at, row in enumerate(rows) if row.stop_sequence == wanted), None)
     if update.has("stop_id"):
         wanted = update.get("stop_id")
         if wanted in revisited:
             return None
-        return next((at for at, row in enumerate(rows) if row.get("stop_id") == wanted), None)
+        return next((at for at, row in enumerate(rows) if row.stop_id == wanted), None)
     return None
 
 

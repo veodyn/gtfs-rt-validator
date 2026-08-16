@@ -54,16 +54,19 @@ from gtfs_rt_validator.geometry.bbox import (
     Rectangle,
 )
 from gtfs_rt_validator.geometry.buffer import within_buffered_shape
+from gtfs_rt_validator.static._stoptimes import (
+    StopTime,
+    build_route_stop_ids,
+    group_stop_times,
+    repeated_stops,
+)
 from gtfs_rt_validator.static._tables import (
     Point,
     Row,
     agency_id_of,
-    build_route_stop_ids,
     build_shapes,
     build_stops,
     build_trips,
-    group_stop_times,
-    repeated_stops,
     split_frequencies,
     timezone_of,
 )
@@ -115,10 +118,10 @@ class StaticContext:
     route_ids: frozenset[str]
     stop_ids: frozenset[str]
     trips: dict[str, Row]
-    trip_stop_times: dict[str, list[Row]]
+    trip_stop_times: dict[str, tuple[StopTime, ...]]
     exact_times_zero_trip_ids: frozenset[str]
     exact_times_one_trips: dict[str, list[Row]]
-    shape_points: dict[str, list[Row]]
+    shape_points: dict[str, tuple[Point, ...]]
     #: One polyline per trip, `(lon, lat)`. Trips sharing a `shape_id` share the
     #: tuple: see `_tables.build_trips` for the measurement and for why it is a
     #: tuple rather than a list.

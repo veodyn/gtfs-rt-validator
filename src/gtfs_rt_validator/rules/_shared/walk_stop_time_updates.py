@@ -50,16 +50,17 @@ along upstream's own seam between the stateful loop and the stateless checks.
 
 from __future__ import annotations
 
-from collections.abc import Iterator, Mapping, Sequence
+from collections.abc import Iterator, Sequence
 from dataclasses import dataclass, field
 from itertools import pairwise
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from gtfs_rt_validator.proto.decode import Msg
 from gtfs_rt_validator.report.occurrence import ENTITY_PATH_KEY, Occurrence
 from gtfs_rt_validator.rules._shared.ids import trip_id_text
 from gtfs_rt_validator.rules._shared.javafmt import int32, java_list
 from gtfs_rt_validator.rules._shared.stop_time_update_checks import (
+    StopTime,
     check_e036,
     check_e037,
     check_e040,
@@ -76,8 +77,6 @@ if TYPE_CHECKING:  # `runner.context` reaches the static layer, and so the sibli
     from gtfs_rt_validator.runner.context import RuleContext
 
 __all__ = ["occurrences_for", "stop_time_updates"]
-
-Row = Mapping[str, Any]
 
 
 def stop_time_updates(message: Msg, ctx: RuleContext) -> Iterator[Event]:
@@ -111,7 +110,7 @@ class _Scan:
     with no trip_id or an unknown one.
     """
 
-    rows: Sequence[Row]
+    rows: Sequence[StopTime]
     index: int = 0
     unknown_stop_sequence: bool = False
     added_stop_sequence_from_stop_id: bool = False
@@ -197,8 +196,8 @@ def _advance(scan: _Scan, entity: Msg, trip_update: Msg, update: Msg, path: str)
     has_stop_id = update.has("stop_id")
     while scan.index < len(scan.rows):
         row = scan.rows[scan.index]
-        gtfs_stop_sequence = row["stop_sequence"]
-        gtfs_stop_id = row["stop_id"]
+        gtfs_stop_sequence = row.stop_sequence
+        gtfs_stop_id = row.stop_id
         found_stop_sequence = False
         found_stop_id = False
         if has_stop_sequence and gtfs_stop_sequence == int32(update.get("stop_sequence")):

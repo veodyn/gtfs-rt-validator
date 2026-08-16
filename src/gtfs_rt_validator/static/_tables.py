@@ -28,10 +28,7 @@ from gtfs_rt_validator.geometry.bbox import REGION_BUFFER_DEGREES, Rectangle
 Row = dict[str, Any]
 Point = tuple[float, float]
 
-# `shapePoints.size() > 3` (`GtfsMetadata.java:127`), written as a threshold so
-# the comparison reads the way the Java does. Feed-wide, not per shape:
-# `shapePoints` is `getAllShapePoints()`, so four points spread over four shapes
-# is still four, and the gate stays shut.
+
 SHAPE_POINT_GATE = 3
 
 
@@ -62,7 +59,7 @@ def agency_id_of(row: Row) -> str:
 
 def build_shapes(
     rows: list[Row], *, ignore_shapes: bool
-) -> tuple[dict[str, list[Row]], Rectangle | None, Rectangle | None]:
+) -> tuple[dict[str, tuple[Point, ...]], Rectangle | None, Rectangle | None]:
     """`GtfsMetadata.java:124-150`, gate included.
 
     Below the gate this returns nothing at all, which is what leaves both boxes
@@ -70,6 +67,13 @@ def build_shapes(
     built over the points in file order, before the per-shape lists are sorted,
     because that is the order upstream feeds the multipoint builder; the answer
     does not depend on it, a bounding box being a min and a max.
+
+    **Coordinate pairs rather than the loaded rows.** Once a shape is sorted and
+    the box is built, the only thing anything asks of it is its geometry: no rule
+    reads `shape_points` at all, and the two that want a polyline want
+    `(lon, lat)`. Holding the rows instead cost 163 MB of a real feed for 393,779
+    of them. Sorting still happens on the rows, because `shape_pt_sequence` is
+    what orders them and it is not one of the two values kept.
     """
     if ignore_shapes or len(rows) <= SHAPE_POINT_GATE:
         return {}, None, None
@@ -79,32 +83,18 @@ def build_shapes(
         grouped.setdefault(row["shape_id"], []).append(row)
         points.append((row["shape_pt_lon"], row["shape_pt_lat"]))
     box = Rectangle.from_points(points)
-    for group in grouped.values():
-        group.sort(key=lambda row: row["shape_pt_sequence"])
-    return grouped, box, box.buffered(REGION_BUFFER_DEGREES)
-
-
-def group_stop_times(rows: list[Row]) -> dict[str, list[Row]]:
-    """`mTripStopTimes`, sorted by `stop_sequence`.
-
-    Upstream sorts inside its trips loop, so a trip_id present in
-    `stop_times.txt` and absent from `trips.txt` would go unsorted. It cannot
-    reach that state, because its reader aborts the entire read on an
-    unresolvable foreign key. The sibling at `35fac77` does not abort (measured
-    in `tests/test_static_context.py`), so sorting every group here is both
-    simpler and the only version that stays right on a feed upstream would have
-    refused outright.
-    """
-    grouped: dict[str, list[Row]] = {}
-    for row in rows:
-        grouped.setdefault(row["trip_id"], []).append(row)
-    for group in grouped.values():
-        group.sort(key=lambda row: row["stop_sequence"])
-    return grouped
+    polylines = {
+        shape_id: tuple(
+            (row["shape_pt_lon"], row["shape_pt_lat"])
+            for row in sorted(group, key=lambda row: row["shape_pt_sequence"])
+        )
+        for shape_id, group in grouped.items()
+    }
+    return polylines, box, box.buffered(REGION_BUFFER_DEGREES)
 
 
 def build_trips(
-    rows: list[Row], shape_points: dict[str, list[Row]]
+    rows: list[Row], shape_points: dict[str, tuple[Point, ...]]
 ) -> tuple[dict[str, Row], dict[str, tuple[Point, ...]]]:
     """`GtfsMetadata.java:166-189`: the trip map, and a polyline per trip.
 
@@ -114,38 +104,31 @@ def build_trips(
     two agree. Points are `(lon, lat)`, matching `pointXY(p.getLon(), p.getLat())`
     and every other coordinate pair in this project.
 
-    **One polyline per shape, shared by every trip that names it**, where
+    **A trip does not get a polyline of its own; it gets the shape's**, where
     upstream builds one per trip inside its loop. Trips outnumber shapes heavily
     on a real feed: 92,360 against 1,157 on the MBTA's archive, so converting per
     trip held 25,737,031 point tuples for 393,779 points on disk, 1.75 GB of the
-    3.55 GB a prepared feed retained. Identical values cannot reach output
+    3.55 GB a prepared feed retained then. Identical values cannot reach output
     differently, so the sharing is invisible to every rule and every report.
 
-    **A tuple rather than a list, and that is what makes sharing safe.**
-    `trip_shapes` is reachable from a caller's `PreparedFeed`, which may outlive
-    hundreds of runs, and a shared list would turn one accidental `append` into a
-    change to every trip on that shape rather than to one. A tuple cannot be
-    edited into that state at all. It is also the cheaper object, and both
-    readers already call `tuple(...)` on what they get, which on a tuple hands
-    back the same object instead of copying it.
+    Since `build_shapes` now returns polylines rather than rows, `trip_shapes`
+    is a second set of references to the very tuples `shape_points` already
+    holds, and costs a dict rather than any geometry at all. Those tuples being
+    immutable is what makes that safe: `PreparedFeed.static` reaches a caller and
+    may outlive hundreds of runs, and one shared list would have turned a stray
+    `append` into a change to every trip on that shape.
     """
     trips: dict[str, Row] = {}
     trip_shapes: dict[str, tuple[Point, ...]] = {}
-    polylines: dict[str, tuple[Point, ...]] = {}
     for row in rows:
         trip_id = row["trip_id"]
         trips[trip_id] = row
         shape_id = row["shape_id"]
         if shape_id is None:
             continue
-        points = shape_points.get(shape_id)
-        if points is None:
-            continue
-        polyline = polylines.get(shape_id)
-        if polyline is None:
-            polyline = tuple((p["shape_pt_lon"], p["shape_pt_lat"]) for p in points)
-            polylines[shape_id] = polyline
-        trip_shapes[trip_id] = polyline
+        polyline = shape_points.get(shape_id)
+        if polyline is not None:
+            trip_shapes[trip_id] = polyline
     return trips, trip_shapes
 
 
@@ -192,56 +175,3 @@ def split_frequencies(rows: list[Row]) -> tuple[frozenset[str], dict[str, list[R
         elif exact_times == 1:
             one.setdefault(trip_id, []).append(row)
     return frozenset(zero), one
-
-
-def build_route_stop_ids(
-    trips: dict[str, Row], trip_stop_times: dict[str, list[Row]]
-) -> dict[str, frozenset[str]]:
-    """Every `stop_id` some trip of a route serves. **No table is read for this.**
-
-    The one member of `StaticContext` with no `GtfsMetadata` counterpart, because
-    none of upstream's 56 rules asks a route which stops it serves and P012 does.
-    Both arguments are already built by the time this runs: `trips` came from
-    `trips.txt` and `trip_stop_times` from `stop_times.txt`, two of the seven
-    `adapter.SEVEN_TABLES`. So "the exact set a realtime run reads" stays seven,
-    and `tests/test_static_route_stop_ids.py` asserts that rather than trusting
-    this sentence.
-
-    A route whose trips visit nothing is absent rather than mapped to an empty
-    frozenset, which is `repeated_stops`'s convention above and is load bearing
-    here: P012 fires when an alert names every stop of a route, and every alert
-    names every stop of the empty set.
-
-    The walk is over `trips`, so a `stop_times.txt` row naming a trip no
-    `trips.txt` row declares reaches no route. `group_stop_times` keeps it,
-    because the sibling does not reject it, but it belongs to no route.
-    """
-    out: dict[str, set[str]] = {}
-    for trip_id, row in trips.items():
-        stop_times = trip_stop_times.get(trip_id)
-        if not stop_times:
-            continue
-        out.setdefault(row["route_id"], set()).update(stop["stop_id"] for stop in stop_times)
-    return {route_id: frozenset(stop_ids) for route_id, stop_ids in out.items()}
-
-
-def repeated_stops(trip_stop_times: dict[str, list[Row]]) -> dict[str, list[str]]:
-    """`GtfsMetadata.java:196-213`: every *repeat* visit, in stop_sequence order.
-
-    A stop visited three times contributes two entries. The key is inserted only
-    when the list is non-empty, so a trip that visits nothing twice is absent
-    from the map rather than mapped to `[]`, and `containsKey` and `get` answer
-    consistently.
-    """
-    out: dict[str, list[str]] = {}
-    for trip_id, rows in trip_stop_times.items():
-        seen: set[str] = set()
-        duplicates: list[str] = []
-        for row in rows:
-            stop_id = row["stop_id"]
-            if stop_id in seen:
-                duplicates.append(stop_id)
-            seen.add(stop_id)
-        if duplicates:
-            out[trip_id] = duplicates
-    return out

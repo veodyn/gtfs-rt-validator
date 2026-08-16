@@ -149,7 +149,7 @@ def check_e023(carrier: Msg, trip: Msg, ctx: RuleContext) -> Found:
     stop_times = static.trip_stop_times.get(trip_id)
     if not stop_times:
         return None
-    arrival_time = stop_times[0].get("arrival_time")
+    arrival_time = stop_times[0].arrival_time
     formatted = seconds_after_midnight_to_clock(
         MISSING_VALUE if arrival_time is None else arrival_time
     )

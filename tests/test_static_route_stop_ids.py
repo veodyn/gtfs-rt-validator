@@ -161,6 +161,6 @@ def test_it_reads_no_table_the_seven_do_not_already_cover(tmp_path):
     rebuilt: dict[str, set[str]] = {}
     for trip_id, row in ctx.trips.items():
         for stop in ctx.trip_stop_times.get(trip_id, []):
-            rebuilt.setdefault(row["route_id"], set()).add(stop["stop_id"])
+            rebuilt.setdefault(row["route_id"], set()).add(stop.stop_id)
     assert ctx.route_stop_ids == {key: frozenset(value) for key, value in rebuilt.items()}
     assert "trips.txt" in SEVEN_TABLES and "stop_times.txt" in SEVEN_TABLES

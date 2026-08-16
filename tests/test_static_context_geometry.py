@@ -121,7 +121,13 @@ def test_shape_points_are_sorted_by_shape_pt_sequence(tmp_path):
 
     ctx = context_from(tmp_path, two_shape_tables(scrambled))
 
-    assert [row["shape_pt_sequence"] for row in ctx.shape_points["SH1"]] == [1, 2, 3, 4, 5]
+    assert ctx.shape_points["SH1"] == (
+        (-82.45, 27.95),
+        (-82.43, 27.97),
+        (-82.35, 28.05),
+        (-82.33, 28.07),
+        (-82.31, 28.09),
+    ), "sorted by shape_pt_sequence, which is not itself kept"
     assert ctx.trip_shapes["T1"][0] == (-82.45, 27.95), "lon first, as spatial4j pointXY takes it"
     assert ctx.trip_shapes["T1"][-1] == (-82.31, 28.09)
 

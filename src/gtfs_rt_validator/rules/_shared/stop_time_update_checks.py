@@ -25,8 +25,8 @@ point of decoding twice.
 
 from __future__ import annotations
 
-from collections.abc import Iterator, Mapping
-from typing import Any
+from collections.abc import Iterator
+from typing import Protocol
 
 from gtfs_rt_validator.proto.decode import Msg
 from gtfs_rt_validator.report.occurrence import ENTITY_PATH_KEY
@@ -34,15 +34,28 @@ from gtfs_rt_validator.rules._shared.ids import stop_time_update_id_text, trip_i
 from gtfs_rt_validator.rules._shared.javafmt import int32, int32_str
 from gtfs_rt_validator.rules._shared.walks import Event
 
-#: One `stop_times.txt` row as `StaticContext` holds it. Spelled structurally
-#: rather than imported from `static._tables`, because nothing under `rules/`
-#: may reach the static layer at run time.
-Row = Mapping[str, Any]
+
+class StopTime(Protocol):
+    """One `stop_times.txt` row as `StaticContext` holds it.
+
+    Spelled structurally rather than imported from `static._stoptimes`, because
+    nothing under `rules/` may reach the static layer at run time. It was a
+    `Mapping[str, Any]` while the context held loaded dicts; it is these four
+    attributes now that the context holds a record instead, and a `Protocol`
+    keeps the direction of the dependency the same either way.
+    """
+
+    stop_sequence: int
+    stop_id: str
+    arrival_time: int | None
+    departure_time: int | None
+
 
 __all__ = [
     "CANCELED",
     "NO_DATA",
     "SKIPPED",
+    "StopTime",
     "check_e036",
     "check_e037",
     "check_e040",
@@ -216,7 +229,9 @@ def check_e045(
     yield Event("E045", f"{trip}{stop_sequence} has {stop_id}{summary}", _at(path))
 
 
-def check_e046(entity: Msg, trip_update: Msg, update: Msg, row: Row, path: str) -> Iterator[Event]:
+def check_e046(
+    entity: Msg, trip_update: Msg, update: Msg, row: StopTime, path: str
+) -> Iterator[Event]:
     """`checkE046`, `:424-440`. A time-less arrival or departure over a blank GTFS cell.
 
     **Neither condition tests `hasDelay()`.** This rule is easily read as "the
@@ -227,11 +242,12 @@ def check_e046(entity: Msg, trip_update: Msg, update: Msg, row: Row, path: str) 
 
     `isArrivalTimeSet()` in onebusaway-gtfs 1.3.87 is `arrivalTime != -999`, the
     sentinel for a blank cell. The sibling's loader gives `None` for the same
-    cell, so `row["arrival_time"] is None` is the same question.
+    cell, so `row.arrival_time is None` is the same question.
     """
     prefix = f"GTFS-rt {trip_id_text(entity, trip_update)} {stop_time_update_id_text(update)} "
-    for field, column in (("arrival", "arrival_time"), ("departure", "departure_time")):
+    scheduled = (("arrival", row.arrival_time), ("departure", row.departure_time))
+    for field, cell in scheduled:
         if not update.has(field):
             continue
-        if not update.get(field).has("time") and row[column] is None:
+        if not update.get(field).has("time") and cell is None:
             yield Event("E046", f"{prefix}{field}.time", _at(path))

@@ -21,3 +21,10 @@
 {"ts":"2026-08-16T19:49:37Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/static/_tables.py","detail":"247 lines (target <200)","session":""}
 {"ts":"2026-08-16T19:49:41Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/static/context.py","detail":"246 lines (target <200)","session":""}
 {"ts":"2026-08-16T19:49:53Z","rule":"file-size","severity":"warn","file":"tests/test_static_context_geometry.py","detail":"265 lines (target <200)","session":""}
+{"ts":"2026-08-16T20:46:11Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/static/_tables.py","detail":"268 lines (target <200)","session":""}
+{"ts":"2026-08-16T20:46:11Z","rule":"lint","severity":"block","file":"src/gtfs_rt_validator/static/_tables.py","detail":"ruff check failed","session":""}
+{"ts":"2026-08-16T20:46:14Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/static/_tables.py","detail":"268 lines (target <200)","session":""}
+{"ts":"2026-08-16T20:46:28Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/static/_tables.py","detail":"281 lines (target <200)","session":""}
+{"ts":"2026-08-16T20:46:42Z","rule":"file-size","severity":"block","file":"src/gtfs_rt_validator/static/_tables.py","detail":"304 lines (limit 300)","session":""}
+{"ts":"2026-08-16T20:48:47Z","rule":"file-size","severity":"warn","file":"tests/test_static_context.py","detail":"297 lines (target <200)","session":""}
+{"ts":"2026-08-16T20:54:53Z","rule":"file-size","severity":"warn","file":"src/gtfs_rt_validator/rules/_shared/stop_time_update_checks.py","detail":"238 lines (target <200)","session":""}
