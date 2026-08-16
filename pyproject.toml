@@ -27,6 +27,27 @@ dependencies = [
   "gtfs-validator>=0.1.2",
 ]
 license = "MIT"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "veodyn" }]
+keywords = ["gtfs", "gtfs-realtime", "gtfs-rt", "transit", "validator", "protobuf"]
+
+# No License classifier: `license` above is an SPDX expression, and setuptools
+# 77 rejects the pair. The Python versions are the ones CI actually runs.
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Scientific/Engineering :: GIS",
+  "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.urls]
+Repository = "https://github.com/veodyn/gtfs-rt-validator"
+Issues = "https://github.com/veodyn/gtfs-rt-validator/issues"
 
 # `main` returns the exit code rather than raising `SystemExit`, which is what a
 # console script wants: setuptools' generated wrapper passes the return value to

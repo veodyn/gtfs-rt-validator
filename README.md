@@ -10,11 +10,11 @@ process, and can still reproduce that Java tool byte for byte when you need the
 old answers.
 
 ```bash
-python -m pip install .
+pip install gtfs-rt-validator
 gtfs-rt-validator -gtfs feed.zip -rt TripUpdates.pb --out reports/
 ```
 
-Python 3.11 or newer. Not yet on PyPI, so install from a checkout.
+Python 3.11 or newer.
 
 ## What you get
 

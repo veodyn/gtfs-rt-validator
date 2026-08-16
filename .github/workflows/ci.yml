@@ -1,14 +1,11 @@
 name: CI
 
-# Not enabled yet. This repository is still private, so CI runs only when
-# someone asks for it from the Actions tab. Uncomment the `push` and
-# `pull_request` blocks below when the repository goes public.
 on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
-  # push:
-  #   branches: [main]
-  # pull_request:
-  #   branches: [main]
 
 permissions:
   contents: read
@@ -24,9 +21,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # `requires-python` is >=3.11 and pyproject declares no classifiers, so
-        # the floor is the only claim to hold: 3.11 is it. 3.11 and 3.14 have
-        # both been run against the full suite locally with identical results.
+        # These are the four versions pyproject's classifiers claim, so this
+        # matrix is what keeps that claim honest rather than aspirational.
         python-version: ["3.11", "3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v7.0.1
@@ -35,8 +31,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      # The one runtime dependency is the sibling gtfs-validator, pinned by git
-      # SHA in pyproject.toml, so pip needs git here. Ubuntu runners have it.
+      # The one runtime dependency is the sibling gtfs-validator, resolved
+      # from PyPI by version, so this needs no credentials and no git.
       - name: Install
         run: python -m pip install -e ".[dev]"
 
