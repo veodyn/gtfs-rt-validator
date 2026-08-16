@@ -30,7 +30,7 @@ and samples that name the entity:
 ```json
 {
   "summary": {
-    "validatorVersion": "0.2.0",
+    "validatorVersion": "0.3.0",
     "mode": "modern",
     "validatedAt": "2026-08-16T17:49:54Z",
     "gtfsInput": "bullrunner-gtfs.zip",
